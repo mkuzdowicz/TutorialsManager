@@ -3,7 +3,11 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 import java.util.List;
 
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
+@Repository
 public class TutorialsDaoImpl extends AbstractDao<Integer, Tutorial> implements TutorialsDao {
 
 	@Override
@@ -26,7 +30,7 @@ public class TutorialsDaoImpl extends AbstractDao<Integer, Tutorial> implements 
 
 	@Override
 	public void deleteTutorial(Tutorial tutorial) {
-		
+
 		delete(tutorial);
 
 	}

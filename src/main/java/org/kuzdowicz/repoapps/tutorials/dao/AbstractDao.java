@@ -1,6 +1,7 @@
 package org.kuzdowicz.repoapps.tutorials.dao;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -13,6 +14,12 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	private SessionFactory sessionFactory;
 
 	private Class<T> persistenceClass;
+
+	@SuppressWarnings("unchecked")
+	public AbstractDao() {
+		this.persistenceClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass())
+				.getActualTypeArguments()[1];
+	}
 
 	protected Session getSession() {
 
