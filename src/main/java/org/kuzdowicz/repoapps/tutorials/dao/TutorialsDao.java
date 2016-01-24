@@ -8,7 +8,7 @@ public interface TutorialsDao {
 
 	public List<Tutorial> getAllTutorials();
 
-	public Tutorial getOneById(Integer pk);
+	public Tutorial getOneById(Long pk);
 
 	public void saveOrUpdateTutorial(Tutorial tutorial);
 

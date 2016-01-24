@@ -1,7 +1,8 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
+import org.kuzdowicz.repoapps.tutorials.service.InitForTestService;
+import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
 	@Autowired
-	TutorialsService tutorialsService;
+	TutorialsCategoriesService tutorialsCategoriesService;
+
+	@Autowired
+	InitForTestService initForTestService;
 
 	private final static Logger logger = Logger.getLogger(HomeController.class);
 
@@ -23,9 +27,9 @@ public class HomeController {
 
 		ModelAndView mav = new ModelAndView("Home");
 
-		tutorialsService.initSomeTutorials();
+		initForTestService.initSomeData();
 
-		mav.addObject("tutorialList", tutorialsService.selectAll());
+		mav.addObject("categories", tutorialsCategoriesService.selectAll());
 
 		return mav;
 	}

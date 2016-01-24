@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class TutorialsDaoImpl extends AbstractDao<Integer, Tutorial> implements TutorialsDao {
+public class TutorialsDaoImpl extends AbstractDao<Long, Tutorial> implements TutorialsDao {
 
 	@Override
 	public List<Tutorial> getAllTutorials() {
@@ -17,7 +17,7 @@ public class TutorialsDaoImpl extends AbstractDao<Integer, Tutorial> implements 
 	}
 
 	@Override
-	public Tutorial getOneById(Integer pk) {
+	public Tutorial getOneById(Long pk) {
 
 		return findOne(pk);
 	}

@@ -13,13 +13,33 @@
 	<p>Hello to PersonalToutorialsRepo</p>
 	<hr>
 	<ul>
-		<c:forEach items="${tutorialList}" var="tutorial">
+		<c:forEach items="${categories}" var="category">
 
-			<li>${tutorial}</li>
+			<li>${category.id},${category.title}<br>
+
+				<ul>
+					<c:forEach items="${category.tutorials}" var="tutorial">
+
+						<li>${tutorial.id},${tutorial.title},${tutorial.serviceDomain},
+							${tutorial.author}
+							<hr> ${tutorial.url}
+						</li>
+
+					</c:forEach>
+
+				</ul>
+
+
+
+			</li>
 
 		</c:forEach>
 
 	</ul>
+
+	<hr>
+
+
 
 </body>
 </html>
