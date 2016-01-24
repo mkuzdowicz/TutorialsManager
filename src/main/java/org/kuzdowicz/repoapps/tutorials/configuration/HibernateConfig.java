@@ -43,7 +43,7 @@ public class HibernateConfig {
 		/*
 		 * AUTOMATIC CREATE DB SHCEMA AT RUNTIME
 		 */
-		hbnProps.setProperty("hibernate.hbm2ddl.auto", "create");
+		hbnProps.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		
 		return hbnProps;
 	}
