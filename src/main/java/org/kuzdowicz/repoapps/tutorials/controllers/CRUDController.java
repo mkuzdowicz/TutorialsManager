@@ -36,6 +36,8 @@ public class CRUDController {
 
 		ModelAndView mav = new ModelAndView("AddTutorialPage");
 
+		tutorialsService.addTutorialByPostReq(reqMap);
+
 		mav.addObject("reqMap", reqMap);
 
 		return mav;

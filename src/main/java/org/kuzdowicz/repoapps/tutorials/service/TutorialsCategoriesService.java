@@ -25,4 +25,10 @@ public class TutorialsCategoriesService {
 
 	}
 
+	public void insertOrUpdate(TutorialCategory category) {
+
+		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(category);
+
+	}
+
 }
