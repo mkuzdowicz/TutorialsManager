@@ -9,7 +9,9 @@
 	<label>category</label> <input type="text" name="category" /><br>
 	<label>title</label> <input type="text" name="title" /> <br> <label>author</label>
 	<input type="text" name="author" /><br> <label>url</label><input
-		type="text" name="url" /> <br> <input type="submit" />
+		type="text" name="url" /> <br> <label>serviceDomain</label> <input
+		type="text" name="serviceDomain" /><br> <label>rating</label> <input
+		type="number" name="rating" /><br> <input type="submit" />
 
 </form>
 

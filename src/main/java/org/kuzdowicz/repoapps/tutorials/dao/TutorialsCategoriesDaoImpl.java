@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class TutorialsCategoriesDaoImpl extends AbstractDao<Long, TutorialCategory> implements TutorialsCategoriesDao {
+public class TutorialsCategoriesDaoImpl extends AbstractDao<String, TutorialCategory>
+		implements TutorialsCategoriesDao {
 
 	@Override
 	public List<TutorialCategory> getAllCategories() {
@@ -17,7 +18,7 @@ public class TutorialsCategoriesDaoImpl extends AbstractDao<Long, TutorialCatego
 	}
 
 	@Override
-	public TutorialCategory getOneById(Long pk) {
+	public TutorialCategory getOneById(String pk) {
 
 		return findOne(pk);
 	}

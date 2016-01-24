@@ -6,7 +6,7 @@
 
 <ul>
 	<c:forEach items="${categories}" var="category">
-		<li>${category.id},${category.title}<br>
+		<li>${category.categoryName}<br><br>
 			<ul>
 				<c:forEach items="${category.tutorials}" var="tutorial">
 					<li>${tutorial.id},${tutorial.title},${tutorial.serviceDomain},

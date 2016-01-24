@@ -19,4 +19,10 @@ public class TutorialsCategoriesService {
 
 	}
 
+	public TutorialCategory getOneByName(String categoryName) {
+
+		return tutorialsCategoriesDao.getOneById(categoryName);
+
+	}
+
 }

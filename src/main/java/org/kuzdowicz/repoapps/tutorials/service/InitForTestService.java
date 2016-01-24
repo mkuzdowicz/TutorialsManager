@@ -48,7 +48,7 @@ public class InitForTestService {
 		tutorialsDao.saveOrUpdateTutorial(tut3);
 
 		TutorialCategory cat1 = new TutorialCategory();
-		cat1.setTitle("Java");
+		cat1.setCategoryName("Java");
 
 		cat1.setTutorials(new ArrayList<>());
 		cat1.getTutorials().add(tut1);
@@ -56,6 +56,24 @@ public class InitForTestService {
 		cat1.getTutorials().add(tut3);
 
 		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(cat1);
+
+		TutorialCategory cat2 = new TutorialCategory();
+		cat2.setCategoryName("asp");
+
+		cat2.setTutorials(new ArrayList<>());
+
+		Tutorial tut4 = new Tutorial();
+		tut4.setAuthor("MSDN");
+		tut4.setTitle("c# tutorial");
+		tut4.setUrl("https://msdn.microsoft.com/en-us/library/aa288436(v=vs.71).aspx");
+		tut4.setServiceDomain("msdn.microsoft");
+		tut4.setRating(5L);
+
+		tutorialsDao.saveOrUpdateTutorial(tut4);
+
+		cat2.getTutorials().add(tut4);
+
+		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(cat2);
 
 	}
 

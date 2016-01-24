@@ -8,7 +8,7 @@ public interface TutorialsCategoriesDao {
 
 	public List<TutorialCategory> getAllCategories();
 
-	public TutorialCategory getOneById(Long pk);
+	public TutorialCategory getOneById(String pk);
 
 	public void saveOrUpdateTutorialCategory(TutorialCategory tutorial);
 

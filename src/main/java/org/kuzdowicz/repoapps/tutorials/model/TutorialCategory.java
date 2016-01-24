@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -17,24 +15,12 @@ import javax.persistence.Table;
 public class TutorialCategory {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "TUTORIALS_CATEGORIES_ID")
-	private Long id;
-
-	@Column(name = "TITLE")
-	private String title;
+	@Column(name = "CATEGORY_NAME")
+	private String categoryName;
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_ID")
 	private List<Tutorial> tutorials;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 	public List<Tutorial> getTutorials() {
 		return tutorials;
@@ -44,8 +30,12 @@ public class TutorialCategory {
 		this.tutorials = tutorials;
 	}
 
-	public Long getId() {
-		return id;
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 }

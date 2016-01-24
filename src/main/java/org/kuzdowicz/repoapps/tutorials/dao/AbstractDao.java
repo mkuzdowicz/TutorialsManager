@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDao<PK extends Serializable, T> {
@@ -32,6 +33,12 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	protected List<T> findAll() {
 
 		return getSession().createCriteria(persistenceClass).list();
+
+	}
+
+	protected T findOneByCriteria(Criterion criterion) {
+
+		return (T) getSession().createCriteria(persistenceClass).add(criterion).uniqueResult();
 
 	}
 
