@@ -25,6 +25,14 @@ public class TutorialsCategoriesService {
 
 	}
 
+	public List<String> getCategoriesNamesList() {
+
+		List<String> allCategories = tutorialsCategoriesDao.getAllCategoriesNames();
+
+		return allCategories;
+
+	}
+
 	public void insertOrUpdate(TutorialCategory category) {
 
 		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(category);

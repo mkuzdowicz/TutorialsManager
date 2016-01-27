@@ -14,4 +14,6 @@ public interface TutorialsCategoriesDao {
 
 	public void deleteTutorialCategory(TutorialCategory tutorial);
 
+	public List<String> getAllCategoriesNames();
+
 }

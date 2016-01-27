@@ -2,6 +2,7 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 
 import java.util.List;
 
+import org.hibernate.criterion.Projections;
 import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,14 @@ public class TutorialsCategoriesDaoImpl extends AbstractDao<String, TutorialCate
 	public void deleteTutorialCategory(TutorialCategory tutorialCategory) {
 
 		delete(tutorialCategory);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<String> getAllCategoriesNames() {
+
+		return getSession().createCriteria(TutorialCategory.class).setProjection(Projections.property("categoryName"))
+				.list();
 
 	}
 
