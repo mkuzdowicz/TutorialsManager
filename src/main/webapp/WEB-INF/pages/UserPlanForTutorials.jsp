@@ -8,4 +8,6 @@
 <spring:message code="welcome" />
 
 
+week plan
+
 <jsp:include page="layout/Footer.jsp"></jsp:include>

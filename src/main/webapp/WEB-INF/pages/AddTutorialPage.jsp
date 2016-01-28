@@ -11,7 +11,9 @@
 	<input type="text" name="author" /><br> <label>url</label><input
 		type="text" name="url" /> <br> <label>serviceDomain</label> <input
 		type="text" name="serviceDomain" /><br> <label>rating</label> <input
-		type="number" name="rating" /><br> <input type="submit" />
+		type="number" name="rating" /><br> reworkedInPercents<input
+		type="number" name="reworkedInPercents" /><br>
+	<input type="submit" />
 
 </form>
 

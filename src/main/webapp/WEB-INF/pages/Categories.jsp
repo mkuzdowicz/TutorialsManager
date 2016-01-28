@@ -29,6 +29,7 @@ selected category: ${selectedCategory.categoryName}
 			<td>${tutorial.serviceDomain}</td>
 			<td>${tutorial.url}</td>
 			<td>${tutorial.rating}</td>
+			<td>${tutorial.reworkedInPercents}</td>
 		</tr>
 	</c:forEach>
 </table>

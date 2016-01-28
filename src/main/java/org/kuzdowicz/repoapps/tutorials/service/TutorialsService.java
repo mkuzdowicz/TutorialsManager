@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
@@ -34,7 +35,16 @@ public class TutorialsService {
 		newTutorial.setTitle(reqParamsMap.get("title"));
 		newTutorial.setUrl(reqParamsMap.get("url"));
 		newTutorial.setUrl(reqParamsMap.get("serviceDomain"));
-		newTutorial.setRating(Long.parseLong(reqParamsMap.get("rating")));
+
+		String rating = reqParamsMap.get("rating");
+		if (StringUtils.isNoneBlank(rating)) {
+			newTutorial.setRating(Long.parseLong(rating));
+		}
+
+		String reworkedInPercents = reqParamsMap.get("reworkedInPercents");
+		if (StringUtils.isNoneBlank(reworkedInPercents)) {
+			newTutorial.setReworkedInPercents(Integer.parseInt(reworkedInPercents));
+		}
 
 		tutorialsDao.saveOrUpdateTutorial(newTutorial);
 

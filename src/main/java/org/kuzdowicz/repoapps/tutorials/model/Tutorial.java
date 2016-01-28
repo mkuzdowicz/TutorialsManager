@@ -1,5 +1,7 @@
 package org.kuzdowicz.repoapps.tutorials.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +32,12 @@ public class Tutorial {
 
 	@Column(name = "RATING")
 	private Long rating;
+
+	@Column(name = "REWORKED_IN_PERCENTS", columnDefinition = "int default 0", length = 100)
+	private Integer reworkedInPercents;
+
+	@Column(name = "START_DATE_TO_DO")
+	private Date startDateToDo;
 
 	public String getTitle() {
 		return title;
@@ -73,6 +81,22 @@ public class Tutorial {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Integer getReworkedInPercents() {
+		return reworkedInPercents;
+	}
+
+	public void setReworkedInPercents(Integer reworkedInPercents) {
+		this.reworkedInPercents = reworkedInPercents;
+	}
+
+	public Date getStartDateToDo() {
+		return startDateToDo;
+	}
+
+	public void setStartDateToDo(Date startDateToDo) {
+		this.startDateToDo = startDateToDo;
 	}
 
 }
