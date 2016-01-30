@@ -1,13 +1,13 @@
 package org.kuzdowicz.repoapps.tutorials.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "TUTORIALS")
@@ -37,7 +37,10 @@ public class Tutorial {
 	private Integer reworkedInPercents;
 
 	@Column(name = "START_DATE_TO_DO")
-	private Date startDateToDo;
+	private DateTime startDateToDo;
+
+	@Column(name = "END_DATE_TO_DO")
+	private DateTime endDateToDo;
 
 	public String getTitle() {
 		return title;
@@ -91,12 +94,20 @@ public class Tutorial {
 		this.reworkedInPercents = reworkedInPercents;
 	}
 
-	public Date getStartDateToDo() {
+	public DateTime getStartDateToDo() {
 		return startDateToDo;
 	}
 
-	public void setStartDateToDo(Date startDateToDo) {
+	public void setStartDateToDo(DateTime startDateToDo) {
 		this.startDateToDo = startDateToDo;
+	}
+
+	public DateTime getEndDateToDo() {
+		return endDateToDo;
+	}
+
+	public void setEndDateToDo(DateTime endDateToDo) {
+		this.endDateToDo = endDateToDo;
 	}
 
 }

@@ -3,8 +3,8 @@ package org.kuzdowicz.repoapps.tutorials.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
@@ -31,20 +31,19 @@ public class TutorialsService {
 		String categoryName = reqParamsMap.get("category");
 
 		Tutorial newTutorial = new Tutorial();
+
 		newTutorial.setAuthor(reqParamsMap.get("author"));
 		newTutorial.setTitle(reqParamsMap.get("title"));
 		newTutorial.setUrl(reqParamsMap.get("url"));
 		newTutorial.setUrl(reqParamsMap.get("serviceDomain"));
 
 		String rating = reqParamsMap.get("rating");
-		if (StringUtils.isNoneBlank(rating)) {
-			newTutorial.setRating(Long.parseLong(rating));
-		}
+		String checkedRating = Optional.ofNullable(rating).orElse("0");
+		newTutorial.setRating(Long.parseLong(checkedRating));
 
 		String reworkedInPercents = reqParamsMap.get("reworkedInPercents");
-		if (StringUtils.isNoneBlank(reworkedInPercents)) {
-			newTutorial.setReworkedInPercents(Integer.parseInt(reworkedInPercents));
-		}
+		String checkedReworkedinPercent = Optional.ofNullable(reworkedInPercents).orElse("0");
+		newTutorial.setReworkedInPercents(Integer.parseInt(checkedReworkedinPercent));
 
 		tutorialsDao.saveOrUpdateTutorial(newTutorial);
 
