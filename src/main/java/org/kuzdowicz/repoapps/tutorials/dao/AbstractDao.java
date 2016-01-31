@@ -36,6 +36,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	protected T findOneByCriteria(Criterion criterion) {
 
 		return (T) getSession().createCriteria(persistenceClass).add(criterion).uniqueResult();
