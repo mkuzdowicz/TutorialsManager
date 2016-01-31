@@ -3,20 +3,47 @@
 
 
 <jsp:include page="layout/Header.jsp"></jsp:include>
+<div class="row">
+	<div class="col-md-7 col-md-offset-2">
 
-<form action="/PersonalTutorialsRepo/add-tutorial" method="POST">
+		<form class="form form-horizontal"
+			action="/PersonalTutorialsRepo/add-tutorial" method="POST">
 
-	<label>category</label> <input type="text" name="category" /><br>
-	<label>title</label> <input type="text" name="title" /> <br> <label>author</label>
-	<input type="text" name="author" /><br> <label>url</label><input
-		type="text" name="url" /> <br> <label>serviceDomain</label> <input
-		type="text" name="serviceDomain" /><br> <label>rating</label> <input
-		type="number" name="rating" /><br> reworkedInPercents<input
-		type="number" name="reworkedInPercents" /><br>
-	<input type="submit" />
+			<div class="form-group">
+				<label>category</label> <input type="text" name="category"
+					class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>title</label> <input type="text" name="title"
+					class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>author</label> <input type="text" name="author"
+					class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>url</label><input type="text" name="url" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>serviceDomain</label> <input type="text" name="serviceDomain"
+					class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>rating</label> <input type="number" name="rating"
+					class="form-control" />
+			</div>
+			<div class="form-group">
+				reworkedInPercents<input type="number" name="reworkedInPercents"
+					class="form-control" />
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-success" />
+			</div>
 
-</form>
+		</form>
 
+	</div>
+</div>
 <hr>
 
 ${reqMap}

@@ -7,9 +7,9 @@
 ${category.categoryName}
 <br>
 <br>
-<ul>
+<ul class="list-group">
 	<c:forEach items="${catList}" var="cat">
-		<li><a href="/PersonalTutorialsRepo/category?name=${cat}">${cat}</a></li>
+		<li class="list-group-item"><a href="/PersonalTutorialsRepo/category?name=${cat}">${cat}</a></li>
 	</c:forEach>
 </ul>
 
@@ -20,7 +20,7 @@ selected category: ${selectedCategory.categoryName}
 <c:set value="${selectedCategory.tutorials}"
 	var="selectedCategoryTutorials" />
 
-<table>
+<table class="table table-bordered">
 
 	<c:forEach items="${selectedCategoryTutorials}" var="tutorial">
 		<tr>
