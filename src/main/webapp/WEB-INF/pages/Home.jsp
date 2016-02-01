@@ -5,7 +5,4 @@
 
 <jsp:include page="layout/Header.jsp"></jsp:include>
 
-<spring:message code="welcome" />
-
-
 <jsp:include page="layout/Footer.jsp"></jsp:include>

@@ -48,5 +48,7 @@
 				</ul>
 			</div>
 		</nav>
-		<h1>Hello to PersonalToutorialsRepo</h1>
+		<header class="text-center">
+			<h1>Personal Tutorials Repository & Learning time management</h1>
+		</header>
 		<hr>

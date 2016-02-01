@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="layout/Header.jsp"></jsp:include>
 
-<br>
-<br>
+<p>Select a category</p>
 <ul class="list-group">
 	<c:forEach items="${catList}" var="cat">
-		<li class="list-group-item"><a
+		<li class="list-group-item text-center"><a
 			href="/PersonalTutorialsRepo/category?name=${cat}">${cat}</a>&nbsp;</li>
 	</c:forEach>
 </ul>
@@ -21,12 +21,14 @@
 <c:set value="${selectedCategory.tutorials.size()}"
 	var="selectedCategoryTutorialsCount" />
 
-<p>
-	selected category: <strong>${selectedCategory.categoryName}</strong>
-</p>
-<p>
-	tutorials count in category: <strong>${selectedCategoryTutorialsCount}</strong>
-</p>
+<div class="text-center">
+	<p>
+		selected category: <strong>${selectedCategory.categoryName}</strong>
+	</p>
+	<p>
+		tutorials count in category: <strong>${selectedCategoryTutorialsCount}</strong>
+	</p>
+</div>
 
 <table class="table table-bordered">
 	<thead>
@@ -48,7 +50,9 @@
 				<td>${tutorial.author}</td>
 				<td>${tutorial.serviceDomain}</td>
 				<td>${tutorial.url}</td>
-				<td>${tutorial.startDateToDo}&nbsp;-&nbsp;${tutorial.endDateToDo}</td>
+				<td>from: <fmt:formatDate pattern="dd-MM-yyyy"
+						value="${tutorial.startDateToDo}" /> <br>
+				to: <fmt:formatDate pattern="dd-MM-yyyy" value="${tutorial.endDateToDo}" /></td>
 				<td>${tutorial.rating}</td>
 				<td>${tutorial.reworkedInPercents}</td>
 				<td><button class="btn btn-warning editBtn"
