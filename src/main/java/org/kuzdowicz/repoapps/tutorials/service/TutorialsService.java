@@ -29,13 +29,19 @@ public class TutorialsService {
 
 	}
 
+	public Tutorial getOneById(Long id) {
+
+		return tutorialsDao.getOneById(id);
+
+	}
+
+	public void removeOneById(Long id) {
+
+		tutorialsDao.deleteTutorial(getOneById(id));
+
+	}
+
 	public void addTutorialByPostReq(Map<String, String> reqParamsMap) {
-
-		System.out.println("----------------------------------------");
-
-		System.out.println(reqParamsMap);
-
-		System.out.println("----------------------------------------");
 
 		String categoryName = reqParamsMap.get("category");
 
@@ -95,16 +101,6 @@ public class TutorialsService {
 
 		tutorialsCategoriesService.insertOrUpdate(cat);
 
-	}
-
-	public static void main(String[] args) {
-
-		String defaultStartDate = DateTime.now().toString(AppFromatters.DATE_TIME_FORMATTER);
-
-		System.out.println(defaultStartDate);
-
-		String defaultendDateToDo = DateTime.now().plusWeeks(1).toString(AppFromatters.DATE_TIME_FORMATTER);
-		System.out.println(defaultendDateToDo);
 	}
 
 }

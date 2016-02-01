@@ -1,5 +1,6 @@
 package org.kuzdowicz.repoapps.tutorials.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,7 +12,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TUTORIALS")
-public class Tutorial {
+public class Tutorial implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8732800690090826502L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,6 +47,9 @@ public class Tutorial {
 
 	@Column(name = "END_DATE_TO_DO")
 	private Date endDateToDo;
+
+	public Tutorial() {
+	}
 
 	public String getTitle() {
 		return title;
