@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -47,6 +50,10 @@ public class Tutorial implements Serializable {
 
 	@Column(name = "END_DATE_TO_DO")
 	private Date endDateToDo;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CATEGORY_NAME")
+	private TutorialCategory tutorialCategory;
 
 	public Tutorial() {
 	}
@@ -117,6 +124,14 @@ public class Tutorial implements Serializable {
 
 	public void setEndDateToDo(Date endDateToDo) {
 		this.endDateToDo = endDateToDo;
+	}
+
+	public TutorialCategory getTutorialCategory() {
+		return tutorialCategory;
+	}
+
+	public void setTutorialCategory(TutorialCategory tutorialCategory) {
+		this.tutorialCategory = tutorialCategory;
 	}
 
 }

@@ -34,6 +34,7 @@
 			<td>title</td>
 			<td>author</td>
 			<td>serviceDomain</td>
+			<td>url</td>
 			<td>rating</td>
 			<td>reworkedInPercents</td>
 			<td>actions</td>
@@ -50,7 +51,7 @@
 				<td>${tutorial.reworkedInPercents}</td>
 				<td><button class="btn btn-warning editBtn"
 						id="edit${tutorial.id}" data-item-id="${tutorial.id}">edit</button>
-						
+
 					<form action="/PersonalTutorialsRepo/remove-tutorial" method="POST">
 						<input type="hidden" name="tutorialId" value="${tutorial.id}" />
 						<input type="submit" class="btn btn-danger removeBtn"

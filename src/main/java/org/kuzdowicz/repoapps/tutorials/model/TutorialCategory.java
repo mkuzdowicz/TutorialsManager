@@ -25,7 +25,7 @@ public class TutorialCategory implements Serializable {
 	private String categoryName;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CATEGORY_ID")
+	@JoinColumn(name = "CATEGORY_NAME")
 	private List<Tutorial> tutorials;
 
 	public List<Tutorial> getTutorials() {

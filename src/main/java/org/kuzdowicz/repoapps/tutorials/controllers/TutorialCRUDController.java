@@ -70,9 +70,11 @@ public class TutorialCRUDController {
 
 		System.out.println(id);
 
+		String categoryNameOfRemovedTutorial = tutorialsService.getOneById(id).getTutorialCategory().getCategoryName();
+
 		tutorialsService.removeOneById(id);
 
-		return printCategoriesWithParam("");
+		return printCategoriesWithParam(categoryNameOfRemovedTutorial);
 	}
 
 	private ModelAndView printCategoriesWithParam(@RequestParam("name") String name) {
