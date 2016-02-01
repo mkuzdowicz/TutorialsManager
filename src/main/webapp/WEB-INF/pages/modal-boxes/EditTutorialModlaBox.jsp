@@ -28,27 +28,29 @@
 								type="text" name="author" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>url</label><input type="text" name="url"
-								class="form-control" />
+							<label>url</label><input id="editFormTutorialUrl" type="text"
+								name="url" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>serviceDomain</label> <input type="text"
+							<label>serviceDomain</label> <input
+								id="editFormTutorialServiceDomain" type="text"
 								name="serviceDomain" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>rating</label> <input type="number" name="rating"
-								class="form-control" />
+							<label>rating</label> <input id="editFormTutorialRating"
+								type="number" name="rating" class="form-control" />
 						</div>
 						<div class="form-group">
-							reworkedInPercents<input type="number" name="reworkedInPercents"
-								class="form-control" />
+							reworkedInPercents<input id="editFormTutorialReworkedInPercents"
+								type="number" name="reworkedInPercents" class="form-control" />
 						</div>
 						<div class="form-group">
-							<input type="submit" class="btn btn-success" value="accept" />
+							<input type="submit" class="btn btn-success"
+								value="accept changes" />
 						</div>
 
 					</form>
-					<div id="result"></div>
+					
 				</div>
 
 			</div>

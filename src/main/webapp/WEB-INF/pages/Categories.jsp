@@ -63,9 +63,9 @@
 
 <jsp:include page="modal-boxes/EditTutorialModlaBox.jsp" />
 <jsp:include page="modal-boxes/RemoveTutorialModal.jsp" />
+
 <script>
 	var editBtns = $('.editBtn');
-
 	var removeBtns = $('.removeBtn');
 
 	removeBtns.click(function() {
@@ -94,14 +94,19 @@
 			},
 			success : function(tutorialEditDto) {
 
-				console.log(tutorialEditDto);
-				var id = tutorialEditDto.id;
-				var title = tutorialEditDto.title;
-				var url = tutorialEditDto.url;
-
 				$('#editFormCategoryName').val(tutorialEditDto.categryName);
 				$('#editFormTutorialTitle').val(tutorialEditDto.title);
 				$('#editFormTutorialAuthor').val(tutorialEditDto.author);
+
+				$('#editFormTutorialUrl').val(tutorialEditDto.url);
+				$('#editFormTutorialServiceDomain').val(
+						tutorialEditDto.serviceDomain);
+				$('#editFormTutorialRating').val(tutorialEditDto.rating);
+				$('#editFormTutorialReworkedInPercents').val(
+						tutorialEditDto.reworkedInPercents);
+			},
+			error : function(request, status, error) {
+				alert(request.responseText);
 			}
 		});
 

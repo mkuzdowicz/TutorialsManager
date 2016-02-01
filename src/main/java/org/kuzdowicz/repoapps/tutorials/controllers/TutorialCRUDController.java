@@ -44,11 +44,19 @@ public class TutorialCRUDController {
 
 		ModelAndView mav = new ModelAndView("AddTutorialPage");
 
-		tutorialsService.addTutorialByPostReq(reqMap);
-
-		mav.addObject("reqMap", reqMap);
+		tutorialsService.saveOrUpdateTutorialByPostReq(reqMap);
 
 		return mav;
+	}
+
+	@RequestMapping(value = "/edit-tutorial", method = RequestMethod.POST)
+	public String editTutorial(@RequestParam Map<String, String> reqMap) {
+
+		logger.debug("editTutorial()");
+
+		tutorialsService.saveOrUpdateTutorialByPostReq(reqMap);
+
+		return "redirect:category?name=" + reqMap.get("category");
 	}
 
 	// AJAX REQUESTS

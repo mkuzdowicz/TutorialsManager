@@ -41,7 +41,7 @@ public class TutorialsService {
 
 	}
 
-	public void addTutorialByPostReq(Map<String, String> reqParamsMap) {
+	public void saveOrUpdateTutorialByPostReq(Map<String, String> reqParamsMap) {
 
 		String categoryName = reqParamsMap.get("category");
 
