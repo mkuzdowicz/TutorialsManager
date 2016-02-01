@@ -33,10 +33,9 @@
 <table class="table table-bordered">
 	<thead>
 		<tr>
-			<td>title</td>
+			<td>tutorial</td>
 			<td>author</td>
 			<td>serviceDomain</td>
-			<td>url</td>
 			<td>period to work on</td>
 			<td>rating</td>
 			<td>reworkedInPercents</td>
@@ -46,10 +45,9 @@
 	<tbody>
 		<c:forEach items="${selectedCategoryTutorials}" var="tutorial">
 			<tr>
-				<td>${tutorial.title}</td>
+				<td><a target="_blank" href="${tutorial.url}">${tutorial.title}</a></td>
 				<td>${tutorial.author}</td>
 				<td>${tutorial.serviceDomain}</td>
-				<td>${tutorial.url}</td>
 				<td>from: <fmt:formatDate pattern="dd-MM-yyyy"
 						value="${tutorial.startDateToDo}" /> <br> to: <fmt:formatDate
 						pattern="dd-MM-yyyy" value="${tutorial.endDateToDo}" /></td>

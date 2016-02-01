@@ -1,12 +1,14 @@
 package org.kuzdowicz.repoapps.tutorials.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 import org.kuzdowicz.repoapps.tutorials.constants.AppFromatters;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
@@ -39,6 +41,14 @@ public class TutorialsService {
 
 		tutorialsDao.deleteTutorial(getOneById(id));
 
+	}
+
+	public List<Tutorial> getTutorialsToDoForCurrentWeek() {
+
+		Date today = DateTime.now().withDayOfWeek(DateTimeConstants.MONDAY).toDate();
+		Date weekLater = DateTime.now().plusWeeks(1).toDate();
+
+		return tutorialsDao.getAllTutorialsBeetwenGivenDates(today, weekLater);
 	}
 
 	public void saveOrUpdateTutorialByPostReq(Map<String, String> reqParamsMap) {

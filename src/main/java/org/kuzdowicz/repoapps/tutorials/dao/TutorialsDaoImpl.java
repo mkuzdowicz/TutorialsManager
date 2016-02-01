@@ -1,7 +1,11 @@
 package org.kuzdowicz.repoapps.tutorials.dao;
 
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +37,20 @@ public class TutorialsDaoImpl extends AbstractDao<Long, Tutorial> implements Tut
 
 		delete(tutorial);
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tutorial> getAllTutorialsBeetwenGivenDates(Date startDate, Date endDate) {
+
+		Criteria criteria = getSession().createCriteria(Tutorial.class);
+
+		LogicalExpression le = Restrictions.or(Restrictions.ge("startDateToDo", startDate),
+				Restrictions.le("endDateToDo", endDate));
+
+		criteria.add(le);
+
+		return criteria.list();
 	}
 
 }

@@ -1,7 +1,7 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.service.InitForTestService;
+import org.kuzdowicz.repoapps.tutorials.service.InitStartDataForTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class InitDBDataController {
 
 	@Autowired
-	InitForTestService initForTestService;
+	InitStartDataForTestService initForTestService;
 
 	private final static Logger logger = Logger.getLogger(InitDBDataController.class);
 
