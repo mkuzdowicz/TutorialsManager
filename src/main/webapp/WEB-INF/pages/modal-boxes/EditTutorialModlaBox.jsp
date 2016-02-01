@@ -15,6 +15,9 @@
 					<form class="form form-horizontal"
 						action="/PersonalTutorialsRepo/edit-tutorial" method="POST">
 
+						<input id="editFormTutorialId" type="hidden" name="id"
+							class="form-control" />
+
 						<div class="form-group">
 							<label>category</label> <input id="editFormCategoryName"
 								type="text" name="category" class="form-control" />

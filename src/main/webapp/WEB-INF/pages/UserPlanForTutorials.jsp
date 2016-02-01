@@ -5,7 +5,8 @@
 <jsp:include page="layout/Header.jsp"></jsp:include>
 
 
-
-week plan
+<div class="text-center">
+	<p>Tutorials planned todo at this week:</p>
+</div>
 
 <jsp:include page="layout/Footer.jsp"></jsp:include>

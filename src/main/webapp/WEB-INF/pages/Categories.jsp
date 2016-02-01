@@ -51,8 +51,8 @@
 				<td>${tutorial.serviceDomain}</td>
 				<td>${tutorial.url}</td>
 				<td>from: <fmt:formatDate pattern="dd-MM-yyyy"
-						value="${tutorial.startDateToDo}" /> <br>
-				to: <fmt:formatDate pattern="dd-MM-yyyy" value="${tutorial.endDateToDo}" /></td>
+						value="${tutorial.startDateToDo}" /> <br> to: <fmt:formatDate
+						pattern="dd-MM-yyyy" value="${tutorial.endDateToDo}" /></td>
 				<td>${tutorial.rating}</td>
 				<td>${tutorial.reworkedInPercents}</td>
 				<td><button class="btn btn-warning editBtn"
@@ -68,57 +68,6 @@
 <jsp:include page="modal-boxes/EditTutorialModlaBox.jsp" />
 <jsp:include page="modal-boxes/RemoveTutorialModal.jsp" />
 
-<script>
-	var editBtns = $('.editBtn');
-	var removeBtns = $('.removeBtn');
-
-	removeBtns.click(function() {
-
-		var clickedItemId = $(this).data('item-id');
-
-		var clickedItemTitle = $(this).data('item-title');
-
-		$('#tutorialIdHidden').val(clickedItemId);
-
-		$('#tutorialTitle').text(clickedItemTitle);
-
-		$('#removeTutorialModal').modal('show');
-
-	});
-
-	editBtns.click(function() {
-
-		var clickedItemId = $(this).data('item-id');
-
-		$.ajax({
-			url : '/PersonalTutorialsRepo/edit-tutorial-show-form',
-			type : 'POST',
-			data : {
-				id : clickedItemId
-			},
-			success : function(tutorialEditDto) {
-
-				$('#editFormCategoryName').val(tutorialEditDto.categryName);
-				$('#editFormTutorialTitle').val(tutorialEditDto.title);
-				$('#editFormTutorialAuthor').val(tutorialEditDto.author);
-
-				$('#editFormTutorialUrl').val(tutorialEditDto.url);
-				$('#editFormTutorialServiceDomain').val(
-						tutorialEditDto.serviceDomain);
-				$('#editFormTutorialRating').val(tutorialEditDto.rating);
-				$('#editFormTutorialReworkedInPercents').val(
-						tutorialEditDto.reworkedInPercents);
-			},
-			error : function(request, status, error) {
-				alert(request.responseText);
-			}
-		});
-
-		$('#editTutorialModal').modal('show');
-
-	});
-
-	// ---------------------------------------
-</script>
+<script src="resources/js/CategoriesPage.js"></script>
 
 <jsp:include page="layout/Footer.jsp"></jsp:include>

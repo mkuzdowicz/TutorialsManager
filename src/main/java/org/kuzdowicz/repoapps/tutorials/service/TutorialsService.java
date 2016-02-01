@@ -51,7 +51,13 @@ public class TutorialsService {
 		newTutorial.setAuthor(reqParamsMap.get("author"));
 		newTutorial.setTitle(reqParamsMap.get("title"));
 		newTutorial.setUrl(reqParamsMap.get("url"));
-		newTutorial.setUrl(reqParamsMap.get("serviceDomain"));
+		newTutorial.setServiceDomain(reqParamsMap.get("serviceDomain"));
+
+		String idFromReq = reqParamsMap.get("id");
+
+		if (StringUtils.isNoneBlank(idFromReq)) {
+			newTutorial.setId(Long.parseLong(idFromReq));
+		}
 
 		// RATING
 		String rating = reqParamsMap.get("rating");

@@ -5,4 +5,7 @@
 
 <jsp:include page="layout/Header.jsp"></jsp:include>
 
+<div class="row text-center">
+	<img src="resources/images/knowledge.png" />
+</div>
 <jsp:include page="layout/Footer.jsp"></jsp:include>

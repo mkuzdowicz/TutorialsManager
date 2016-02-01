@@ -44,8 +44,5 @@
 
 	</div>
 </div>
-<hr>
-
-${reqMap}
 
 <jsp:include page="layout/Footer.jsp"></jsp:include>
