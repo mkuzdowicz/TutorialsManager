@@ -2,6 +2,7 @@ package org.kuzdowicz.repoapps.tutorials.service;
 
 import java.util.ArrayList;
 
+import org.joda.time.DateTime;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsCategoriesDao;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
@@ -27,6 +28,8 @@ public class InitForTestService {
 		tut1.setServiceDomain("youtube");
 		tut1.setRating(3L);
 		tut1.setReworkedInPercents(0);
+		tut1.setStartDateToDo(DateTime.now().toDate());
+		tut1.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 
 		tutorialsDao.saveOrUpdateTutorial(tut1);
 
@@ -37,6 +40,8 @@ public class InitForTestService {
 		tut2.setServiceDomain("youtube");
 		tut2.setRating(4L);
 		tut2.setReworkedInPercents(0);
+		tut2.setStartDateToDo(DateTime.now().toDate());
+		tut2.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 
 		tutorialsDao.saveOrUpdateTutorial(tut2);
 
@@ -47,6 +52,8 @@ public class InitForTestService {
 		tut3.setServiceDomain("www.mkyong.com");
 		tut3.setRating(5L);
 		tut3.setReworkedInPercents(0);
+		tut3.setStartDateToDo(DateTime.now().toDate());
+		tut3.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 
 		tutorialsDao.saveOrUpdateTutorial(tut3);
 

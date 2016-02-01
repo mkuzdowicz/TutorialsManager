@@ -35,6 +35,7 @@
 			<td>author</td>
 			<td>serviceDomain</td>
 			<td>url</td>
+			<td>period to work on</td>
 			<td>rating</td>
 			<td>reworkedInPercents</td>
 			<td>actions</td>
@@ -47,6 +48,7 @@
 				<td>${tutorial.author}</td>
 				<td>${tutorial.serviceDomain}</td>
 				<td>${tutorial.url}</td>
+				<td>${tutorial.startDateToDo}&nbsp;-&nbsp;${tutorial.endDateToDo}</td>
 				<td>${tutorial.rating}</td>
 				<td>${tutorial.reworkedInPercents}</td>
 				<td><button class="btn btn-warning editBtn"
