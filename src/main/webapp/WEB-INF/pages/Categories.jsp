@@ -50,8 +50,13 @@
 				<td>${tutorial.reworkedInPercents}</td>
 				<td><button class="btn btn-warning editBtn"
 						id="edit${tutorial.id}" data-item-id="${tutorial.id}">edit</button>
-					<button class="btn btn-danger removeBtn" id="remove${tutorial.id}"
-						data-item-id="${tutorial.id}">remove</button></td>
+						
+					<form action="/PersonalTutorialsRepo/remove-tutorial" method="POST">
+						<input type="hidden" name="tutorialId" value="${tutorial.id}" />
+						<input type="submit" class="btn btn-danger removeBtn"
+							id="remove${tutorial.id}" value="remove"
+							data-item-id="${tutorial.id}" />
+					</form></td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -68,26 +73,6 @@
 
 		$.ajax({
 			url : '/PersonalTutorialsRepo/edit-tutorial',
-			type : 'POST',
-			data : {
-				id : clickedItemId
-			},
-			success : function(result) {
-
-				console.log(result);
-
-				$("#result").html(result);
-			}
-		});
-
-	});
-
-	removeBtns.click(function() {
-
-		var clickedItemId = $(this).data('item-id');
-
-		$.ajax({
-			url : '/PersonalTutorialsRepo/remove-tutorial',
 			type : 'POST',
 			data : {
 				id : clickedItemId

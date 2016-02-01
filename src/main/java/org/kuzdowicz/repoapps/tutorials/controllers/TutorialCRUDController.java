@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,6 +22,9 @@ public class TutorialCRUDController {
 
 	@Autowired
 	private TutorialsService tutorialsService;
+
+	@Autowired
+	TutorialsCategoriesService tutorialsCategoriesService;
 
 	@RequestMapping(value = "/add-tutorial", method = RequestMethod.GET)
 	public ModelAndView showAddTutoriaForm() {
@@ -57,6 +61,30 @@ public class TutorialCRUDController {
 		System.out.println(id);
 
 		return tutorialsService.getOneById(id);
+	}
+
+	@RequestMapping(value = "/remove-tutorial", method = RequestMethod.POST)
+	public ModelAndView removeTutorial(@RequestParam("tutorialId") Long id) {
+
+		logger.debug("editTutorial()");
+
+		System.out.println(id);
+
+		tutorialsService.removeOneById(id);
+
+		return printCategoriesWithParam("");
+	}
+
+	private ModelAndView printCategoriesWithParam(@RequestParam("name") String name) {
+
+		ModelAndView mav = new ModelAndView("Categories");
+
+		mav.addObject("catList", tutorialsCategoriesService.getCategoriesNamesList());
+
+		mav.addObject("selectedCategory", tutorialsCategoriesService.getOneByName(name));
+
+		return mav;
+
 	}
 
 }
