@@ -54,21 +54,33 @@
 				<td><button class="btn btn-warning editBtn"
 						id="edit${tutorial.id}" data-item-id="${tutorial.id}">edit</button>
 
-					<form action="/PersonalTutorialsRepo/remove-tutorial" method="POST">
-						<input type="hidden" name="tutorialId" value="${tutorial.id}" />
-						<input type="submit" class="btn btn-danger removeBtn"
-							id="remove${tutorial.id}" value="remove"
-							data-item-id="${tutorial.id}" />
-					</form></td>
+					<button class="btn btn-danger removeBtn" id="edit${tutorial.id}"
+						data-item-id="${tutorial.id}" data-item-title="${tutorial.title}">remove</button></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 <div id="result"></div>
+<jsp:include page="modal-boxes/EditTutorialModlaBox.jsp" />
+<jsp:include page="modal-boxes/RemoveTutorialModal.jsp" />
 <script>
 	var editBtns = $('.editBtn');
 
 	var removeBtns = $('.removeBtn');
+
+	removeBtns.click(function() {
+
+		var clickedItemId = $(this).data('item-id');
+
+		var clickedItemTitle = $(this).data('item-title');
+
+		$('#tutorialIdHidden').val(clickedItemId);
+
+		$('#tutorialTitle').text(clickedItemTitle);
+
+		$('#removeTutorialModal').modal('show');
+
+	});
 
 	editBtns.click(function() {
 
@@ -88,7 +100,11 @@
 			}
 		});
 
+		$('#editTutorialModal').modal('show');
+
 	});
+
+	// ---------------------------------------
 </script>
 
 <jsp:include page="layout/Footer.jsp"></jsp:include>
