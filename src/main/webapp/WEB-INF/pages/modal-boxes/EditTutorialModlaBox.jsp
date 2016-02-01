@@ -16,16 +16,16 @@
 						action="/PersonalTutorialsRepo/edit-tutorial" method="POST">
 
 						<div class="form-group">
-							<label>category</label> <input type="text" name="category"
-								class="form-control" />
+							<label>category</label> <input id="editFormCategoryName"
+								type="text" name="category" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>title</label> <input type="text" name="title"
-								class="form-control" />
+							<label>title</label> <input id="editFormTutorialTitle"
+								type="text" name="title" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>author</label> <input type="text" name="author"
-								class="form-control" />
+							<label>author</label> <input id="editFormTutorialAuthor"
+								type="text" name="author" class="form-control" />
 						</div>
 						<div class="form-group">
 							<label>url</label><input type="text" name="url"
@@ -48,7 +48,7 @@
 						</div>
 
 					</form>
-
+					<div id="result"></div>
 				</div>
 
 			</div>

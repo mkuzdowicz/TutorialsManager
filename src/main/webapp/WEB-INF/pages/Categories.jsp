@@ -60,7 +60,7 @@
 		</c:forEach>
 	</tbody>
 </table>
-<div id="result"></div>
+
 <jsp:include page="modal-boxes/EditTutorialModlaBox.jsp" />
 <jsp:include page="modal-boxes/RemoveTutorialModal.jsp" />
 <script>
@@ -87,16 +87,21 @@
 		var clickedItemId = $(this).data('item-id');
 
 		$.ajax({
-			url : '/PersonalTutorialsRepo/edit-tutorial',
+			url : '/PersonalTutorialsRepo/edit-tutorial-show-form',
 			type : 'POST',
 			data : {
 				id : clickedItemId
 			},
-			success : function(result) {
+			success : function(tutorialEditDto) {
 
-				console.log(result);
+				console.log(tutorialEditDto);
+				var id = tutorialEditDto.id;
+				var title = tutorialEditDto.title;
+				var url = tutorialEditDto.url;
 
-				$("#result").html(result);
+				$('#editFormCategoryName').val(tutorialEditDto.categryName);
+				$('#editFormTutorialTitle').val(tutorialEditDto.title);
+				$('#editFormTutorialAuthor').val(tutorialEditDto.author);
 			}
 		});
 

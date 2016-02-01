@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TUTORIALS")
 public class Tutorial implements Serializable {
@@ -51,6 +53,7 @@ public class Tutorial implements Serializable {
 	@Column(name = "END_DATE_TO_DO")
 	private Date endDateToDo;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_NAME")
 	private TutorialCategory tutorialCategory;

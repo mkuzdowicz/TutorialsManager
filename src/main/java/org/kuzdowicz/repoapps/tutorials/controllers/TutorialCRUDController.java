@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
+import org.kuzdowicz.repoaps.dto.TutorialEditDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -52,15 +53,29 @@ public class TutorialCRUDController {
 
 	// AJAX REQUESTS
 
-	@RequestMapping(value = "/edit-tutorial", method = RequestMethod.POST, produces = {
+	@RequestMapping(value = "/edit-tutorial-show-form", method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public @ResponseBody Tutorial showEditTutorialForm(@RequestParam Long id) {
+	public @ResponseBody TutorialEditDto showEditTutorialForm(@RequestParam Long id) {
 
 		logger.debug("editTutorial()");
 
 		System.out.println(id);
 
-		return tutorialsService.getOneById(id);
+		Tutorial tutorialDataToEdit = tutorialsService.getOneById(id);
+
+		TutorialEditDto tutorialEditDto = new TutorialEditDto();
+		tutorialEditDto.setId(tutorialDataToEdit.getId());
+		tutorialEditDto.setTitle(tutorialDataToEdit.getTitle());
+		tutorialEditDto.setUrl(tutorialDataToEdit.getUrl());
+		tutorialEditDto.setAuthor(tutorialDataToEdit.getAuthor());
+		tutorialEditDto.setServiceDomain(tutorialDataToEdit.getServiceDomain());
+		tutorialEditDto.setRating(tutorialDataToEdit.getRating());
+		tutorialEditDto.setReworkedInPercents(tutorialDataToEdit.getReworkedInPercents());
+		tutorialEditDto.setStartDateToDo(tutorialDataToEdit.getStartDateToDo());
+		tutorialEditDto.setEndDateToDo(tutorialDataToEdit.getEndDateToDo());
+		tutorialEditDto.setCategryName(tutorialDataToEdit.getTutorialCategory().getCategoryName());
+
+		return tutorialEditDto;
 	}
 
 	@RequestMapping(value = "/remove-tutorial", method = RequestMethod.POST)
