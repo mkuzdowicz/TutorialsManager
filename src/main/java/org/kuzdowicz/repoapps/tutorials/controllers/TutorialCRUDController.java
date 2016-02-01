@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
-import org.kuzdowicz.repoaps.dto.TutorialEditDto;
+import org.kuzdowicz.repoaps.dto.TutorialDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -63,7 +63,7 @@ public class TutorialCRUDController {
 
 	@RequestMapping(value = "/edit-tutorial-show-form", method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public @ResponseBody TutorialEditDto showEditTutorialForm(@RequestParam Long id) {
+	public @ResponseBody TutorialDTO showEditTutorialForm(@RequestParam Long id) {
 
 		logger.debug("editTutorial()");
 
@@ -71,7 +71,7 @@ public class TutorialCRUDController {
 
 		Tutorial tutorialDataToEdit = tutorialsService.getOneById(id);
 
-		TutorialEditDto tutorialEditDto = new TutorialEditDto();
+		TutorialDTO tutorialEditDto = new TutorialDTO();
 		tutorialEditDto.setId(tutorialDataToEdit.getId());
 		tutorialEditDto.setTitle(tutorialDataToEdit.getTitle());
 		tutorialEditDto.setUrl(tutorialDataToEdit.getUrl());

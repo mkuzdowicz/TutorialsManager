@@ -2,7 +2,7 @@ package org.kuzdowicz.repoaps.dto;
 
 import java.util.Date;
 
-public class TutorialEditDto {
+public class TutorialDTO {
 
 	private Long id;
 

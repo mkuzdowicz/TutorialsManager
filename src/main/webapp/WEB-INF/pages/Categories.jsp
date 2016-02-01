@@ -8,8 +8,11 @@
 <p>Select a category</p>
 <ul class="list-group">
 	<c:forEach items="${catList}" var="cat">
-		<li class="list-group-item text-center"><a
-			href="/PersonalTutorialsRepo/category?name=${cat}">${cat}</a>&nbsp;</li>
+		<li class="list-group-item text-center">
+			<h4>
+				<a href="/PersonalTutorialsRepo/category?name=${cat}"> ${cat}</a>
+			</h4>
+		</li>
 	</c:forEach>
 </ul>
 
@@ -48,16 +51,26 @@
 				<td><a target="_blank" href="${tutorial.url}">${tutorial.title}</a></td>
 				<td>${tutorial.author}</td>
 				<td>${tutorial.serviceDomain}</td>
-				<td>from: <fmt:formatDate pattern="dd-MM-yyyy"
-						value="${tutorial.startDateToDo}" /> <br> to: <fmt:formatDate
-						pattern="dd-MM-yyyy" value="${tutorial.endDateToDo}" /></td>
+				<td class="text-center"><table>
+						<tr>
+							<td>from:&nbsp;</td>
+							<td><fmt:formatDate pattern="dd-MM-yyyy"
+									value="${tutorial.startDateToDo}" /></td>
+						</tr>
+						<tr>
+							<td>to:&nbsp;</td>
+							<td><fmt:formatDate pattern="dd-MM-yyyy"
+									value="${tutorial.endDateToDo}" /></td>
+						</tr>
+					</table></td>
 				<td>${tutorial.rating}</td>
 				<td>${tutorial.reworkedInPercents}</td>
 				<td><button class="btn btn-warning editBtn"
 						id="edit${tutorial.id}" data-item-id="${tutorial.id}">edit</button>
 
 					<button class="btn btn-danger removeBtn" id="edit${tutorial.id}"
-						data-item-id="${tutorial.id}" data-item-title="${tutorial.title}">remove</button></td>
+						data-item-id="${tutorial.id}" data-item-title="${tutorial.title}">remove</button>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

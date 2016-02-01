@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 public class UserPlanForCurrentWeekController {
 
@@ -27,7 +26,7 @@ public class UserPlanForCurrentWeekController {
 
 		ModelAndView mav = new ModelAndView("UserPlanForCurrentWeek");
 
-		List<Tutorial> tutorialsToDoForCurrentWeek = tutorialsService.getTutorialsToDoForCurrentWeek();
+		List<Tutorial> tutorialsToDoForCurrentWeek = tutorialsService.getTutorialsToDoForCurrentWeekWithDaysLeftFiled();
 
 		mav.addObject("tutorialsToDo", tutorialsToDoForCurrentWeek);
 

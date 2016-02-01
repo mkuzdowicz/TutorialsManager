@@ -27,7 +27,7 @@
 			<tr>
 				<td><a target="_blank" href="${tutorial.url}">${tutorial.title}</a></td>
 				<td>${tutorial.author}</td>
-				<td></td>
+				<td>${tutorial.daysLeft}</td>
 				<td>${tutorial.rating}</td>
 				<td>${tutorial.reworkedInPercents}</td>
 			</tr>

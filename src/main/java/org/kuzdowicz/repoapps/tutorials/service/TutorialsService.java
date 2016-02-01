@@ -9,12 +9,15 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
+import org.joda.time.Days;
 import org.kuzdowicz.repoapps.tutorials.constants.AppFromatters;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Range;
 
 @Service
 public class TutorialsService {
@@ -43,12 +46,28 @@ public class TutorialsService {
 
 	}
 
-	public List<Tutorial> getTutorialsToDoForCurrentWeek() {
+	public List<Tutorial> getTutorialsToDoForCurrentWeekWithDaysLeftFiled() {
 
-		Date today = DateTime.now().withDayOfWeek(DateTimeConstants.MONDAY).toDate();
+		Date firstDayOfCurrentWeek = DateTime.now().withDayOfWeek(DateTimeConstants.MONDAY).toDate();
 		Date weekLater = DateTime.now().plusWeeks(1).toDate();
 
-		return tutorialsDao.getAllTutorialsBeetwenGivenDates(today, weekLater);
+		List<Tutorial> allTutorialsBeetwenGivenDates = tutorialsDao
+				.getAllTutorialsBeetwenGivenDates(firstDayOfCurrentWeek, weekLater);
+
+		allTutorialsBeetwenGivenDates.forEach(tutorial -> {
+
+			DateTime tutorialEndDateJodaVar = new DateTime(tutorial.getEndDateToDo());
+			DateTime today = DateTime.now();
+
+			Days days = Days.daysBetween(today, tutorialEndDateJodaVar);
+
+			Integer daysLeft = Optional.of(days.getDays()).filter(d -> d > 0).orElse(0);
+
+			tutorial.setDaysLeft(new Long(daysLeft));
+
+		});
+
+		return allTutorialsBeetwenGivenDates;
 	}
 
 	public void saveOrUpdateTutorialByPostReq(Map<String, String> reqParamsMap) {

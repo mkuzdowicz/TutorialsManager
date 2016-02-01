@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TUTORIALS")
@@ -54,6 +55,9 @@ public class Tutorial implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_NAME")
 	private TutorialCategory tutorialCategory;
+
+	@Transient
+	private Long daysLeft;
 
 	public Tutorial() {
 	}
@@ -136,6 +140,14 @@ public class Tutorial implements Serializable {
 
 	public void setTutorialCategory(TutorialCategory tutorialCategory) {
 		this.tutorialCategory = tutorialCategory;
+	}
+
+	public Long getDaysLeft() {
+		return daysLeft;
+	}
+
+	public void setDaysLeft(Long daysLeft) {
+		this.daysLeft = daysLeft;
 	}
 
 }
