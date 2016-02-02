@@ -72,6 +72,18 @@ public class TutorialsService {
 		return allTutorialsBeetwenGivenDates;
 	}
 
+	private String extractDomainAddresFromFullUrl(String urlStr) {
+		String urlStrSanitized = urlStr.replace("http://", "").replace("https://", "");
+
+		int beginIndex = urlStrSanitized.indexOf("www");
+
+		if (beginIndex == -1) {
+			beginIndex = 0;
+		}
+
+		return urlStrSanitized.substring(beginIndex, urlStrSanitized.indexOf("/", beginIndex));
+	}
+
 	public void saveOrUpdateTutorialByPostReq(Map<String, String> reqParamsMap) {
 
 		String categoryName = reqParamsMap.get("category");
@@ -87,16 +99,9 @@ public class TutorialsService {
 
 			String urlStr = reqParamsMap.get("url");
 
-			String urlStrSanitized = urlStr.replace("http://", "").replace("https://", "");
+			String serviceWebAddres = extractDomainAddresFromFullUrl(urlStr);
 
-			int beginIndex = urlStrSanitized.indexOf("www");
-
-			if (beginIndex == -1) {
-				beginIndex = 0;
-			}
-
-			newTutorial
-					.setServiceDomain(urlStrSanitized.substring(beginIndex, urlStrSanitized.indexOf("/", beginIndex)));
+			newTutorial.setServiceDomain(serviceWebAddres);
 
 		});
 
