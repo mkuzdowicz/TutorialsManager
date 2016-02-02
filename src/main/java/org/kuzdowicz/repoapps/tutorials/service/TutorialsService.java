@@ -57,7 +57,11 @@ public class TutorialsService {
 			DateTime tutorialEndDateJodaVar = new DateTime(tutorial.getEndDateToDo());
 			DateTime today = DateTime.now();
 
-			Days days = Days.daysBetween(today, tutorialEndDateJodaVar);
+			// MINUS 1 DAY FROM TODAY AND PLUS 1 DAY TO END DATE
+			// BEACOUSE THIS IS 2 DAYS OF DIFERENCE
+			// JODA FUNCTION RETURN DAYS BEETWEN EXLUDE GIVEN DAYS
+
+			Days days = Days.daysBetween(today.minusDays(1), tutorialEndDateJodaVar.plusDays(1));
 
 			Integer daysLeft = Optional.of(days.getDays()).filter(d -> d > 0).orElse(0);
 

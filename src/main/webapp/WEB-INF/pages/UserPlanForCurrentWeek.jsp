@@ -29,10 +29,11 @@
 				<td>${tutorial.author}</td>
 				<td>${tutorial.daysLeft}</td>
 				<td>${tutorial.rating}&nbsp;<button id="addRatingBtn"
-						class="btn">+</button>&nbsp;
-					<button id="minusRatingBtn" class="btn">-</button></td>
-				<td>${tutorial.reworkedInPercents}&nbsp;<button class="btn">+</button>&nbsp;
-					<button id="addDoneInPercentsBtn" class="btn">-</button></td>
+						class="btn btn-primary">+</button>&nbsp;
+					<button id="minusRatingBtn" class="btn btn-warning">-</button></td>
+				<td>${tutorial.reworkedInPercents}&nbsp;<button
+						class="btn btn-primary">+</button>&nbsp;
+					<button id="addDoneInPercentsBtn" class="btn btn-warning">-</button></td>
 			</tr>
 		</c:forEach>
 	</tbody>
