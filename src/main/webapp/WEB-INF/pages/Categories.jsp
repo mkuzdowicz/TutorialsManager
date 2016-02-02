@@ -63,10 +63,14 @@
 									value="${tutorial.endDateToDo}" /></td>
 						</tr>
 					</table></td>
-				<td>${tutorial.rating}</td>
-				<td>${tutorial.reworkedInPercents}</td>
-				<td><button class="btn btn-warning editBtn"
-						id="edit${tutorial.id}" data-item-id="${tutorial.id}">edit</button>
+				<td>${tutorial.rating}&nbsp;<button id="addRatingBtn"
+						class="btn">+</button>&nbsp;
+					<button id="minusRatingBtn" class="btn">-</button></td>
+				<td>${tutorial.reworkedInPercents}&nbsp;<button class="btn">+</button>&nbsp;
+					<button id="addDoneInPercentsBtn" class="btn">-</button></td>
+				<td><button id="minusDoneInPercentsBtn"
+						class="btn btn-warning editBtn" id="edit${tutorial.id}"
+						data-item-id="${tutorial.id}">edit</button>
 
 					<button class="btn btn-danger removeBtn" id="edit${tutorial.id}"
 						data-item-id="${tutorial.id}" data-item-title="${tutorial.title}">remove</button>

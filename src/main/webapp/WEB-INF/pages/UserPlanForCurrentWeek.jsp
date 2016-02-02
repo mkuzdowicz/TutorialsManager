@@ -28,8 +28,11 @@
 				<td><a target="_blank" href="${tutorial.url}">${tutorial.title}</a></td>
 				<td>${tutorial.author}</td>
 				<td>${tutorial.daysLeft}</td>
-				<td>${tutorial.rating}</td>
-				<td>${tutorial.reworkedInPercents}</td>
+				<td>${tutorial.rating}&nbsp;<button id="addRatingBtn"
+						class="btn">+</button>&nbsp;
+					<button id="minusRatingBtn" class="btn">-</button></td>
+				<td>${tutorial.reworkedInPercents}&nbsp;<button class="btn">+</button>&nbsp;
+					<button id="addDoneInPercentsBtn" class="btn">-</button></td>
 			</tr>
 		</c:forEach>
 	</tbody>
