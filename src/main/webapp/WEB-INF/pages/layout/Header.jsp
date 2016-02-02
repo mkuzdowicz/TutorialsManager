@@ -38,11 +38,10 @@
 	<div class="container-fluid">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
-				<div class="navbar-header">
+				<div id="navHeader" class="navbar-header">
 					<a class="navbar-brand" href="/PersonalTutorialsRepo/">home</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="/PersonalTutorialsRepo/"></a></li>
 					<li><a href="/PersonalTutorialsRepo/all-categories">categories</a></li>
 					<li><a href="/PersonalTutorialsRepo/add-tutorial">add new</a></li>
 					<li><a href="/PersonalTutorialsRepo/tutorials-to-do">your
