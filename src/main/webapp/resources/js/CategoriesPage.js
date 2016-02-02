@@ -57,4 +57,18 @@ $(document).ready(
 
 			});
 
+			var removeCategoryBtn = $('.removeCategoryBtn');
+
+			removeCategoryBtn.click(function() {
+
+				var categoryPk = $(this).data('category-pk');
+
+				$('#categoryPKHidden').val(categoryPk);
+
+				$('#categoryNameToRemove').text(categoryPk);
+
+				$('#removeCategoryModal').modal('show');
+
+			})
+
 		});

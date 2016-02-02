@@ -39,6 +39,16 @@ public class TutorialsCategoriesService {
 
 	}
 
+	public void removeOneByPk(String categoryPK) {
+
+		TutorialCategory tutorialToRemove = tutorialsCategoriesDao.getOneById(categoryPK);
+
+		if (tutorialsCategoriesDao != null) {
+			tutorialsCategoriesDao.deleteTutorialCategory(tutorialToRemove);
+		}
+
+	}
+
 	public void insertOrUpdateWithGivenName(String categoryName) {
 
 		TutorialCategory category = getOneByName(categoryName);

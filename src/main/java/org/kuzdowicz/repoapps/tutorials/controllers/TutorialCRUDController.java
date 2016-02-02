@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
-import org.kuzdowicz.repoaps.dto.TutorialDTO;
+import org.kuzdowicz.repoaps.tutorials.dto.TutorialDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -33,7 +33,7 @@ public class TutorialCRUDController {
 
 		logger.debug("showAddTutoriaForm()");
 
-		ModelAndView mav = new ModelAndView("AddTutorialPage");
+		ModelAndView mav = new ModelAndView("AddTutorialsAndCategorisPage");
 
 		List<String> categoriesNamesList = tutorialsCategoriesService.getCategoriesNamesList();
 		mav.addObject("categories", categoriesNamesList);

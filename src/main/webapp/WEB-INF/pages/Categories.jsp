@@ -10,7 +10,9 @@
 	<c:forEach items="${catList}" var="cat">
 		<li class="list-group-item text-center">
 			<h4>
-				<a href="/PersonalTutorialsRepo/category?name=${cat}"> ${cat}</a>
+				<a href="/PersonalTutorialsRepo/category?name=${cat}"> ${cat}</a> <span
+					data-category-pk="${cat}"
+					class="btn btn-danger pull-right removeCategoryBtn">&times;</span>
 			</h4>
 		</li>
 	</c:forEach>
@@ -66,7 +68,8 @@
 				<td>${tutorial.rating}&nbsp;<button id="addRatingBtn"
 						class="btn btn-primary">+</button>&nbsp;
 					<button id="minusRatingBtn" class="btn btn-warning">-</button></td>
-				<td>${tutorial.reworkedInPercents}&nbsp;<button class="btn btn-primary">+</button>&nbsp;
+				<td>${tutorial.reworkedInPercents}&nbsp;<button
+						class="btn btn-primary">+</button>&nbsp;
 					<button id="addDoneInPercentsBtn" class="btn btn-warning">-</button></td>
 				<td><button id="minusDoneInPercentsBtn"
 						class="btn btn-warning editBtn" id="edit${tutorial.id}"
@@ -82,6 +85,7 @@
 
 <jsp:include page="modal-boxes/EditTutorialModlaBox.jsp" />
 <jsp:include page="modal-boxes/RemoveTutorialModal.jsp" />
+<jsp:include page="modal-boxes/RemoveCategoryModal.jsp" />
 
 <script src="resources/js/CategoriesPage.js"></script>
 

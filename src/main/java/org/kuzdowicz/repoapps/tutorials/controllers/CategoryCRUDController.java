@@ -29,4 +29,14 @@ public class CategoryCRUDController {
 		return "redirect:add-tutorial";
 	}
 
+	@RequestMapping(value = "/remove-category", method = RequestMethod.POST)
+	public String removeCategory(@RequestParam("categoryPK") String categoryPK) {
+
+		logger.debug("removeCategory()");
+
+		tutorialsCategoriesService.removeOneByPk(categoryPK);
+
+		return "redirect:all-categories";
+	}
+
 }
