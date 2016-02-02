@@ -39,4 +39,17 @@ public class TutorialsCategoriesService {
 
 	}
 
+	public void insertOrUpdateWithGivenName(String categoryName) {
+
+		TutorialCategory category = getOneByName(categoryName);
+
+		if (category == null) {
+
+			category = new TutorialCategory();
+			category.setCategoryName(categoryName);
+			insertOrUpdate(category);
+		}
+
+	}
+
 }

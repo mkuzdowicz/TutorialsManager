@@ -31,17 +31,8 @@
 								type="text" name="author" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>url</label><input id="editFormTutorialUrl" type="text"
+							<label>url</label><input id="editFormTutorialUrl" type="url"
 								name="url" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>rating</label> <input id="editFormTutorialRating"
-								type="number" name="rating" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>reworkedInPercents</label><input
-								id="editFormTutorialReworkedInPercents" type="number"
-								name="reworkedInPercents" class="form-control" />
 						</div>
 						<div class="form-group">
 							<label>start date todo</label> <input

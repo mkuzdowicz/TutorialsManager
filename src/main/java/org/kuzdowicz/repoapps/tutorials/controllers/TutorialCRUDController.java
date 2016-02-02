@@ -1,5 +1,6 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -25,7 +26,7 @@ public class TutorialCRUDController {
 	private TutorialsService tutorialsService;
 
 	@Autowired
-	TutorialsCategoriesService tutorialsCategoriesService;
+	private TutorialsCategoriesService tutorialsCategoriesService;
 
 	@RequestMapping(value = "/add-tutorial", method = RequestMethod.GET)
 	public ModelAndView showAddTutoriaForm() {
@@ -34,19 +35,20 @@ public class TutorialCRUDController {
 
 		ModelAndView mav = new ModelAndView("AddTutorialPage");
 
+		List<String> categoriesNamesList = tutorialsCategoriesService.getCategoriesNamesList();
+		mav.addObject("categories", categoriesNamesList);
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/add-tutorial", method = RequestMethod.POST)
-	public ModelAndView addTutorial(@RequestParam Map<String, String> reqMap) {
+	public String addTutorial(@RequestParam Map<String, String> reqMap) {
 
 		logger.debug("addTutorial()");
 
-		ModelAndView mav = new ModelAndView("AddTutorialPage");
-
 		tutorialsService.saveOrUpdateTutorialByPostReq(reqMap);
 
-		return mav;
+		return "redirect:add-tutorial";
 	}
 
 	@RequestMapping(value = "/edit-tutorial", method = RequestMethod.POST)

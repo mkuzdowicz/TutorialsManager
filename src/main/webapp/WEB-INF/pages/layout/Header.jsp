@@ -44,8 +44,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/PersonalTutorialsRepo/"></a></li>
 					<li><a href="/PersonalTutorialsRepo/all-categories">categories</a></li>
-					<li><a href="/PersonalTutorialsRepo/add-tutorial">add
-							tutorial</a></li>
+					<li><a href="/PersonalTutorialsRepo/add-tutorial">add new</a></li>
 					<li><a href="/PersonalTutorialsRepo/tutorials-to-do">your
 							plan for this week</a></li>
 				</ul>
