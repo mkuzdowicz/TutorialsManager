@@ -28,15 +28,21 @@
 				<td><a target="_blank" href="${tutorial.url}">${tutorial.title}</a></td>
 				<td>${tutorial.author}</td>
 				<td>${tutorial.daysLeft}</td>
-				<td>${tutorial.rating}&nbsp;<button id="addRatingBtn"
-						class="btn btn-primary">+</button>&nbsp;
-					<button id="minusRatingBtn" class="btn btn-warning">-</button></td>
-				<td>${tutorial.reworkedInPercents}&nbsp;<button
-						class="btn btn-primary">+</button>&nbsp;
-					<button id="addDoneInPercentsBtn" class="btn btn-warning">-</button></td>
+				<td><span id="ratingOfTutorial${tutorial.id}">${tutorial.rating}</span>&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-primary incrementRatingBtn">+</button>&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-warning decrementRatingBtn">-</button></td>
+				<td><span id="progressOfTutorial${tutorial.id}">${tutorial.reworkedInPercents}</span>&nbsp;%&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-primary incrementTutorialProgressBtn">+</button>&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-warning decrementTutorialProgressBtn">-</button></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 
+<script
+	src="resources/js/IncremetnDecremetRatingAndProgressOfTutorial.js"></script>
 <jsp:include page="layout/Footer.jsp"></jsp:include>

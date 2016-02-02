@@ -65,15 +65,18 @@
 									value="${tutorial.endDateToDo}" /></td>
 						</tr>
 					</table></td>
-				<td>${tutorial.rating}&nbsp;<button id="addRatingBtn"
-						class="btn btn-primary">+</button>&nbsp;
-					<button id="minusRatingBtn" class="btn btn-warning">-</button></td>
-				<td>${tutorial.reworkedInPercents}&nbsp;<button
-						class="btn btn-primary">+</button>&nbsp;
-					<button id="addDoneInPercentsBtn" class="btn btn-warning">-</button></td>
-				<td><button id="minusDoneInPercentsBtn"
-						class="btn btn-warning editBtn" id="edit${tutorial.id}"
-						data-item-id="${tutorial.id}">edit</button>
+				<td><span id="ratingOfTutorial${tutorial.id}">${tutorial.rating}</span>&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-primary incrementRatingBtn">+</button>&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-warning decrementRatingBtn">-</button></td>
+				<td><span id="progressOfTutorial${tutorial.id}">${tutorial.reworkedInPercents}</span>&nbsp;%&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-primary incrementTutorialProgressBtn">+</button>&nbsp;
+					<button data-item-pk="${tutorial.id}"
+						class="btn btn-warning decrementTutorialProgressBtn">-</button></td>
+				<td><button class="btn btn-warning editBtn"
+						id="edit${tutorial.id}" data-item-id="${tutorial.id}">edit</button>
 
 					<button class="btn btn-danger removeBtn" id="edit${tutorial.id}"
 						data-item-id="${tutorial.id}" data-item-title="${tutorial.title}">remove</button>
@@ -88,5 +91,6 @@
 <jsp:include page="modal-boxes/RemoveCategoryModal.jsp" />
 
 <script src="resources/js/CategoriesPage.js"></script>
-
+<script
+	src="resources/js/IncremetnDecremetRatingAndProgressOfTutorial.js"></script>
 <jsp:include page="layout/Footer.jsp"></jsp:include>
