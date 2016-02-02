@@ -1,8 +1,18 @@
 package org.kuzdowicz.repoaps.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TutorialDTO {
+import org.kuzdowicz.repoapps.tutorials.serilizers.JsonDateSerializer;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+public class TutorialDTO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2500507270557086269L;
 
 	private Long id;
 
@@ -18,8 +28,10 @@ public class TutorialDTO {
 
 	private Integer reworkedInPercents;
 
+	@JsonSerialize(using = JsonDateSerializer.class)
 	private Date startDateToDo;
 
+	@JsonSerialize(using = JsonDateSerializer.class)
 	private Date endDateToDo;
 
 	private String categryName;

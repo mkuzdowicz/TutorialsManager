@@ -1,49 +1,60 @@
-var editBtns = $('.editBtn');
-var removeBtns = $('.removeBtn');
+$(document).ready(
+		function() {
 
-removeBtns.click(function() {
+			var editBtns = $('.editBtn');
+			var removeBtns = $('.removeBtn');
 
-	var clickedItemId = $(this).data('item-id');
+			removeBtns.click(function() {
 
-	var clickedItemTitle = $(this).data('item-title');
+				var clickedItemId = $(this).data('item-id');
 
-	$('#tutorialIdHidden').val(clickedItemId);
+				var clickedItemTitle = $(this).data('item-title');
 
-	$('#tutorialTitle').text(clickedItemTitle);
+				$('#tutorialIdHidden').val(clickedItemId);
 
-	$('#removeTutorialModal').modal('show');
+				$('#tutorialTitle').text(clickedItemTitle);
 
-});
+				$('#removeTutorialModal').modal('show');
 
-editBtns.click(function() {
+			});
 
-	var clickedItemId = $(this).data('item-id');
+			editBtns.click(function() {
 
-	$.ajax({
-		url : '/PersonalTutorialsRepo/edit-tutorial-show-form',
-		type : 'POST',
-		data : {
-			id : clickedItemId
-		},
-		success : function(tutorialEditDto) {
+				var clickedItemId = $(this).data('item-id');
 
-			$('#editFormCategoryName').val(tutorialEditDto.categryName);
-			$('#editFormTutorialTitle').val(tutorialEditDto.title);
-			$('#editFormTutorialAuthor').val(tutorialEditDto.author);
+				$.ajax({
+					url : '/PersonalTutorialsRepo/edit-tutorial-show-form',
+					type : 'POST',
+					data : {
+						id : clickedItemId
+					},
+					success : function(tutorialEditDto) {
 
-			$('#editFormTutorialUrl').val(tutorialEditDto.url);
-			$('#editFormTutorialServiceDomain').val(
-					tutorialEditDto.serviceDomain);
-			$('#editFormTutorialRating').val(tutorialEditDto.rating);
-			$('#editFormTutorialReworkedInPercents').val(
-					tutorialEditDto.reworkedInPercents);
-			$('#editFormTutorialId').val(tutorialEditDto.id);
-		},
-		error : function(request, status, error) {
-			alert(request.responseText);
-		}
-	});
+						console.log(tutorialEditDto);
 
-	$('#editTutorialModal').modal('show');
+						$('#editFormCategoryName').val(
+								tutorialEditDto.categryName);
+						$('#editFormTutorialTitle').val(tutorialEditDto.title);
+						$('#editFormTutorialAuthor')
+								.val(tutorialEditDto.author);
 
-});
+						$('#editFormTutorialUrl').val(tutorialEditDto.url);
+						$('#editFormTutorialRating')
+								.val(tutorialEditDto.rating);
+						$('#editFormTutorialReworkedInPercents').val(
+								tutorialEditDto.reworkedInPercents);
+						$('#editFormTutorialId').val(tutorialEditDto.id);
+						$('#startDateToDo').val(tutorialEditDto.startDateToDo);
+						$('#endDateToDo').val(tutorialEditDto.endDateToDo);
+
+					},
+					error : function(request, status, error) {
+						alert(request.responseText);
+					}
+				});
+
+				$('#editTutorialModal').modal('show');
+
+			});
+
+		});

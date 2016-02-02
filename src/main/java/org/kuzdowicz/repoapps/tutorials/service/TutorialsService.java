@@ -17,8 +17,6 @@ import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Range;
-
 @Service
 public class TutorialsService {
 
@@ -80,7 +78,23 @@ public class TutorialsService {
 		newTutorial.setAuthor(reqParamsMap.get("author"));
 		newTutorial.setTitle(reqParamsMap.get("title"));
 		newTutorial.setUrl(reqParamsMap.get("url"));
-		newTutorial.setServiceDomain(reqParamsMap.get("serviceDomain"));
+
+		Optional.ofNullable(reqParamsMap.get("url")).filter(url -> StringUtils.isNoneBlank(url)).ifPresent(url -> {
+
+			String urlStr = reqParamsMap.get("url");
+
+			String urlStrSanitized = urlStr.replace("http://", "").replace("https://", "");
+
+			int beginIndex = urlStrSanitized.indexOf("www");
+
+			if (beginIndex == -1) {
+				beginIndex = 0;
+			}
+
+			newTutorial
+					.setServiceDomain(urlStrSanitized.substring(beginIndex, urlStrSanitized.indexOf("/", beginIndex)));
+
+		});
 
 		String idFromReq = reqParamsMap.get("id");
 
@@ -108,7 +122,7 @@ public class TutorialsService {
 		String startDateToDoStrSanitized = com.google.common.base.Objects.firstNonNull(startDateToDoStr,
 				defaultStartDate);
 
-		String endDateToDoStr = reqParamsMap.get("endDateToDoStr");
+		String endDateToDoStr = reqParamsMap.get("endDateToDo");
 		// DEFALUT PLUS ONE WEEK
 		String defaultendDateToDo = DateTime.now().plusWeeks(1).toString(AppFromatters.DATE_TIME_FORMATTER);
 

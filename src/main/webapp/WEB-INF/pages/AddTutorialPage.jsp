@@ -24,10 +24,7 @@
 			<div class="form-group">
 				<label>url</label><input type="text" name="url" class="form-control" />
 			</div>
-			<div class="form-group">
-				<label>serviceDomain</label> <input type="text" name="serviceDomain"
-					class="form-control" />
-			</div>
+
 			<div class="form-group">
 				<label>rating</label> <input type="number" name="rating"
 					class="form-control" />
@@ -35,6 +32,15 @@
 			<div class="form-group">
 				reworkedInPercents<input type="number" name="reworkedInPercents"
 					class="form-control" />
+			</div>
+			<div class="form-group">
+				<label>start date todo</label> <input
+					class="datepicker form-control" id="startDateToDo"
+					name="startDateToDo" />
+			</div>
+			<div class="form-group">
+				<label>end date todo</label><input id="startDateToDo"
+					name="startDateToDo" class="datepicker form-control" />
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-success" />
@@ -45,4 +51,5 @@
 	</div>
 </div>
 
+<script src="resources/js/DatePickerInitAndConfig.js"></script>
 <jsp:include page="layout/Footer.jsp"></jsp:include>

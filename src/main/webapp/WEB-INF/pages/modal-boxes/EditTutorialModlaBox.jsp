@@ -35,22 +35,28 @@
 								name="url" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>serviceDomain</label> <input
-								id="editFormTutorialServiceDomain" type="text"
-								name="serviceDomain" class="form-control" />
-						</div>
-						<div class="form-group">
 							<label>rating</label> <input id="editFormTutorialRating"
 								type="number" name="rating" class="form-control" />
 						</div>
 						<div class="form-group">
-							reworkedInPercents<input id="editFormTutorialReworkedInPercents"
-								type="number" name="reworkedInPercents" class="form-control" />
+							<label>reworkedInPercents</label><input
+								id="editFormTutorialReworkedInPercents" type="number"
+								name="reworkedInPercents" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>start date todo</label> <input
+								class="datepicker form-control" id="startDateToDo"
+								name="startDateToDo" />
+						</div>
+						<div class="form-group">
+							<label>end date todo</label><input id="endDateToDo"
+								name="endDateToDo" class="datepicker form-control" />
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn btn-success"
 								value="accept changes" />
 						</div>
+
 
 					</form>
 
@@ -62,3 +68,4 @@
 
 	</div>
 </div>
+<script src="resources/js/DatePickerInitAndConfig.js"></script>
