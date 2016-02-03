@@ -127,17 +127,15 @@ public class TutorialsService {
 		// DEFAULT TODAY
 		String defaultStartDate = DateTime.now().toString(AppFromatters.DATE_TIME_FORMATTER);
 
-		@SuppressWarnings("deprecation")
-		String startDateToDoStrSanitized = com.google.common.base.Objects.firstNonNull(startDateToDoStr,
-				defaultStartDate);
+		String startDateToDoStrSanitized = Optional.of(startDateToDoStr)
+				.filter(startDate -> StringUtils.isNoneBlank(startDate)).orElse(defaultStartDate);
 
 		String endDateToDoStr = reqParamsMap.get("endDateToDo");
 		// DEFALUT PLUS ONE WEEK
 		String defaultendDateToDo = DateTime.now().plusWeeks(1).toString(AppFromatters.DATE_TIME_FORMATTER);
 
-		@SuppressWarnings("deprecation")
-		String endDateToDoStrSanitized = com.google.common.base.Objects.firstNonNull(endDateToDoStr,
-				defaultendDateToDo);
+		String endDateToDoStrSanitized = Optional.of(startDateToDoStr)
+				.filter(startDate -> StringUtils.isNoneBlank(endDateToDoStr)).orElse(defaultendDateToDo);
 
 		newTutorial
 				.setStartDateToDo(AppFromatters.DATE_TIME_FORMATTER.parseDateTime(startDateToDoStrSanitized).toDate());

@@ -44,7 +44,7 @@ public class TutorialCRUDController {
 
 		tutorialsService.saveOrUpdateTutorialByPostReq(reqMap);
 
-		return "redirect:add-tutorial";
+		return "redirect:all-categories?name=" + reqMap.get("category");
 	}
 
 	@RequestMapping(value = "/edit-tutorial", method = RequestMethod.POST)
