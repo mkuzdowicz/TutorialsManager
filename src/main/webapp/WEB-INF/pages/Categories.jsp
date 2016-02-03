@@ -43,7 +43,7 @@
 			<td>serviceDomain</td>
 			<td>period to work on</td>
 			<td>rating</td>
-			<td>reworkedInPercents</td>
+			<td>progress</td>
 			<td>actions</td>
 		</tr>
 	</thead>
@@ -70,7 +70,7 @@
 						class="btn btn-primary incrementRatingBtn">+</button>&nbsp;
 					<button data-item-pk="${tutorial.id}"
 						class="btn btn-warning decrementRatingBtn">-</button></td>
-				<td><span id="progressOfTutorial${tutorial.id}">${tutorial.reworkedInPercents}</span>&nbsp;%&nbsp;
+				<td><span id="progressOfTutorial${tutorial.id}">${tutorial.progress}</span>&nbsp;%&nbsp;
 					<button data-item-pk="${tutorial.id}"
 						class="btn btn-primary incrementTutorialProgressBtn">+</button>&nbsp;
 					<button data-item-pk="${tutorial.id}"

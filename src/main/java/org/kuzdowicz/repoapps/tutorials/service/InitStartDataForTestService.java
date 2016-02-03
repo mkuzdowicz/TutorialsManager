@@ -27,7 +27,7 @@ public class InitStartDataForTestService {
 		tut1.setUrl("https://www.youtube.com/watch?v=Yv2xctJxE-w&list=PL4AFF701184976B25");
 		tut1.setServiceDomain("youtube");
 		tut1.setRating(3L);
-		tut1.setReworkedInPercents(0);
+		tut1.setProgress(0);
 		tut1.setStartDateToDo(DateTime.now().toDate());
 		tut1.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 
@@ -39,7 +39,7 @@ public class InitStartDataForTestService {
 		tut2.setUrl("https://www.youtube.com/watch?v=bUpOL_b7g6k&index=23&list=PLU2dl_1LV_SQWZI2R_RSEeYm1tfueszOc");
 		tut2.setServiceDomain("youtube");
 		tut2.setRating(4L);
-		tut2.setReworkedInPercents(0);
+		tut2.setProgress(0);
 		tut2.setStartDateToDo(DateTime.now().toDate());
 		tut2.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 
@@ -51,7 +51,7 @@ public class InitStartDataForTestService {
 		tut3.setUrl("http://www.mkyong.com/spring3/spring-3-mvc-hello-world-example-annotation/");
 		tut3.setServiceDomain("www.mkyong.com");
 		tut3.setRating(5L);
-		tut3.setReworkedInPercents(0);
+		tut3.setProgress(0);
 		tut3.setStartDateToDo(DateTime.now().toDate());
 		tut3.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 
@@ -78,6 +78,8 @@ public class InitStartDataForTestService {
 		tut4.setUrl("https://msdn.microsoft.com/en-us/library/aa288436(v=vs.71).aspx");
 		tut4.setServiceDomain("msdn.microsoft");
 		tut4.setRating(5L);
+		tut4.setStartDateToDo(DateTime.now().toDate());
+		tut4.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 
 		tutorialsDao.saveOrUpdateTutorial(tut4);
 

@@ -35,7 +35,7 @@ public class TutorialsAjaxController {
 		tutorialEditDto.setAuthor(tutorialDataToEdit.getAuthor());
 		tutorialEditDto.setServiceDomain(tutorialDataToEdit.getServiceDomain());
 		tutorialEditDto.setRating(tutorialDataToEdit.getRating());
-		tutorialEditDto.setReworkedInPercents(tutorialDataToEdit.getReworkedInPercents());
+		tutorialEditDto.setProgress(tutorialDataToEdit.getProgress());
 		tutorialEditDto.setStartDateToDo(tutorialDataToEdit.getStartDateToDo());
 		tutorialEditDto.setEndDateToDo(tutorialDataToEdit.getEndDateToDo());
 		tutorialEditDto.setCategryName(tutorialDataToEdit.getTutorialCategory().getCategoryName());
@@ -79,7 +79,7 @@ public class TutorialsAjaxController {
 
 		Tutorial tutorialWithDecrementedProgress = tutorialsService.incremetTutorialProgressAndReturnChangedObject(id);
 		TutorialDTO tutorialDTO = new TutorialDTO();
-		tutorialDTO.setReworkedInPercents(tutorialWithDecrementedProgress.getReworkedInPercents());
+		tutorialDTO.setProgress(tutorialWithDecrementedProgress.getProgress());
 
 		return tutorialDTO;
 
@@ -93,7 +93,7 @@ public class TutorialsAjaxController {
 
 		Tutorial tutorialWithDecrementedProgress = tutorialsService.decremetTutorialProgressAndReturnChangedObject(id);
 		TutorialDTO tutorialDTO = new TutorialDTO();
-		tutorialDTO.setReworkedInPercents(tutorialWithDecrementedProgress.getReworkedInPercents());
+		tutorialDTO.setProgress(tutorialWithDecrementedProgress.getProgress());
 
 		return tutorialDTO;
 

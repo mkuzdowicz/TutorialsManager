@@ -87,13 +87,13 @@ public class TutorialsService {
 	public Tutorial incremetTutorialProgressAndReturnChangedObject(Long pk) {
 
 		Tutorial tutorial = getOneById(pk);
-		Integer actualProgress = tutorial.getReworkedInPercents();
+		Integer actualProgress = tutorial.getProgress();
 
 		Optional.of(actualProgress).filter(val -> rangeForProgressIncrementation.contains(val))
 				.ifPresent(presentValue -> {
 
 					presentValue += 5;
-					tutorial.setReworkedInPercents(presentValue);
+					tutorial.setProgress(presentValue);
 					tutorialsDao.saveOrUpdateTutorial(tutorial);
 
 				});
@@ -105,13 +105,13 @@ public class TutorialsService {
 	public Tutorial decremetTutorialProgressAndReturnChangedObject(Long pk) {
 
 		Tutorial tutorial = getOneById(pk);
-		Integer actualProgress = tutorial.getReworkedInPercents();
+		Integer actualProgress = tutorial.getProgress();
 
 		Optional.of(actualProgress).filter(val -> rangeForProgressDecrementation.contains(val))
 				.ifPresent(presentValue -> {
 
 					presentValue -= 5;
-					tutorial.setReworkedInPercents(presentValue);
+					tutorial.setProgress(presentValue);
 					tutorialsDao.saveOrUpdateTutorial(tutorial);
 
 				});
@@ -196,7 +196,7 @@ public class TutorialsService {
 		String reworkedInPercents = reqParamsMap.get("reworkedInPercents");
 		String checkedReworkedinPercent = Optional.ofNullable(reworkedInPercents)
 				.filter(val -> StringUtils.isNoneBlank(val)).orElse("0");
-		newTutorial.setReworkedInPercents(Integer.parseInt(checkedReworkedinPercent));
+		newTutorial.setProgress(Integer.parseInt(checkedReworkedinPercent));
 
 		// WHEN TO DO
 		String startDateToDoStr = reqParamsMap.get("startDateToDo");

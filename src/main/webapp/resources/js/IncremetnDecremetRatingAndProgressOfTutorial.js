@@ -103,7 +103,7 @@ function executeAjaxPostForTutorialProgress(urlString, domSelector) {
 
 			console.log(tutorialDTO);
 
-			$(domSelector).text(tutorialDTO.reworkedInPercents);
+			$(domSelector).text(tutorialDTO.progress);
 
 		},
 		error : function(request, status, error) {

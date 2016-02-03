@@ -43,8 +43,8 @@ public class Tutorial implements Serializable {
 	@Column(name = "RATING")
 	private Long rating;
 
-	@Column(name = "REWORKED_IN_PERCENTS", columnDefinition = "int default 0", length = 100)
-	private Integer reworkedInPercents;
+	@Column(name = "PROGRESS", columnDefinition = "int default 0", length = 100)
+	private Integer progress;
 
 	@Column(name = "START_DATE_TO_DO")
 	private Date startDateToDo;
@@ -110,12 +110,12 @@ public class Tutorial implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getReworkedInPercents() {
-		return reworkedInPercents;
+	public Integer getProgress() {
+		return progress;
 	}
 
-	public void setReworkedInPercents(Integer reworkedInPercents) {
-		this.reworkedInPercents = reworkedInPercents;
+	public void setProgress(Integer progress) {
+		this.progress = progress;
 	}
 
 	public Date getStartDateToDo() {

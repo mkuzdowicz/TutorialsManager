@@ -18,7 +18,7 @@
 			<td>author</td>
 			<td>days left</td>
 			<td>rating</td>
-			<td>reworkedInPercents</td>
+			<td>progress</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,7 +33,7 @@
 						class="btn btn-primary incrementRatingBtn">+</button>&nbsp;
 					<button data-item-pk="${tutorial.id}"
 						class="btn btn-warning decrementRatingBtn">-</button></td>
-				<td><span id="progressOfTutorial${tutorial.id}">${tutorial.reworkedInPercents}</span>&nbsp;%&nbsp;
+				<td><span id="progressOfTutorial${tutorial.id}">${tutorial.progress}</span>&nbsp;%&nbsp;
 					<button data-item-pk="${tutorial.id}"
 						class="btn btn-primary incrementTutorialProgressBtn">+</button>&nbsp;
 					<button data-item-pk="${tutorial.id}"

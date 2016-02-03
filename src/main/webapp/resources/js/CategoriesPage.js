@@ -42,7 +42,7 @@ $(document).ready(
 						$('#editFormTutorialRating')
 								.val(tutorialEditDto.rating);
 						$('#editFormTutorialReworkedInPercents').val(
-								tutorialEditDto.reworkedInPercents);
+								tutorialEditDto.progress);
 						$('#editFormTutorialId').val(tutorialEditDto.id);
 						$('#startDateToDo').val(tutorialEditDto.startDateToDo);
 						$('#endDateToDo').val(tutorialEditDto.endDateToDo);

@@ -26,7 +26,7 @@ public class TutorialDTO implements Serializable {
 
 	private Long rating;
 
-	private Integer reworkedInPercents;
+	private Integer progress;
 
 	@JsonSerialize(using = JsonDateSerializer.class)
 	private Date startDateToDo;
@@ -84,12 +84,12 @@ public class TutorialDTO implements Serializable {
 		this.rating = rating;
 	}
 
-	public Integer getReworkedInPercents() {
-		return reworkedInPercents;
+	public Integer getProgress() {
+		return progress;
 	}
 
-	public void setReworkedInPercents(Integer reworkedInPercents) {
-		this.reworkedInPercents = reworkedInPercents;
+	public void setProgress(Integer progress) {
+		this.progress = progress;
 	}
 
 	public Date getStartDateToDo() {
