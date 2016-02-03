@@ -80,6 +80,7 @@ public class InitStartDataForTestService {
 		tut4.setRating(5L);
 		tut4.setStartDateToDo(DateTime.now().toDate());
 		tut4.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
+		tut4.setProgress(0);
 
 		tutorialsDao.saveOrUpdateTutorial(tut4);
 
