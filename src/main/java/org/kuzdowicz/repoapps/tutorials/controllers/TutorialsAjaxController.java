@@ -63,9 +63,37 @@ public class TutorialsAjaxController {
 
 		logger.debug("decrementTutorialRating()");
 
-		Tutorial tutorialWithIncrementedRating = tutorialsService.decrementRatingAndReturnChangedObject(id);
+		Tutorial tutorialWithDecrementedRating = tutorialsService.decrementRatingAndReturnChangedObject(id);
 		TutorialDTO tutorialDTO = new TutorialDTO();
-		tutorialDTO.setRating(tutorialWithIncrementedRating.getRating());
+		tutorialDTO.setRating(tutorialWithDecrementedRating.getRating());
+
+		return tutorialDTO;
+
+	}
+
+	@RequestMapping(value = "/tutorial-progress-increment", method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public @ResponseBody TutorialDTO incrementTutorialProgress(@RequestParam Long id) {
+
+		logger.debug("decrementTutorialRating()");
+
+		Tutorial tutorialWithDecrementedProgress = tutorialsService.incremetTutorialProgressAndReturnChangedObject(id);
+		TutorialDTO tutorialDTO = new TutorialDTO();
+		tutorialDTO.setReworkedInPercents(tutorialWithDecrementedProgress.getReworkedInPercents());
+
+		return tutorialDTO;
+
+	}
+
+	@RequestMapping(value = "/tutorial-progress-decrement", method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public @ResponseBody TutorialDTO decrementTutorialProgress(@RequestParam Long id) {
+
+		logger.debug("decrementTutorialRating()");
+
+		Tutorial tutorialWithDecrementedProgress = tutorialsService.decremetTutorialProgressAndReturnChangedObject(id);
+		TutorialDTO tutorialDTO = new TutorialDTO();
+		tutorialDTO.setReworkedInPercents(tutorialWithDecrementedProgress.getReworkedInPercents());
 
 		return tutorialDTO;
 

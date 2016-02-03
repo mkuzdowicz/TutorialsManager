@@ -17,6 +17,8 @@ import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Range;
+
 @Service
 public class TutorialsService {
 
@@ -25,6 +27,10 @@ public class TutorialsService {
 
 	@Autowired
 	private TutorialsCategoriesService tutorialsCategoriesService;
+
+	private final static Range<Integer> rangeForProgressIncrementation = Range.closed(0, 95);
+
+	private final static Range<Integer> rangeForProgressDecrementation = Range.closed(5, 100);
 
 	public List<Tutorial> selectAll() {
 
@@ -49,10 +55,11 @@ public class TutorialsService {
 		Tutorial tutorial = getOneById(pk);
 		Long actualRating = tutorial.getRating();
 		if (actualRating < Long.MAX_VALUE) {
+
 			actualRating++;
+			tutorial.setRating(actualRating);
+			tutorialsDao.saveOrUpdateTutorial(tutorial);
 		}
-		tutorial.setRating(actualRating);
-		tutorialsDao.saveOrUpdateTutorial(tutorial);
 
 		return tutorial;
 
@@ -63,10 +70,48 @@ public class TutorialsService {
 		Tutorial tutorial = getOneById(pk);
 		Long actualRating = tutorial.getRating();
 		if (actualRating > 0) {
+
 			actualRating--;
+			tutorial.setRating(actualRating);
+			tutorialsDao.saveOrUpdateTutorial(tutorial);
+
 		}
-		tutorial.setRating(actualRating);
-		tutorialsDao.saveOrUpdateTutorial(tutorial);
+
+		return tutorial;
+
+	}
+
+	public Tutorial incremetTutorialProgressAndReturnChangedObject(Long pk) {
+
+		Tutorial tutorial = getOneById(pk);
+		Integer actualProgress = tutorial.getReworkedInPercents();
+
+		Optional.of(actualProgress).filter(val -> rangeForProgressIncrementation.contains(val))
+				.ifPresent(presentValue -> {
+
+					presentValue += 5;
+					tutorial.setReworkedInPercents(presentValue);
+					tutorialsDao.saveOrUpdateTutorial(tutorial);
+
+				});
+
+		return tutorial;
+
+	}
+
+	public Tutorial decremetTutorialProgressAndReturnChangedObject(Long pk) {
+
+		Tutorial tutorial = getOneById(pk);
+		Integer actualProgress = tutorial.getReworkedInPercents();
+
+		Optional.of(actualProgress).filter(val -> rangeForProgressDecrementation.contains(val))
+				.ifPresent(presentValue -> {
+
+					presentValue -= 5;
+					tutorial.setReworkedInPercents(presentValue);
+					tutorialsDao.saveOrUpdateTutorial(tutorial);
+
+				});
 
 		return tutorial;
 

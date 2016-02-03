@@ -18,7 +18,7 @@ $(document)
 								var fullJQueryDomSelector = '#ratingOfTutorial'
 										+ clickedItemPk;
 
-								executeAjaxPostReqRes(
+								executeAjaxPostForTutorialRating(
 										'/PersonalTutorialsRepo/tutorial-rating-increment',
 										fullJQueryDomSelector);
 
@@ -31,7 +31,7 @@ $(document)
 								var fullJQueryDomSelector = '#ratingOfTutorial'
 										+ clickedItemPk;
 
-								executeAjaxPostReqRes(
+								executeAjaxPostForTutorialRating(
 										'/PersonalTutorialsRepo/tutorial-rating-decrement',
 										fullJQueryDomSelector);
 
@@ -44,7 +44,7 @@ $(document)
 								var fullJQueryDomSelector = '#progressOfTutorial'
 										+ clickedItemPk;
 
-								executeAjaxPostReqRes(
+								executeAjaxPostForTutorialProgress(
 										'/PersonalTutorialsRepo/tutorial-progress-increment',
 										fullJQueryDomSelector);
 
@@ -58,14 +58,14 @@ $(document)
 								var fullJQueryDomSelector = '#progressOfTutorial'
 										+ clickedItemPk;
 
-								executeAjaxPostReqRes(
+								executeAjaxPostForTutorialProgress(
 										'/PersonalTutorialsRepo/tutorial-progress-decrement',
 										fullJQueryDomSelector);
 							})
 
 				});
 
-function executeAjaxPostReqRes(urlString, domSelector) {
+function executeAjaxPostForTutorialRating(urlString, domSelector) {
 
 	var pkFromSelector = domSelector.replace(/[#A-Za-z]/g, '');
 
@@ -80,6 +80,30 @@ function executeAjaxPostReqRes(urlString, domSelector) {
 			console.log(tutorialDTO);
 
 			$(domSelector).text(tutorialDTO.rating);
+
+		},
+		error : function(request, status, error) {
+			alert(request.responseText);
+		}
+
+	});
+}
+
+function executeAjaxPostForTutorialProgress(urlString, domSelector) {
+
+	var pkFromSelector = domSelector.replace(/[#A-Za-z]/g, '');
+
+	$.ajax({
+		url : urlString,
+		type : 'POST',
+		data : {
+			id : pkFromSelector
+		},
+		success : function(tutorialDTO) {
+
+			console.log(tutorialDTO);
+
+			$(domSelector).text(tutorialDTO.reworkedInPercents);
 
 		},
 		error : function(request, status, error) {
