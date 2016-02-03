@@ -54,11 +54,11 @@ public class TutorialCRUDController {
 
 		tutorialsService.saveOrUpdateTutorialByPostReq(reqMap);
 
-		return "redirect:category?name=" + reqMap.get("category");
+		return "redirect:all-categories?name=" + reqMap.get("category");
 	}
 
 	@RequestMapping(value = "/remove-tutorial", method = RequestMethod.POST)
-	public ModelAndView removeTutorial(@RequestParam("tutorialId") Long id) {
+	public String removeTutorial(@RequestParam("tutorialId") Long id) {
 
 		logger.debug("editTutorial()");
 
@@ -68,19 +68,7 @@ public class TutorialCRUDController {
 
 		tutorialsService.removeOneById(id);
 
-		return printCategoriesWithParam(categoryNameOfRemovedTutorial);
-	}
-
-	private ModelAndView printCategoriesWithParam(@RequestParam("name") String name) {
-
-		ModelAndView mav = new ModelAndView("Categories");
-
-		mav.addObject("catList", tutorialsCategoriesService.getCategoriesNamesList());
-
-		mav.addObject("selectedCategory", tutorialsCategoriesService.getOneByName(name));
-
-		return mav;
-
+		return "redirect:all-categories?name=" + categoryNameOfRemovedTutorial;
 	}
 
 }
