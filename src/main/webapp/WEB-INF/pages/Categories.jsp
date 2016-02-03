@@ -10,7 +10,7 @@
 	<c:forEach items="${catList}" var="cat">
 		<li class="list-group-item text-center">
 			<h4>
-				<a href="/PersonalTutorialsRepo/category?name=${cat}"> ${cat}</a> <span
+				<a href="/PersonalTutorialsRepo/all-categories?name=${cat}"> ${cat}</a> <span
 					data-category-pk="${cat}"
 					class="btn btn-danger pull-right removeCategoryBtn">&times;</span>
 			</h4>

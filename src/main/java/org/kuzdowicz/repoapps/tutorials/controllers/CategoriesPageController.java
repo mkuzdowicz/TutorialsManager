@@ -15,24 +15,15 @@ public class CategoriesPageController {
 	TutorialsCategoriesService tutorialsCategoriesService;
 
 	@RequestMapping(value = "/all-categories", method = RequestMethod.GET)
-	public ModelAndView printCategories() {
+	public ModelAndView printCategoriesWithParam(@RequestParam(required = false) String name) {
 
 		ModelAndView mav = new ModelAndView("Categories");
 
 		mav.addObject("catList", tutorialsCategoriesService.getCategoriesNamesList());
 
-		return mav;
-
-	}
-
-	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	public ModelAndView printCategoriesWithParam(@RequestParam("name") String name) {
-
-		ModelAndView mav = new ModelAndView("Categories");
-
-		mav.addObject("catList", tutorialsCategoriesService.getCategoriesNamesList());
-
-		mav.addObject("selectedCategory", tutorialsCategoriesService.getOneByName(name));
+		if (name != null) {
+			mav.addObject("selectedCategory", tutorialsCategoriesService.getOneByName(name));
+		}
 
 		return mav;
 
