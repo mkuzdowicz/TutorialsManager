@@ -44,6 +44,34 @@ public class TutorialsService {
 
 	}
 
+	public Tutorial incremetRatingAndReturnChangedObject(Long pk) {
+
+		Tutorial tutorial = getOneById(pk);
+		Long actualRating = tutorial.getRating();
+		if (actualRating < Long.MAX_VALUE) {
+			actualRating++;
+		}
+		tutorial.setRating(actualRating);
+		tutorialsDao.saveOrUpdateTutorial(tutorial);
+
+		return tutorial;
+
+	}
+
+	public Tutorial decrementRatingAndReturnChangedObject(Long pk) {
+
+		Tutorial tutorial = getOneById(pk);
+		Long actualRating = tutorial.getRating();
+		if (actualRating > 0) {
+			actualRating--;
+		}
+		tutorial.setRating(actualRating);
+		tutorialsDao.saveOrUpdateTutorial(tutorial);
+
+		return tutorial;
+
+	}
+
 	public List<Tutorial> getTutorialsToDoForCurrentWeekWithDaysLeftFiled() {
 
 		Date firstDayOfCurrentWeek = DateTime.now().withDayOfWeek(DateTimeConstants.MONDAY).toDate();

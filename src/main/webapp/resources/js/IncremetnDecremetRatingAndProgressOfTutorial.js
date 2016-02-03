@@ -1,32 +1,90 @@
-$(document).ready(function() {
+$(document)
+		.ready(
+				function() {
 
-	var incrementRatingBtn = $('.incrementRatingBtn');
+					var incrementRatingBtn = $('.incrementRatingBtn');
 
-	var decrementRatingBtn = $('.decrementRatingBtn');
+					var decrementRatingBtn = $('.decrementRatingBtn');
 
-	var incrementTutorialProgressBtn = $('.incrementTutorialProgressBtn');
+					var incrementTutorialProgressBtn = $('.incrementTutorialProgressBtn');
 
-	var decrementTutorialProgressBtn = $('.decrementTutorialProgressBtn');
+					var decrementTutorialProgressBtn = $('.decrementTutorialProgressBtn');
 
-	incrementRatingBtn.click(function() {
+					incrementRatingBtn
+							.click(function() {
 
-		var clickedItemPk = $(this).data('item-pk');
-		$('#ratingOfTutorial' + clickedItemPk).text('sdfsdfs');
-	})
+								var clickedItemPk = $(this).data('item-pk');
 
-	decrementRatingBtn.click(function() {
-		var clickedItemPk = $(this).data('item-pk');
-		$('#ratingOfTutorial' + clickedItemPk).text('sdfsdfs');
-	})
+								var fullJQueryDomSelector = '#ratingOfTutorial'
+										+ clickedItemPk;
 
-	incrementTutorialProgressBtn.click(function() {
-		var clickedItemPk = $(this).data('item-pk');
-		$('#progressOfTutorial' + clickedItemPk).text('sdfsdfs');
-	})
+								executeAjaxPostReqRes(
+										'/PersonalTutorialsRepo/tutorial-rating-increment',
+										fullJQueryDomSelector);
 
-	decrementTutorialProgressBtn.click(function() {
-		var clickedItemPk = $(this).data('item-pk');
-		$('#progressOfTutorial' + clickedItemPk).text('sdfsdfs');
-	})
+							})
 
-});
+					decrementRatingBtn
+							.click(function() {
+								var clickedItemPk = $(this).data('item-pk');
+
+								var fullJQueryDomSelector = '#ratingOfTutorial'
+										+ clickedItemPk;
+
+								executeAjaxPostReqRes(
+										'/PersonalTutorialsRepo/tutorial-rating-decrement',
+										fullJQueryDomSelector);
+
+							})
+
+					incrementTutorialProgressBtn
+							.click(function() {
+								var clickedItemPk = $(this).data('item-pk');
+
+								var fullJQueryDomSelector = '#progressOfTutorial'
+										+ clickedItemPk;
+
+								executeAjaxPostReqRes(
+										'/PersonalTutorialsRepo/tutorial-progress-increment',
+										fullJQueryDomSelector);
+
+							})
+
+					decrementTutorialProgressBtn
+							.click(function() {
+
+								var clickedItemPk = $(this).data('item-pk');
+
+								var fullJQueryDomSelector = '#progressOfTutorial'
+										+ clickedItemPk;
+
+								executeAjaxPostReqRes(
+										'/PersonalTutorialsRepo/tutorial-progress-decrement',
+										fullJQueryDomSelector);
+							})
+
+				});
+
+function executeAjaxPostReqRes(urlString, domSelector) {
+
+	var pkFromSelector = domSelector.replace(/[#A-Za-z]/g, '');
+
+	$.ajax({
+		url : urlString,
+		type : 'POST',
+		data : {
+			id : pkFromSelector
+		},
+		success : function(tutorialDTO) {
+
+			console.log(tutorialDTO);
+
+			$(domSelector).text(tutorialDTO.rating);
+
+		},
+		error : function(request, status, error) {
+			alert(request.responseText);
+		}
+
+	});
+}

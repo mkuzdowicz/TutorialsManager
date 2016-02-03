@@ -24,9 +24,7 @@ public class TutorialsAjaxController {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public @ResponseBody TutorialDTO showEditTutorialForm(@RequestParam Long id) {
 
-		logger.debug("editTutorial()");
-
-		System.out.println(id);
+		logger.debug("showEditTutorialForm()");
 
 		Tutorial tutorialDataToEdit = tutorialsService.getOneById(id);
 
@@ -43,6 +41,34 @@ public class TutorialsAjaxController {
 		tutorialEditDto.setCategryName(tutorialDataToEdit.getTutorialCategory().getCategoryName());
 
 		return tutorialEditDto;
+	}
+
+	@RequestMapping(value = "/tutorial-rating-increment", method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public @ResponseBody TutorialDTO incrementTutorialRating(@RequestParam Long id) {
+
+		logger.debug("incrementTutorialRating()");
+
+		Tutorial tutorialWithIncrementedRating = tutorialsService.incremetRatingAndReturnChangedObject(id);
+		TutorialDTO tutorialDTO = new TutorialDTO();
+		tutorialDTO.setRating(tutorialWithIncrementedRating.getRating());
+
+		return tutorialDTO;
+
+	}
+
+	@RequestMapping(value = "/tutorial-rating-decrement", method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public @ResponseBody TutorialDTO decrementTutorialRating(@RequestParam Long id) {
+
+		logger.debug("decrementTutorialRating()");
+
+		Tutorial tutorialWithIncrementedRating = tutorialsService.decrementRatingAndReturnChangedObject(id);
+		TutorialDTO tutorialDTO = new TutorialDTO();
+		tutorialDTO.setRating(tutorialWithIncrementedRating.getRating());
+
+		return tutorialDTO;
+
 	}
 
 }
