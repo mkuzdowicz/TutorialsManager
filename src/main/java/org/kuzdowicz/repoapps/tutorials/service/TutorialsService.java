@@ -54,12 +54,14 @@ public class TutorialsService {
 
 		Tutorial tutorial = getOneById(pk);
 		Long actualRating = tutorial.getRating();
-		if (actualRating < Long.MAX_VALUE) {
 
-			actualRating++;
-			tutorial.setRating(actualRating);
+		Optional.of(actualRating).filter(val -> val < Long.MAX_VALUE).ifPresent(presentVal -> {
+
+			presentVal++;
+			tutorial.setRating(presentVal);
 			tutorialsDao.saveOrUpdateTutorial(tutorial);
-		}
+
+		});
 
 		return tutorial;
 
@@ -69,13 +71,14 @@ public class TutorialsService {
 
 		Tutorial tutorial = getOneById(pk);
 		Long actualRating = tutorial.getRating();
-		if (actualRating > 0) {
 
-			actualRating--;
-			tutorial.setRating(actualRating);
+		Optional.of(actualRating).filter(val -> val > 0).ifPresent(presentVal -> {
+
+			presentVal--;
+			tutorial.setRating(presentVal);
 			tutorialsDao.saveOrUpdateTutorial(tutorial);
 
-		}
+		});
 
 		return tutorial;
 
