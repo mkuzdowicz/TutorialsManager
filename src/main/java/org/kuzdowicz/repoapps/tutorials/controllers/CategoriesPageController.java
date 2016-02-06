@@ -11,8 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CategoriesPageController {
 
-	@Autowired
 	TutorialsCategoriesService tutorialsCategoriesService;
+
+	@Autowired
+	public CategoriesPageController(TutorialsCategoriesService tutorialsCategoriesService) {
+		this.tutorialsCategoriesService = tutorialsCategoriesService;
+	}
 
 	@RequestMapping(value = "/all-categories", method = RequestMethod.GET)
 	public ModelAndView printCategoriesWithParam(@RequestParam(required = false) String name) {

@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class TutorialsCategoriesService {
 
-	@Autowired
 	private TutorialsCategoriesDao tutorialsCategoriesDao;
+
+	@Autowired
+	public TutorialsCategoriesService(TutorialsCategoriesDao tutorialsCategoriesDao) {
+		this.tutorialsCategoriesDao = tutorialsCategoriesDao;
+	}
 
 	public List<TutorialCategory> selectAll() {
 

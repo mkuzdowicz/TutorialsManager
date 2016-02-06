@@ -11,8 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class InitDBDataController {
 
-	@Autowired
 	InitStartDataForTestService initForTestService;
+
+	@Autowired
+	public InitDBDataController(InitStartDataForTestService initForTestService) {
+		this.initForTestService = initForTestService;
+	}
 
 	private final static Logger logger = Logger.getLogger(InitDBDataController.class);
 

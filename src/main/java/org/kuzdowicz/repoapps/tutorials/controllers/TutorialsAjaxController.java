@@ -17,8 +17,12 @@ public class TutorialsAjaxController {
 
 	private final static Logger logger = Logger.getLogger(TutorialsAjaxController.class);
 
-	@Autowired
 	private TutorialsService tutorialsService;
+
+	@Autowired
+	public TutorialsAjaxController(TutorialsService tutorialsService) {
+		this.tutorialsService = tutorialsService;
+	}
 
 	@RequestMapping(value = "/edit-tutorial-show-form", method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })

@@ -13,11 +13,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class InitStartDataForTestService {
 
-	@Autowired
 	private TutorialsCategoriesDao tutorialsCategoriesDao;
 
-	@Autowired
 	private TutorialsDao tutorialsDao;
+
+	@Autowired
+	public InitStartDataForTestService(TutorialsCategoriesDao tutorialsCategoriesDao, TutorialsDao tutorialsDao) {
+		this.tutorialsCategoriesDao = tutorialsCategoriesDao;
+		this.tutorialsDao = tutorialsDao;
+	}
 
 	public void initSomeData() {
 

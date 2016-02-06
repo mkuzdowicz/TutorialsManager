@@ -18,11 +18,16 @@ public class TutorialCRUDController {
 
 	private final static Logger logger = Logger.getLogger(TutorialCRUDController.class);
 
-	@Autowired
 	private TutorialsService tutorialsService;
 
-	@Autowired
 	private TutorialsCategoriesService tutorialsCategoriesService;
+
+	@Autowired
+	public TutorialCRUDController(TutorialsService tutorialsService,
+			TutorialsCategoriesService tutorialsCategoriesService) {
+		this.tutorialsService = tutorialsService;
+		this.tutorialsCategoriesService = tutorialsCategoriesService;
+	}
 
 	@RequestMapping(value = "/add-tutorial", method = RequestMethod.GET)
 	public ModelAndView showAddTutoriaForm() {

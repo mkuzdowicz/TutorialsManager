@@ -15,8 +15,12 @@ public class CategoryCRUDController {
 
 	private final static Logger logger = Logger.getLogger(CategoryCRUDController.class);
 
-	@Autowired
 	private TutorialsCategoriesService tutorialsCategoriesService;
+
+	@Autowired
+	public CategoryCRUDController(TutorialsCategoriesService tutorialsCategoriesService) {
+		this.tutorialsCategoriesService = tutorialsCategoriesService;
+	}
 
 	@RequestMapping(value = "/add-category", method = RequestMethod.POST)
 	public String addNewCategory(@RequestParam Map<String, String> reqMap) {

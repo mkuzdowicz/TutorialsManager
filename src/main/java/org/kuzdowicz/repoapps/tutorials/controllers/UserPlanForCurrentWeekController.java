@@ -16,8 +16,12 @@ public class UserPlanForCurrentWeekController {
 
 	private final static Logger logger = Logger.getLogger(HomeController.class);
 
-	@Autowired
 	TutorialsService tutorialsService;
+
+	@Autowired
+	public UserPlanForCurrentWeekController(TutorialsService tutorialsService) {
+		this.tutorialsService = tutorialsService;
+	}
 
 	@RequestMapping(value = "/tutorials-to-do", method = RequestMethod.GET)
 	public ModelAndView tutorialsToDo() {
