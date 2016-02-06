@@ -1,6 +1,5 @@
 package org.kuzdowicz.repoapps.tutorials.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
-import org.kuzdowicz.repoapps.tutorials.constants.AppFromatters;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
@@ -22,15 +20,23 @@ import com.google.common.collect.Range;
 @Service
 public class TutorialsService {
 
-	@Autowired
 	private TutorialsDao tutorialsDao;
 
-	@Autowired
 	private TutorialsCategoriesService tutorialsCategoriesService;
+
+	@Autowired
+	public TutorialsService(TutorialsDao tutorialsDao, TutorialsCategoriesService tutorialsCategoriesService) {
+		this.tutorialsDao = tutorialsDao;
+		this.tutorialsCategoriesService = tutorialsCategoriesService;
+	}
 
 	private final static Range<Integer> rangeForProgressIncrementation = Range.closed(0, 95);
 
 	private final static Range<Integer> rangeForProgressDecrementation = Range.closed(5, 100);
+
+	private final static Long ratingStarVal = 0L;
+
+	private final static Integer progressStartVal = 0;
 
 	public List<Tutorial> selectAll() {
 
@@ -148,21 +154,43 @@ public class TutorialsService {
 		return allTutorialsBeetwenGivenDates;
 	}
 
-	private String extractDomainAddresFromFullUrl(String urlStr) {
-		String urlStrSanitized = urlStr.replace("http://", "").replace("https://", "");
+	public void editTutorialByPostReq(Map<String, String> reqParamsMap) {
 
-		int beginIndex = urlStrSanitized.indexOf("www");
+		String idFromReq = reqParamsMap.get("id");
 
-		if (beginIndex == -1) {
-			beginIndex = 0;
-		}
+		Tutorial tutorialToEdit = tutorialsDao.getOneById(Long.parseLong(idFromReq));
 
-		return urlStrSanitized.substring(beginIndex, urlStrSanitized.indexOf("/", beginIndex));
+		// BASIC DATA
+		tutorialToEdit.setAuthor(reqParamsMap.get("author"));
+		tutorialToEdit.setTitle(reqParamsMap.get("title"));
+		tutorialToEdit.setUrl(reqParamsMap.get("url"));
+
+		Optional.ofNullable(reqParamsMap.get("url")).filter(url -> StringUtils.isNoneBlank(url)).ifPresent(url -> {
+
+			String serviceWebAddres = TutorialsServiceHelper.extractDomainAddresFromFullUrl(reqParamsMap.get("url"));
+			tutorialToEdit.setServiceDomain(serviceWebAddres);
+
+		});
+
+		// WHEN TO DO
+		String startDateToDoStr = reqParamsMap.get("startDateToDo");
+		Date start = TutorialsServiceHelper.prepareStartDateToDo(startDateToDoStr);
+		String endDateToDoStr = reqParamsMap.get("endDateToDo");
+		Date endDate = TutorialsServiceHelper.prepareEndDateToDo(endDateToDoStr);
+
+		tutorialToEdit.setStartDateToDo(start);
+		tutorialToEdit.setEndDateToDo(endDate);
+
+		TutorialCategory cat = tutorialsCategoriesService.getOneByName(reqParamsMap.get("category"));
+
+		tutorialToEdit.setTutorialCategory(cat);
+
+		// SAVE OR UPDATE
+		tutorialsDao.saveOrUpdateTutorial(tutorialToEdit);
+
 	}
 
-	public void saveOrUpdateTutorialByPostReq(Map<String, String> reqParamsMap) {
-
-		String categoryName = reqParamsMap.get("category");
+	public void saveNewTutorialByPostReq(Map<String, String> reqParamsMap) {
 
 		Tutorial newTutorial = new Tutorial();
 
@@ -171,68 +199,32 @@ public class TutorialsService {
 		newTutorial.setTitle(reqParamsMap.get("title"));
 		newTutorial.setUrl(reqParamsMap.get("url"));
 
+		newTutorial.setRating(ratingStarVal);
+		newTutorial.setProgress(progressStartVal);
+
 		Optional.ofNullable(reqParamsMap.get("url")).filter(url -> StringUtils.isNoneBlank(url)).ifPresent(url -> {
 
-			String urlStr = reqParamsMap.get("url");
-
-			String serviceWebAddres = extractDomainAddresFromFullUrl(urlStr);
-
+			String serviceWebAddres = TutorialsServiceHelper.extractDomainAddresFromFullUrl(reqParamsMap.get("url"));
 			newTutorial.setServiceDomain(serviceWebAddres);
 
 		});
 
-		String idFromReq = reqParamsMap.get("id");
-
-		if (StringUtils.isNoneBlank(idFromReq)) {
-			newTutorial.setId(Long.parseLong(idFromReq));
-		}
-
-		// RATING
-		String rating = reqParamsMap.get("rating");
-		String checkedRating = Optional.ofNullable(rating).filter(val -> StringUtils.isNoneBlank(rating)).orElse("0");
-		newTutorial.setRating(Long.parseLong(checkedRating));
-
-		// WORK DONE
-		String reworkedInPercents = reqParamsMap.get("reworkedInPercents");
-		String checkedReworkedinPercent = Optional.ofNullable(reworkedInPercents)
-				.filter(val -> StringUtils.isNoneBlank(val)).orElse("0");
-		newTutorial.setProgress(Integer.parseInt(checkedReworkedinPercent));
-
 		// WHEN TO DO
-		String startDateToDoStr = reqParamsMap.get("startDateToDo");
-		// DEFAULT TODAY
-		String defaultStartDate = DateTime.now().toString(AppFromatters.DATE_TIME_FORMATTER);
+		Date start = TutorialsServiceHelper.prepareStartDateToDo(reqParamsMap.get("startDateToDo"));
+		Date endDate = TutorialsServiceHelper.prepareEndDateToDo(reqParamsMap.get("endDateToDo"));
 
-		String startDateToDoStrSanitized = Optional.of(startDateToDoStr)
-				.filter(startDate -> StringUtils.isNoneBlank(startDate)).orElse(defaultStartDate);
+		newTutorial.setStartDateToDo(start);
+		newTutorial.setEndDateToDo(endDate);
 
-		String endDateToDoStr = reqParamsMap.get("endDateToDo");
-		// DEFALUT PLUS ONE WEEK
-		String defaultendDateToDo = DateTime.now().plusWeeks(1).toString(AppFromatters.DATE_TIME_FORMATTER);
+		TutorialCategory cat = tutorialsCategoriesService.getOneByName(reqParamsMap.get("category"));
 
-		String endDateToDoStrSanitized = Optional.of(startDateToDoStr)
-				.filter(startDate -> StringUtils.isNoneBlank(endDateToDoStr)).orElse(defaultendDateToDo);
-
-		newTutorial
-				.setStartDateToDo(AppFromatters.DATE_TIME_FORMATTER.parseDateTime(startDateToDoStrSanitized).toDate());
-		newTutorial.setEndDateToDo(AppFromatters.DATE_TIME_FORMATTER.parseDateTime(endDateToDoStrSanitized).toDate());
+		Optional.ofNullable(cat).ifPresent(c -> {
+			c.getTutorials().add(newTutorial);
+			newTutorial.setTutorialCategory(c);
+		});
 
 		// SAVE OR UPDATE
 		tutorialsDao.saveOrUpdateTutorial(newTutorial);
-
-		TutorialCategory cat = tutorialsCategoriesService.getOneByName(categoryName);
-
-		if (Optional.ofNullable(cat).isPresent()) {
-			cat.getTutorials().add(newTutorial);
-		} else {
-			cat = new TutorialCategory();
-			cat.setCategoryName(categoryName);
-			cat.setTutorials(new ArrayList<>());
-			cat.getTutorials().add(newTutorial);
-		}
-
-		tutorialsCategoriesService.insertOrUpdate(cat);
-
 	}
 
 }

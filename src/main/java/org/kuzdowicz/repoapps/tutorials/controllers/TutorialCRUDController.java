@@ -42,7 +42,7 @@ public class TutorialCRUDController {
 
 		logger.debug("addTutorial()");
 
-		tutorialsService.saveOrUpdateTutorialByPostReq(reqMap);
+		tutorialsService.saveNewTutorialByPostReq(reqMap);
 
 		return "redirect:all-categories?name=" + reqMap.get("category");
 	}
@@ -52,7 +52,7 @@ public class TutorialCRUDController {
 
 		logger.debug("editTutorial()");
 
-		tutorialsService.saveOrUpdateTutorialByPostReq(reqMap);
+		tutorialsService.editTutorialByPostReq(reqMap);
 
 		return "redirect:all-categories?name=" + reqMap.get("category");
 	}

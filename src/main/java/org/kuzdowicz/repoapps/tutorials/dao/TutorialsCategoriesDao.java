@@ -6,14 +6,14 @@ import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
 
 public interface TutorialsCategoriesDao {
 
-	public List<TutorialCategory> getAllCategories();
+	List<TutorialCategory> getAllCategories();
 
-	public TutorialCategory getOneById(String pk);
+	TutorialCategory getOneById(String pk);
 
-	public void saveOrUpdateTutorialCategory(TutorialCategory tutorial);
+	void saveOrUpdateTutorialCategory(TutorialCategory tutorial);
 
-	public void deleteTutorialCategory(TutorialCategory tutorial);
+	void deleteTutorialCategory(TutorialCategory tutorial);
 
-	public List<String> getAllCategoriesNames();
+	List<String> getAllCategoriesNames();
 
 }

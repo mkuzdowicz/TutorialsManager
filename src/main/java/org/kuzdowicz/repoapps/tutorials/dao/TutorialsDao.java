@@ -7,14 +7,14 @@ import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
 
 public interface TutorialsDao {
 
-	public List<Tutorial> getAllTutorials();
+	List<Tutorial> getAllTutorials();
 
-	public List<Tutorial> getAllTutorialsBeetwenGivenDates(Date startDate, Date endDate);
+	List<Tutorial> getAllTutorialsBeetwenGivenDates(Date startDate, Date endDate);
 
-	public Tutorial getOneById(Long pk);
+	Tutorial getOneById(Long pk);
 
-	public void saveOrUpdateTutorial(Tutorial tutorial);
+	void saveOrUpdateTutorial(Tutorial tutorial);
 
-	public void deleteTutorial(Tutorial tutorial);
+	void deleteTutorial(Tutorial tutorial);
 
 }
