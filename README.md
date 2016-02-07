@@ -1,5 +1,4 @@
-#TutorialsManager
-Java web application
+# TutorialsManager - Java web application
 Repository which can store tutorials in a db and perform time management on given tutorials.
 
 # Main technologies: 
