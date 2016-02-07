@@ -1,6 +1,6 @@
 # TutorialsManager
 * A Java web application. Tutorials repository which stroes tutorials.
- Main technologies: 
++ Main technologies: 
 * Java 8, Spring MVC, Hibernate, MySql 
  
 ###User can stroe his favorit tutorials,
