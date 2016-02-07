@@ -6,7 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/Test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test"/>
-        <property name="context-root" value="PersonalTutorialsRepo"/>
         <property name="java-output-path" value="/PersonalTutorialsRepo/target/classes"/>
+        <property name="context-root" value="TutorialsManager"/>
     </wb-module>
 </project-modules>

@@ -13,7 +13,7 @@
 			<div class="modal-body row">
 				<div class="col-md-8 col-md-offset-2">
 					<form class="form form-horizontal"
-						action="/PersonalTutorialsRepo/edit-tutorial" method="POST">
+						action="/TutorialsManager/edit-tutorial" method="POST">
 
 						<input id="editFormTutorialId" type="hidden" name="id"
 							class="form-control" />

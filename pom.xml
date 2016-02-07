@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.kuzdowicz.repoapps.tutorials</groupId>
-	<artifactId>PersonalTutorialsRepo</artifactId>
+	<artifactId>TutorialsManager</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>PersonalTutorialsRepo</name>
+	<name>TutorialsManager</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -193,7 +193,7 @@
 				<version>9.3.7.RC0</version>
 				<configuration>
 					<webApp>
-						<contextPath>/PersonalTutorialsRepo</contextPath>
+						<contextPath>/TutorialsManager</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>

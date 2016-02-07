@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Personal Tutorials Repository</title>
+<title>Personal Tutorials Repository & Learning time management</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -39,12 +39,12 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div id="navHeader" class="navbar-header">
-					<a class="navbar-brand" href="/PersonalTutorialsRepo/">home</a>
+					<a class="navbar-brand" href="/TutorialsManager/">home</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="/PersonalTutorialsRepo/all-categories">categories</a></li>
-					<li><a href="/PersonalTutorialsRepo/add-tutorial">add new</a></li>
-					<li><a href="/PersonalTutorialsRepo/tutorials-to-do">your
+					<li><a href="/TutorialsManager/all-categories">categories</a></li>
+					<li><a href="/TutorialsManager/add-tutorial">add new</a></li>
+					<li><a href="/TutorialsManager/tutorials-to-do">your
 							plan for this week</a></li>
 				</ul>
 			</div>

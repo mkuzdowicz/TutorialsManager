@@ -9,7 +9,7 @@
 		<h3>Add new tutorial</h3>
 		<br>
 		<form class="form form-horizontal"
-			action="/PersonalTutorialsRepo/add-tutorial" method="POST">
+			action="/TutorialsManager/add-tutorial" method="POST">
 
 			<div class="form-group">
 				<label>category</label> <select name="category" class="form-control">
@@ -54,7 +54,7 @@
 		<h3>Add new category</h3>
 		<br>
 		<form class="form form-horizontal"
-			action="/PersonalTutorialsRepo/add-category" method="POST">
+			action="/TutorialsManager/add-category" method="POST">
 
 			<div class="form-group">
 				<label>category</label> <input type="text" name="categoryName"

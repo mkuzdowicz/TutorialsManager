@@ -1,4 +1,4 @@
-package org.kuzdowicz.repoaps.tutorials.dto;
+package org.kuzdowicz.repoapps.tutorials.dto;
 
 import java.io.Serializable;
 import java.util.Date;
