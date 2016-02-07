@@ -6,7 +6,8 @@ Repository which can store tutorials in a db and perform time management on give
 # Main technologies: 
  Java 8, Spring MVC, Hibernate, MySql 
  
-* User can stroe his favorit tutorials,
-* plan in what time period wants to learn from them
-* Stroe the progress about a tutorila
-* ad rating to the tutorials
+###Functionalities
+* User can store his favorit tutorials
+* plan in what time period wants to watch or read them
+* Stroe the progress about a given tutorila
+* add rating to the tutorials
