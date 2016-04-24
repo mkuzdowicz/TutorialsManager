@@ -1,5 +1,6 @@
 # TutorialsManager
-Repository which can store tutorials in a db and perform time management on given tutorial.
+* E-learning data repository for storing and managing tutorials. 
+* Including functionalities like time management and  rating of tutorials.
 
 # Main technologies: 
  Java 8, Spring MVC, Hibernate, MySql 
