@@ -53,8 +53,15 @@
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="pull-right"><a href="/TutorialsManager/logout">logout</a></li>
-					<li class="pull-right"><a href="/TutorialsManager/login">login</a></li>
+					<li class="pull-right">
+						<form action="/TutorialsManager/logout" method="post">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <input class="btn" type="submit"
+								value="logout" />
+						</form>
+					</li>
+					<li class="pull-right"><a class="btn"
+						href="/TutorialsManager/login">login</a></li>
 				</ul>
 			</div>
 		</nav>
