@@ -10,8 +10,8 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
-import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
-import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.models.TutorialCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

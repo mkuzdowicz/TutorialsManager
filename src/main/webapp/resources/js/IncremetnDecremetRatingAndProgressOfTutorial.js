@@ -19,7 +19,7 @@ $(document)
 										+ clickedItemPk;
 
 								executeAjaxPostForTutorialRating(
-										'/TutorialsManager/tutorial-rating-increment',
+										'/TutorialsManager/user/tutorial-rating-increment',
 										fullJQueryDomSelector);
 
 							})
@@ -32,7 +32,7 @@ $(document)
 										+ clickedItemPk;
 
 								executeAjaxPostForTutorialRating(
-										'/TutorialsManager/tutorial-rating-decrement',
+										'/TutorialsManager/user/tutorial-rating-decrement',
 										fullJQueryDomSelector);
 
 							})
@@ -45,7 +45,7 @@ $(document)
 										+ clickedItemPk;
 
 								executeAjaxPostForTutorialProgress(
-										'/TutorialsManager/tutorial-progress-increment',
+										'/TutorialsManager/user/tutorial-progress-increment',
 										fullJQueryDomSelector);
 
 							})
@@ -59,7 +59,7 @@ $(document)
 										+ clickedItemPk;
 
 								executeAjaxPostForTutorialProgress(
-										'/TutorialsManager/tutorial-progress-decrement',
+										'/TutorialsManager/user/tutorial-progress-decrement',
 										fullJQueryDomSelector);
 							})
 

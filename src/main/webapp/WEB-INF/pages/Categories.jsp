@@ -10,8 +10,8 @@
 	<c:forEach items="${catList}" var="cat">
 		<li class="list-group-item text-center">
 			<h4>
-				<a href="/TutorialsManager/all-categories?name=${cat}"> ${cat}</a> <span
-					data-category-pk="${cat}"
+				<a href="/TutorialsManager/user/all-categories?name=${cat}">
+					${cat}</a> <span data-category-pk="${cat}"
 					class="btn btn-danger pull-right removeCategoryBtn">&times;</span>
 			</h4>
 		</li>
@@ -90,7 +90,7 @@
 <jsp:include page="modal-boxes/RemoveTutorialModal.jsp" />
 <jsp:include page="modal-boxes/RemoveCategoryModal.jsp" />
 
-<script src="resources/js/CategoriesPage.js"></script>
+<script src="<c:url value="/resources/js/CategoriesPage.js" />"></script>
 <script
-	src="resources/js/IncremetnDecremetRatingAndProgressOfTutorial.js"></script>
+	src="<c:url value="/resources/js/IncremetnDecremetRatingAndProgressOfTutorial.js" />"></script>
 <jsp:include page="layout/Footer.jsp"></jsp:include>

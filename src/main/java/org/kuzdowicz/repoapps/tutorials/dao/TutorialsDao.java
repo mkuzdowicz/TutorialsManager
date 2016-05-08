@@ -3,7 +3,7 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
 
 public interface TutorialsDao {
 

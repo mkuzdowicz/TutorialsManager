@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping(value = "/user")
 public class CategoryCRUDController {
 
 	private final static Logger logger = Logger.getLogger(CategoryCRUDController.class);

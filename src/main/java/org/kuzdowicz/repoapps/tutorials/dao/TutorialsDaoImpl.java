@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
-import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

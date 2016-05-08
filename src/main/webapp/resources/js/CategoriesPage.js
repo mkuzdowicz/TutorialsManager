@@ -23,7 +23,7 @@ $(document).ready(
 				var clickedItemId = $(this).data('item-id');
 
 				$.ajax({
-					url : '/TutorialsManager/edit-tutorial-show-form',
+					url : '/TutorialsManager/user/edit-tutorial-show-form',
 					type : 'POST',
 					data : {
 						id : clickedItemId

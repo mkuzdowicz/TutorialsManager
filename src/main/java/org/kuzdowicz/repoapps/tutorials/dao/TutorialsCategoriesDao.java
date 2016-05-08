@@ -2,7 +2,7 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 
 import java.util.List;
 
-import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
+import org.kuzdowicz.repoapps.tutorials.models.TutorialCategory;
 
 public interface TutorialsCategoriesDao {
 

@@ -44,5 +44,5 @@
 </table>
 
 <script
-	src="resources/js/IncremetnDecremetRatingAndProgressOfTutorial.js"></script>
+	src="<c:url value="/resources/js/IncremetnDecremetRatingAndProgressOfTutorial.js" />"></script>
 <jsp:include page="layout/Footer.jsp"></jsp:include>

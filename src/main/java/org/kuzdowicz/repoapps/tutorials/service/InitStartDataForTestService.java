@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import org.joda.time.DateTime;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsCategoriesDao;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
-import org.kuzdowicz.repoapps.tutorials.model.Tutorial;
-import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
+import org.kuzdowicz.repoapps.tutorials.models.AppUser;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.models.TutorialCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,6 +92,19 @@ public class InitStartDataForTestService {
 		cat2.getTutorials().add(tut4);
 
 		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(cat2);
+
+		// USERS
+		AppUser user = new AppUser();
+		user.setUsername("user");
+		user.setPassword("$2a$10$Q.1ZPyA01dhdglv8PjjReOP.4DKAAd5JTUobIlsjnh7dRzfrwq.Uu");
+		user.setType("ROLE_USER");
+		user.setEmail("user@user");
+
+		AppUser admin = new AppUser();
+		admin.setUsername("admin");
+		admin.setPassword("$2a$10$2MLaGiTNvYLBHoKaRGbIy.AFoPBB03uyKmby.xupUoifICoFhjIFq");
+		admin.setType("ROLE_USER");
+		admin.setEmail("admin@admin");
 
 	}
 

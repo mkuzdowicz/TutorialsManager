@@ -14,7 +14,7 @@
 			</div>
 			<div class="modal-body row">
 				<div class="col-md-8 col-md-offset-2">
-					<form action="/TutorialsManager/remove-tutorial" method="POST">
+					<form action="/TutorialsManager/user/remove-tutorial" method="POST">
 						<input type="hidden" name="tutorialId" id="tutorialIdHidden" /> <input
 							type="submit" class="btn btn-danger removeModlaYesBtn"
 							value="Yes" />

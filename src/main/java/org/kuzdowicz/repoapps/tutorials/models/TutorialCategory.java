@@ -1,4 +1,4 @@
-package org.kuzdowicz.repoapps.tutorials.model;
+package org.kuzdowicz.repoapps.tutorials.models;
 
 import java.io.Serializable;
 import java.util.List;

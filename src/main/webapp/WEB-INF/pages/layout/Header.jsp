@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,9 +33,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="resources/css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/main.css" />">
 </head>
 <body>
+
 
 	<div class="container-fluid">
 		<nav class="navbar navbar-default">
@@ -42,10 +46,15 @@
 					<a class="navbar-brand" href="/TutorialsManager/">home</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="/TutorialsManager/all-categories">categories</a></li>
-					<li><a href="/TutorialsManager/add-tutorial">add new</a></li>
-					<li><a href="/TutorialsManager/tutorials-to-do">your
+					<li><a href="/TutorialsManager/user/all-categories">categories</a></li>
+					<li><a href="/TutorialsManager/user/add-tutorial">add new</a></li>
+					<li><a href="/TutorialsManager/user/tutorials-to-do">your
 							plan for this week</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="pull-right"><a href="/TutorialsManager/logout">logout</a></li>
+					<li class="pull-right"><a href="/TutorialsManager/login">login</a></li>
 				</ul>
 			</div>
 		</nav>

@@ -40,10 +40,7 @@ public class HibernateConfig {
 		hbnProps.setProperty("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
 		hbnProps.setProperty("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
 		hbnProps.setProperty("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
-		/*
-		 * AUTOMATIC CREATE DB SHCEMA AT RUNTIME
-		 */
-		hbnProps.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		hbnProps.setProperty("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
 
 		return hbnProps;
 	}
@@ -54,7 +51,7 @@ public class HibernateConfig {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setHibernateProperties(hibernateProps());
-		sessionFactory.setPackagesToScan(new String[] { "org.kuzdowicz.repoapps.tutorials.model" });
+		sessionFactory.setPackagesToScan(new String[] { "org.kuzdowicz.repoapps.tutorials.models" });
 
 		return sessionFactory;
 

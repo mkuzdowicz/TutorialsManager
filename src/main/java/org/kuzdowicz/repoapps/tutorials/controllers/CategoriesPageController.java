@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value = "/user")
 public class CategoriesPageController {
 
 	TutorialsCategoriesService tutorialsCategoriesService;

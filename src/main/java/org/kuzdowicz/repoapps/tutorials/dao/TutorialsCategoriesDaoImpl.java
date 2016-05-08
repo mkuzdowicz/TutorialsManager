@@ -3,7 +3,7 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 import java.util.List;
 
 import org.hibernate.criterion.Projections;
-import org.kuzdowicz.repoapps.tutorials.model.TutorialCategory;
+import org.kuzdowicz.repoapps.tutorials.models.TutorialCategory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
