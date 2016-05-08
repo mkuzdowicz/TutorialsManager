@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.joda.time.DateTime;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsCategoriesDao;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
+import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
 import org.kuzdowicz.repoapps.tutorials.models.AppUser;
 import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.models.TutorialCategory;
@@ -18,10 +19,14 @@ public class InitStartDataForTestService {
 
 	private TutorialsDao tutorialsDao;
 
+	private UsersDao usersDao;
+
 	@Autowired
-	public InitStartDataForTestService(TutorialsCategoriesDao tutorialsCategoriesDao, TutorialsDao tutorialsDao) {
+	public InitStartDataForTestService(TutorialsCategoriesDao tutorialsCategoriesDao, TutorialsDao tutorialsDao,
+			UsersDao usersDao) {
 		this.tutorialsCategoriesDao = tutorialsCategoriesDao;
 		this.tutorialsDao = tutorialsDao;
+		this.usersDao = usersDao;
 	}
 
 	public void initSomeData() {
@@ -105,6 +110,9 @@ public class InitStartDataForTestService {
 		admin.setPassword("$2a$10$2MLaGiTNvYLBHoKaRGbIy.AFoPBB03uyKmby.xupUoifICoFhjIFq");
 		admin.setType("ROLE_USER");
 		admin.setEmail("admin@admin");
+
+		usersDao.saveOrUpdateUser(user);
+		usersDao.saveOrUpdateUser(admin);
 
 	}
 
