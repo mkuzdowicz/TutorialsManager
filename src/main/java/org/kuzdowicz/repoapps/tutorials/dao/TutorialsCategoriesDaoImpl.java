@@ -3,36 +3,36 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 import java.util.List;
 
 import org.hibernate.criterion.Projections;
-import org.kuzdowicz.repoapps.tutorials.models.TutorialCategory;
+import org.kuzdowicz.repoapps.tutorials.models.UserTutorialsCategory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class TutorialsCategoriesDaoImpl extends AbstractDao<String, TutorialCategory>
+public class TutorialsCategoriesDaoImpl extends AbstractDao<String, UserTutorialsCategory>
 		implements TutorialsCategoriesDao {
 
 	@Override
-	public List<TutorialCategory> getAllCategories() {
+	public List<UserTutorialsCategory> getAllCategories() {
 
 		return findAll();
 	}
 
 	@Override
-	public TutorialCategory getOneById(String pk) {
+	public UserTutorialsCategory getOneById(String pk) {
 
 		return findOne(pk);
 	}
 
 	@Override
-	public void saveOrUpdateTutorialCategory(TutorialCategory tutorialCategory) {
+	public void saveOrUpdateTutorialCategory(UserTutorialsCategory tutorialCategory) {
 
 		saveOrUpdate(tutorialCategory);
 
 	}
 
 	@Override
-	public void deleteTutorialCategory(TutorialCategory tutorialCategory) {
+	public void deleteTutorialCategory(UserTutorialsCategory tutorialCategory) {
 
 		delete(tutorialCategory);
 
@@ -41,7 +41,7 @@ public class TutorialsCategoriesDaoImpl extends AbstractDao<String, TutorialCate
 	@SuppressWarnings("unchecked")
 	public List<String> getAllCategoriesNames() {
 
-		return getSession().createCriteria(TutorialCategory.class).setProjection(Projections.property("categoryName"))
+		return getSession().createCriteria(UserTutorialsCategory.class).setProjection(Projections.property("categoryName"))
 				.list();
 
 	}

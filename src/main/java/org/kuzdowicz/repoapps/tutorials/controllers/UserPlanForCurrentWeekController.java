@@ -1,9 +1,11 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
+import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,7 @@ public class UserPlanForCurrentWeekController {
 
 	private final static Logger logger = Logger.getLogger(HomeController.class);
 
-	TutorialsService tutorialsService;
+	private TutorialsService tutorialsService;
 
 	@Autowired
 	public UserPlanForCurrentWeekController(TutorialsService tutorialsService) {
@@ -25,13 +27,14 @@ public class UserPlanForCurrentWeekController {
 	}
 
 	@RequestMapping(value = "/tutorials-to-do", method = RequestMethod.GET)
-	public ModelAndView tutorialsToDo() {
+	public ModelAndView tutorialsToDo(Principal principal) {
 
 		logger.debug("tutorialsToDo()");
 
 		ModelAndView mav = new ModelAndView("UserPlanForCurrentWeek");
 
-		List<Tutorial> tutorialsToDoForCurrentWeek = tutorialsService.getTutorialsToDoForCurrentWeekWithDaysLeftFiled();
+		List<UserTutorial> tutorialsToDoForCurrentWeek = //
+				tutorialsService.getUserTutorialsToDoForCurrentWeekWithDaysLeftFiled(principal.getName());
 
 		mav.addObject("tutorialsToDo", tutorialsToDoForCurrentWeek);
 

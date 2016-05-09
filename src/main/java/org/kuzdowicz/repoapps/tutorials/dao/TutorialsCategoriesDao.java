@@ -2,17 +2,17 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 
 import java.util.List;
 
-import org.kuzdowicz.repoapps.tutorials.models.TutorialCategory;
+import org.kuzdowicz.repoapps.tutorials.models.UserTutorialsCategory;
 
 public interface TutorialsCategoriesDao {
 
-	List<TutorialCategory> getAllCategories();
+	List<UserTutorialsCategory> getAllCategories();
 
-	TutorialCategory getOneById(String pk);
+	UserTutorialsCategory getOneById(String pk);
 
-	void saveOrUpdateTutorialCategory(TutorialCategory tutorial);
+	void saveOrUpdateTutorialCategory(UserTutorialsCategory tutorial);
 
-	void deleteTutorialCategory(TutorialCategory tutorial);
+	void deleteTutorialCategory(UserTutorialsCategory tutorial);
 
 	List<String> getAllCategoriesNames();
 

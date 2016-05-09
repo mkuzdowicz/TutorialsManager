@@ -3,18 +3,20 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
 
 public interface TutorialsDao {
 
-	List<Tutorial> getAllTutorials();
+	List<UserTutorial> getAllTutorials();
 
-	List<Tutorial> getAllTutorialsBeetwenGivenDates(Date startDate, Date endDate);
+	List<UserTutorial> getAllTutorialsBeetwenGivenDates(Date startDate, Date endDate);
 
-	Tutorial getOneById(Long pk);
+	UserTutorial getOneById(Long pk);
 
-	void saveOrUpdateTutorial(Tutorial tutorial);
+	void saveOrUpdateTutorial(UserTutorial tutorial);
 
-	void deleteTutorial(Tutorial tutorial);
+	void deleteTutorial(UserTutorial tutorial);
+
+	List<UserTutorial> getAllTutorialsBeetwenGivenDatesAndUserId(Date startDate, Date endDate, Long userId);
 
 }

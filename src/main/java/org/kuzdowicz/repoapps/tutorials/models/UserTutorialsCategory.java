@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TUTORIALS_CATEGORIES")
-public class TutorialCategory implements Serializable {
+public class UserTutorialsCategory implements Serializable {
 
 	/**
 	 * 
@@ -26,13 +26,24 @@ public class TutorialCategory implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_NAME")
-	private List<Tutorial> tutorials;
+	private List<UserTutorial> tutorials;
 
-	public List<Tutorial> getTutorials() {
+	@Column(name = "USERID")
+	private Long userId;
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public List<UserTutorial> getTutorials() {
 		return tutorials;
 	}
 
-	public void setTutorials(List<Tutorial> tutorials) {
+	public void setTutorials(List<UserTutorial> tutorials) {
 		this.tutorials = tutorials;
 	}
 

@@ -46,7 +46,7 @@
 					<a class="navbar-brand" href="/TutorialsManager/">home</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="/TutorialsManager/user/all-categories">categories</a></li>
+					<li><a href="/TutorialsManager/user/all-categories">tutorials</a></li>
 					<li><a href="/TutorialsManager/user/add-tutorial">add new</a></li>
 					<li><a href="/TutorialsManager/user/tutorials-to-do">your
 							plan for this week</a></li>
