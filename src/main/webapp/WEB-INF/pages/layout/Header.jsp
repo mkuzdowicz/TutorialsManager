@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -66,6 +68,11 @@
 			</div>
 		</nav>
 		<header class="text-center">
+			<sec:authorize access="isAuthenticated()">
+				<h3 class="pull-right">
+					welcome <sec:authentication property="principal.username" />
+				</h3>
+			</sec:authorize>
 			<h1>Personal Tutorials Repository & Learning time management</h1>
 		</header>
 		<hr>
