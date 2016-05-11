@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
 import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;

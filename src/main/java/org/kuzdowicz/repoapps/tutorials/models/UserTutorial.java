@@ -18,10 +18,7 @@ import javax.persistence.Transient;
 @Table(name = "TUTORIALS")
 public class UserTutorial implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8732800690090826502L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,7 +53,7 @@ public class UserTutorial implements Serializable {
 	@JoinColumn(name = "CATEGORY_NAME")
 	private UserTutorialsCategory tutorialCategory;
 
-	@Column(name = "USERID")
+	@Column(name = "USER_ID")
 	private Long userId;
 
 	@Transient

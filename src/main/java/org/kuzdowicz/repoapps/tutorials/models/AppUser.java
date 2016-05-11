@@ -2,6 +2,7 @@ package org.kuzdowicz.repoapps.tutorials.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,10 +17,15 @@ public class AppUser implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID")
 	private Long userid;
+	@Column(name = "USERNAME")
 	private String username;
+	@Column(name = "PASSWORD")
 	private String password;
+	@Column(name = "USER_TYPE")
 	private String type;
+	@Column(name = "EMAIL")
 	private String email;
 
 	public Long getUserid() {

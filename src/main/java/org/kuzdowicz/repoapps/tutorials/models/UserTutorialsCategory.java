@@ -14,11 +14,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TUTORIALS_CATEGORIES")
 public class UserTutorialsCategory implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1221658658953762459L;
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "CATEGORY_NAME")
@@ -28,7 +25,7 @@ public class UserTutorialsCategory implements Serializable {
 	@JoinColumn(name = "CATEGORY_NAME")
 	private List<UserTutorial> tutorials;
 
-	@Column(name = "USERID")
+	@Column(name = "USER_ID")
 	private Long userId;
 
 	public Long getUserId() {
