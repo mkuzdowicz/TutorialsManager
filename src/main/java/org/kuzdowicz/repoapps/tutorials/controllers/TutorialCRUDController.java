@@ -1,5 +1,6 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -31,13 +32,13 @@ public class TutorialCRUDController {
 	}
 
 	@RequestMapping(value = "/add-tutorial", method = RequestMethod.GET)
-	public ModelAndView showAddTutoriaForm() {
+	public ModelAndView showAddTutoriaForm(Principal principal) {
 
 		logger.debug("showAddTutoriaForm()");
 
 		ModelAndView mav = new ModelAndView("AddTutorialsAndCategorisPage");
 
-		List<String> categoriesNamesList = tutorialsCategoriesService.getCategoriesNamesList();
+		List<String> categoriesNamesList = tutorialsCategoriesService.getUserCategoriesNames(principal.getName());
 		mav.addObject("categories", categoriesNamesList);
 
 		return mav;

@@ -14,7 +14,8 @@ create table USERS (
      PASSWORD varchar(255),
      USER_TYPE varchar(255),
      USERNAME varchar(255),
-     primary key (USER_ID)
+     primary key (USER_ID),
+     UNIQUE (USERNAME)
 );
 
 create table TUTORIALS (
@@ -27,21 +28,23 @@ create table TUTORIALS (
      START_DATE_TO_DO datetime,
      TITLE varchar(255),
      URL varchar(255),
-     USER_ID bigint,
+     USER_ID bigint not null,
      CATEGORY_NAME varchar(255),
+     CATEGORY_ID bigint not null,
      primary key (TUTORIAL_ID)
 );
 
 create table TUTORIALS_CATEGORIES (
+	 CATEGORY_ID bigint not null,
      CATEGORY_NAME varchar(255) not null,
-     USER_ID bigint,
-     primary key (CATEGORY_NAME)
+     USER_ID bigint not null,
+     primary key (CATEGORY_ID)
 );
 
  alter table TUTORIALS
      add constraint categories_tutorials_fk
-     foreign key (CATEGORY_NAME)
-     references TUTORIALS_CATEGORIES (CATEGORY_NAME);
+     foreign key (CATEGORY_ID)
+     references TUTORIALS_CATEGORIES (CATEGORY_ID);
      
 alter table TUTORIALS
 	add constraint user_tutorials_fk

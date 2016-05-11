@@ -11,6 +11,7 @@ import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
 import org.kuzdowicz.repoapps.tutorials.models.UserTutorialsCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InitStartDataForTestService {
@@ -29,6 +30,7 @@ public class InitStartDataForTestService {
 		this.usersDao = usersDao;
 	}
 
+	@Transactional
 	public void initSomeData() {
 
 		// USERS
@@ -47,6 +49,21 @@ public class InitStartDataForTestService {
 		usersDao.saveOrUpdateUser(user);
 		usersDao.saveOrUpdateUser(admin);
 
+		// ------------------------------------------------------
+
+		// CATEGORIES
+
+		UserTutorialsCategory javaCategory = new UserTutorialsCategory();
+		javaCategory.setCategoryName("Java");
+		javaCategory.setUserId(admin.getUserid());
+		UserTutorialsCategory aspCategory = new UserTutorialsCategory();
+		aspCategory.setCategoryName("asp");
+		aspCategory.setUserId(user.getUserid());
+		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(javaCategory);
+		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(aspCategory);
+
+		// ------------------------------------------------------
+
 		UserTutorial tut1 = new UserTutorial();
 		tut1.setAuthor("JavaBrains");
 		tut1.setTitle("hibernate tutorial");
@@ -57,6 +74,7 @@ public class InitStartDataForTestService {
 		tut1.setStartDateToDo(DateTime.now().toDate());
 		tut1.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 		tut1.setUserId(admin.getUserid());
+		tut1.setTutorialCategory(javaCategory);
 
 		tutorialsDao.saveOrUpdateTutorial(tut1);
 
@@ -70,6 +88,7 @@ public class InitStartDataForTestService {
 		tut2.setStartDateToDo(DateTime.now().toDate());
 		tut2.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 		tut2.setUserId(admin.getUserid());
+		tut2.setTutorialCategory(javaCategory);
 
 		tutorialsDao.saveOrUpdateTutorial(tut2);
 
@@ -83,24 +102,19 @@ public class InitStartDataForTestService {
 		tut3.setStartDateToDo(DateTime.now().toDate());
 		tut3.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 		tut3.setUserId(admin.getUserid());
+		tut3.setTutorialCategory(javaCategory);
 
 		tutorialsDao.saveOrUpdateTutorial(tut3);
 
-		UserTutorialsCategory cat1 = new UserTutorialsCategory();
-		cat1.setCategoryName("Java");
+		javaCategory.setTutorials(new ArrayList<>());
+		javaCategory.getTutorials().add(tut1);
+		javaCategory.getTutorials().add(tut2);
+		javaCategory.getTutorials().add(tut3);
+		javaCategory.setUserId(tut1.getUserId());
 
-		cat1.setTutorials(new ArrayList<>());
-		cat1.getTutorials().add(tut1);
-		cat1.getTutorials().add(tut2);
-		cat1.getTutorials().add(tut3);
-		cat1.setUserId(tut1.getUserId());
+		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(javaCategory);
 
-		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(cat1);
-
-		UserTutorialsCategory cat2 = new UserTutorialsCategory();
-		cat2.setCategoryName("asp");
-
-		cat2.setTutorials(new ArrayList<>());
+		aspCategory.setTutorials(new ArrayList<>());
 
 		UserTutorial tut4 = new UserTutorial();
 		tut4.setAuthor("MSDN");
@@ -112,13 +126,14 @@ public class InitStartDataForTestService {
 		tut4.setEndDateToDo(DateTime.now().plusWeeks(1).toDate());
 		tut4.setProgress(0);
 		tut4.setUserId(user.getUserid());
+		tut4.setTutorialCategory(aspCategory);
 
 		tutorialsDao.saveOrUpdateTutorial(tut4);
 
-		cat2.getTutorials().add(tut4);
-		cat2.setUserId(tut4.getUserId());
+		aspCategory.getTutorials().add(tut4);
+		aspCategory.setUserId(tut4.getUserId());
 
-		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(cat2);
+		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(aspCategory);
 
 	}
 

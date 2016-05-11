@@ -50,7 +50,7 @@ public class UserTutorial implements Serializable {
 	private Date endDateToDo;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CATEGORY_NAME")
+	@JoinColumn(name = "CATEGORY_ID")
 	private UserTutorialsCategory tutorialCategory;
 
 	@Column(name = "USER_ID")

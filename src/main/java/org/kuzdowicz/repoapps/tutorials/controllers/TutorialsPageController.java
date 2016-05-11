@@ -1,5 +1,7 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
+import java.security.Principal;
+
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,24 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/user")
-public class CategoriesPageController {
+public class TutorialsPageController {
 
-	TutorialsCategoriesService tutorialsCategoriesService;
+	private TutorialsCategoriesService tutorialsCategoriesService;
 
 	@Autowired
-	public CategoriesPageController(TutorialsCategoriesService tutorialsCategoriesService) {
+	public TutorialsPageController(TutorialsCategoriesService tutorialsCategoriesService) {
 		this.tutorialsCategoriesService = tutorialsCategoriesService;
 	}
 
 	@RequestMapping(value = "/all-categories", method = RequestMethod.GET)
-	public ModelAndView printCategoriesWithParam(@RequestParam(required = false) String name) {
+	public ModelAndView printCategoriesWithParam(@RequestParam(required = false) String categoryName, Principal principal) {
 
 		ModelAndView mav = new ModelAndView("Categories");
 
-		mav.addObject("catList", tutorialsCategoriesService.getCategoriesNamesList());
+		mav.addObject("catList", tutorialsCategoriesService.getUserCategoriesNames(principal.getName()));
 
-		if (name != null) {
-			mav.addObject("selectedCategory", tutorialsCategoriesService.getOneByName(name));
+		if (categoryName != null) {
+			mav.addObject("selectedCategory", tutorialsCategoriesService.getOneByName(categoryName));
 		}
 
 		return mav;

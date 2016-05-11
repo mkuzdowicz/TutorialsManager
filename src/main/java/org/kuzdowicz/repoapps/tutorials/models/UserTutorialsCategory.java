@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -14,15 +16,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TUTORIALS_CATEGORIES")
 public class UserTutorialsCategory implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "CATEGORY_ID")
+	private Long categoryId;
+
 	@Column(name = "CATEGORY_NAME")
 	private String categoryName;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CATEGORY_NAME")
+	@JoinColumn(name = "CATEGORY_ID")
 	private List<UserTutorial> tutorials;
 
 	@Column(name = "USER_ID")
@@ -50,6 +56,14 @@ public class UserTutorialsCategory implements Serializable {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }
