@@ -49,7 +49,7 @@ public class Tutorial implements Serializable {
 	@Column(name = "END_DATE_TO_DO")
 	private Date endDateToDo;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(targetEntity = Category.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_ID")
 	private Category tutorialCategory;
 

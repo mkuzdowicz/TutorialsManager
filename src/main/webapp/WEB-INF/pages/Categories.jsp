@@ -5,12 +5,17 @@
 
 <jsp:include page="layout/Header.jsp"></jsp:include>
 
+<input id="csrfTokenInput" type="hidden" name="${_csrf.parameterName}"
+	value="${_csrf.token}" />
+
+
 <p>Select a category</p>
 <ul class="list-group">
 	<c:forEach items="${catList}" var="cat">
 		<li class="list-group-item text-center">
 			<h4>
-				<a href="/TutorialsManager/user/all-categories?categoryId=${cat.categoryId}">
+				<a
+					href="/TutorialsManager/user/all-categories?categoryId=${cat.categoryId}">
 					${cat.categoryName}</a> <span data-category-pk="${cat.categoryId}"
 					data-category-name="${cat.categoryName}"
 					class="btn btn-danger pull-right removeCategoryBtn">&times;</span>
@@ -23,8 +28,7 @@
 
 <c:set value="${selectedCategory.tutorials}"
 	var="selectedCategoryTutorials" />
-<c:set value="${selectedCategory.categoryId}"
-	var="selectedCategoryId" />
+<c:set value="${selectedCategory.categoryId}" var="selectedCategoryId" />
 <c:set value="${selectedCategory.tutorials.size()}"
 	var="selectedCategoryTutorialsCount" />
 

@@ -22,9 +22,14 @@
 							class="form-control" />
 
 						<div class="form-group">
-							<label>category</label> <input id="editFormCategoryName"
-								type="text" name="category" class="form-control" />
+							<label>category</label> <select id="categorySelectBox"
+								name="categoryId" class="form-control">
+								<c:forEach items="${catList}" var="cat">
+									<option value="${cat.categoryId}">${cat.categoryName}</option>
+								</c:forEach>
+							</select>
 						</div>
+
 						<div class="form-group">
 							<label>title</label> <input id="editFormTutorialTitle"
 								type="text" name="title" class="form-control" />

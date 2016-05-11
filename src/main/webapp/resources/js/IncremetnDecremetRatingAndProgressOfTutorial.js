@@ -1,3 +1,5 @@
+var CSRF_TOKEN_VAL;
+
 $(document)
 		.ready(
 				function() {
@@ -6,6 +8,7 @@ $(document)
 					var decrementRatingBtn = $('.decrementRatingBtn');
 					var incrementTutorialProgressBtn = $('.incrementTutorialProgressBtn');
 					var decrementTutorialProgressBtn = $('.decrementTutorialProgressBtn');
+					CSRF_TOKEN_VAL = $('#csrfTokenInput').attr('value');
 
 					incrementRatingBtn
 							.click(function() {
@@ -60,7 +63,8 @@ function executeAjaxPostForTutorialRating(urlString, domSelector) {
 		url : urlString,
 		type : 'POST',
 		data : {
-			id : pkFromSelector
+			id : pkFromSelector,
+			_csrf : CSRF_TOKEN_VAL
 		},
 		success : function(tutorialDTO) {
 			console.log(tutorialDTO);
@@ -82,7 +86,8 @@ function executeAjaxPostForTutorialProgress(urlString, domSelector) {
 		url : urlString,
 		type : 'POST',
 		data : {
-			id : pkFromSelector
+			id : pkFromSelector,
+			_csrf : CSRF_TOKEN_VAL
 		},
 		success : function(tutorialDTO) {
 			console.log(tutorialDTO);

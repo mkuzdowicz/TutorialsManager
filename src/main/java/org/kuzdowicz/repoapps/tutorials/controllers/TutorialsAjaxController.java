@@ -43,7 +43,7 @@ public class TutorialsAjaxController {
 		tutorialEditDto.setProgress(tutorialDataToEdit.getProgress());
 		tutorialEditDto.setStartDateToDo(tutorialDataToEdit.getStartDateToDo());
 		tutorialEditDto.setEndDateToDo(tutorialDataToEdit.getEndDateToDo());
-		tutorialEditDto.setCategryName(tutorialDataToEdit.getTutorialCategory().getCategoryName());
+		tutorialEditDto.setCategory(tutorialDataToEdit.getTutorialCategory());
 
 		return tutorialEditDto;
 	}

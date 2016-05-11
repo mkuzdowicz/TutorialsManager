@@ -9,6 +9,8 @@
 	<p>Tutorials planned todo at this week:</p>
 </div>
 
+<input id="csrfTokenInput" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 <hr>
 
 <table class="table table-bordered">

@@ -1,8 +1,11 @@
+var CSRF_TOKEN_VAL;
+
 $(document).ready(
 		function() {
 
 			var editBtns = $('.editBtn');
 			var removeBtns = $('.removeBtn');
+			CSRF_TOKEN_VAL = $('#csrfTokenInput').val();
 
 			removeBtns.click(function() {
 
@@ -23,14 +26,14 @@ $(document).ready(
 					url : '/TutorialsManager/user/edit-tutorial-show-form',
 					type : 'POST',
 					data : {
-						id : clickedItemId
+						id : clickedItemId,
+						_csrf : CSRF_TOKEN_VAL
 					},
 					success : function(tutorialEditDto) {
 
 						console.log(tutorialEditDto);
-
-						$('#editFormCategoryName').val(
-								tutorialEditDto.categryName);
+						$('#categorySelectBox').val(
+								tutorialEditDto.category.categoryId);
 						$('#editFormTutorialTitle').val(tutorialEditDto.title);
 						$('#editFormTutorialAuthor')
 								.val(tutorialEditDto.author);

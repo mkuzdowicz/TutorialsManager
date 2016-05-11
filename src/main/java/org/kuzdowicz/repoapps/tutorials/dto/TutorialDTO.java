@@ -3,15 +3,13 @@ package org.kuzdowicz.repoapps.tutorials.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.kuzdowicz.repoapps.tutorials.models.Category;
 import org.kuzdowicz.repoapps.tutorials.serilizers.JsonDateSerializer;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class TutorialDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2500507270557086269L;
 
 	private Long id;
@@ -34,7 +32,7 @@ public class TutorialDTO implements Serializable {
 	@JsonSerialize(using = JsonDateSerializer.class)
 	private Date endDateToDo;
 
-	private String categryName;
+	private Category category;
 
 	public Long getId() {
 		return id;
@@ -108,12 +106,12 @@ public class TutorialDTO implements Serializable {
 		this.endDateToDo = endDateToDo;
 	}
 
-	public String getCategryName() {
-		return categryName;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategryName(String categryName) {
-		this.categryName = categryName;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }
