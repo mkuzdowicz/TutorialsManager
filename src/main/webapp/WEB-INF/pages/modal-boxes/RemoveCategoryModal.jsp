@@ -20,7 +20,8 @@
 					<form action="/TutorialsManager/user/remove-category" method="POST">
 						<input type="hidden" name="categoryPK" id="categoryPKHidden" /> <input
 							type="submit" class="btn btn-danger removeCategoryModlaYesBtn"
-							value="Yes" />
+							value="Yes" /> <input type="hidden"
+							name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<button type="button"
 							class="btn btn-success removeCategoryModlaNoBtn"
 							data-dismiss="modal">No</button>

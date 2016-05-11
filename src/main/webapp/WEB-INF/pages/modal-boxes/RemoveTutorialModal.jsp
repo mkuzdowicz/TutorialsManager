@@ -17,7 +17,8 @@
 					<form action="/TutorialsManager/user/remove-tutorial" method="POST">
 						<input type="hidden" name="tutorialId" id="tutorialIdHidden" /> <input
 							type="submit" class="btn btn-danger removeModlaYesBtn"
-							value="Yes" />
+							value="Yes" /> <input type="hidden"
+							name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<button type="button" class="btn btn-success removeModlaNoBtn"
 							data-dismiss="modal">No</button>
 					</form>

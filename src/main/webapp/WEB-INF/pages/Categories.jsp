@@ -10,8 +10,9 @@
 	<c:forEach items="${catList}" var="cat">
 		<li class="list-group-item text-center">
 			<h4>
-				<a href="/TutorialsManager/user/all-categories?name=${cat}">
-					${cat}</a> <span data-category-pk="${cat}"
+				<a href="/TutorialsManager/user/all-categories?categoryId=${cat.categoryId}">
+					${cat.categoryName}</a> <span data-category-pk="${cat.categoryId}"
+					data-category-name="${cat.categoryName}"
 					class="btn btn-danger pull-right removeCategoryBtn">&times;</span>
 			</h4>
 		</li>
@@ -22,7 +23,8 @@
 
 <c:set value="${selectedCategory.tutorials}"
 	var="selectedCategoryTutorials" />
-
+<c:set value="${selectedCategory.categoryId}"
+	var="selectedCategoryId" />
 <c:set value="${selectedCategory.tutorials.size()}"
 	var="selectedCategoryTutorialsCount" />
 

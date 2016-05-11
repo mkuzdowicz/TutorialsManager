@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TUTORIALS")
-public class UserTutorial implements Serializable {
+public class Tutorial implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,7 +51,7 @@ public class UserTutorial implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_ID")
-	private UserTutorialsCategory tutorialCategory;
+	private Category tutorialCategory;
 
 	@Column(name = "USER_ID")
 	private Long userId;
@@ -67,7 +67,7 @@ public class UserTutorial implements Serializable {
 		this.userId = userId;
 	}
 
-	public UserTutorial() {
+	public Tutorial() {
 	}
 
 	public String getTitle() {
@@ -142,11 +142,11 @@ public class UserTutorial implements Serializable {
 		this.endDateToDo = endDateToDo;
 	}
 
-	public UserTutorialsCategory getTutorialCategory() {
+	public Category getTutorialCategory() {
 		return tutorialCategory;
 	}
 
-	public void setTutorialCategory(UserTutorialsCategory tutorialCategory) {
+	public void setTutorialCategory(Category tutorialCategory) {
 		this.tutorialCategory = tutorialCategory;
 	}
 

@@ -46,6 +46,10 @@
 							<label>end date todo</label><input id="endDateToDo"
 								name="endDateToDo" class="datepicker form-control" />
 						</div>
+
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+
 						<div class="form-group">
 							<input type="submit" class="btn btn-success"
 								value="accept changes" />

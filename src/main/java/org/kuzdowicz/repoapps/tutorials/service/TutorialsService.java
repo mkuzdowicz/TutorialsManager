@@ -1,5 +1,6 @@
 package org.kuzdowicz.repoapps.tutorials.service;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +12,8 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
-import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
-import org.kuzdowicz.repoapps.tutorials.models.UserTutorialsCategory;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +24,14 @@ public class TutorialsService {
 
 	private TutorialsDao tutorialsDao;
 
-	private TutorialsCategoriesService tutorialsCategoriesService;
+	private CategoriesService categoriesService;
 
 	private UsersDao usersDao;
 
 	@Autowired
-	public TutorialsService(TutorialsDao tutorialsDao, TutorialsCategoriesService tutorialsCategoriesService,
-			UsersDao usersDao) {
+	public TutorialsService(TutorialsDao tutorialsDao, CategoriesService categoriesService, UsersDao usersDao) {
 		this.tutorialsDao = tutorialsDao;
-		this.tutorialsCategoriesService = tutorialsCategoriesService;
+		this.categoriesService = categoriesService;
 		this.usersDao = usersDao;
 	}
 
@@ -43,13 +43,13 @@ public class TutorialsService {
 
 	private final static Integer progressStartVal = 0;
 
-	public List<UserTutorial> selectAll() {
+	public List<Tutorial> selectAll() {
 
 		return tutorialsDao.getAllTutorials();
 
 	}
 
-	public UserTutorial getOneById(Long id) {
+	public Tutorial getOneById(Long id) {
 
 		return tutorialsDao.getOneById(id);
 
@@ -61,9 +61,9 @@ public class TutorialsService {
 
 	}
 
-	public UserTutorial incremetRatingAndReturnChangedObject(Long pk) {
+	public Tutorial incremetRatingAndReturnChangedObject(Long pk) {
 
-		UserTutorial tutorial = getOneById(pk);
+		Tutorial tutorial = getOneById(pk);
 		Long actualRating = tutorial.getRating();
 
 		Optional.of(actualRating).filter(val -> val < Long.MAX_VALUE).ifPresent(presentVal -> {
@@ -78,9 +78,9 @@ public class TutorialsService {
 
 	}
 
-	public UserTutorial decrementRatingAndReturnChangedObject(Long pk) {
+	public Tutorial decrementRatingAndReturnChangedObject(Long pk) {
 
-		UserTutorial tutorial = getOneById(pk);
+		Tutorial tutorial = getOneById(pk);
 		Long actualRating = tutorial.getRating();
 
 		Optional.of(actualRating).filter(val -> val > 0).ifPresent(presentVal -> {
@@ -95,9 +95,9 @@ public class TutorialsService {
 
 	}
 
-	public UserTutorial incremetTutorialProgressAndReturnChangedObject(Long pk) {
+	public Tutorial incremetTutorialProgressAndReturnChangedObject(Long pk) {
 
-		UserTutorial tutorial = getOneById(pk);
+		Tutorial tutorial = getOneById(pk);
 		Integer actualProgress = tutorial.getProgress();
 
 		Optional.of(actualProgress).filter(val -> rangeForProgressIncrementation.contains(val))
@@ -113,9 +113,9 @@ public class TutorialsService {
 
 	}
 
-	public UserTutorial decremetTutorialProgressAndReturnChangedObject(Long pk) {
+	public Tutorial decremetTutorialProgressAndReturnChangedObject(Long pk) {
 
-		UserTutorial tutorial = getOneById(pk);
+		Tutorial tutorial = getOneById(pk);
 		Integer actualProgress = tutorial.getProgress();
 
 		Optional.of(actualProgress).filter(val -> rangeForProgressDecrementation.contains(val))
@@ -131,12 +131,12 @@ public class TutorialsService {
 
 	}
 
-	public List<UserTutorial> getTutorialsToDoForCurrentWeekWithDaysLeftFiled() {
+	public List<Tutorial> getTutorialsToDoForCurrentWeekWithDaysLeftFiled() {
 
 		Date firstDayOfCurrentWeek = DateTime.now().withDayOfWeek(DateTimeConstants.MONDAY).toDate();
 		Date weekLater = DateTime.now().plusWeeks(1).toDate();
 
-		List<UserTutorial> allTutorialsBeetwenGivenDates = tutorialsDao
+		List<Tutorial> allTutorialsBeetwenGivenDates = tutorialsDao
 				.getAllTutorialsBeetwenGivenDates(firstDayOfCurrentWeek, weekLater);
 
 		allTutorialsBeetwenGivenDates.forEach(tutorial -> {
@@ -144,12 +144,7 @@ public class TutorialsService {
 			DateTime tutorialEndDateJodaVar = new DateTime(tutorial.getEndDateToDo());
 			DateTime today = DateTime.now();
 
-			// MINUS 1 DAY FROM TODAY AND PLUS 1 DAY TO END DATE
-			// BEACOUSE THIS IS 2 DAYS OF DIFERENCE
-			// JODA FUNCTION RETURN DAYS BEETWEN EXLUDE GIVEN DAYS
-
 			Days days = Days.daysBetween(today.minusDays(1), tutorialEndDateJodaVar.plusDays(1));
-
 			Integer daysLeft = Optional.of(days.getDays()).filter(d -> d > 0).orElse(0);
 
 			tutorial.setDaysLeft(new Long(daysLeft));
@@ -159,12 +154,12 @@ public class TutorialsService {
 		return allTutorialsBeetwenGivenDates;
 	}
 
-	public List<UserTutorial> getUserTutorialsToDoForCurrentWeekWithDaysLeftFiled(String currentUsername) {
+	public List<Tutorial> getUserTutorialsToDoForCurrentWeekWithDaysLeftFiled(String currentUsername) {
 
 		Date firstDayOfCurrentWeek = DateTime.now().withDayOfWeek(DateTimeConstants.MONDAY).toDate();
 		Date weekLater = DateTime.now().plusWeeks(1).toDate();
 
-		List<UserTutorial> allTutorialsBeetwenGivenDates = tutorialsDao.getAllTutorialsBeetwenGivenDatesAndUserId(
+		List<Tutorial> allTutorialsBeetwenGivenDates = tutorialsDao.getAllTutorialsBeetwenGivenDatesAndUserId(
 				firstDayOfCurrentWeek, weekLater, usersDao.findOneUserByUsername(currentUsername).getUserid());
 
 		allTutorialsBeetwenGivenDates.forEach(tutorial -> {
@@ -172,12 +167,7 @@ public class TutorialsService {
 			DateTime tutorialEndDateJodaVar = new DateTime(tutorial.getEndDateToDo());
 			DateTime today = DateTime.now();
 
-			// MINUS 1 DAY FROM TODAY AND PLUS 1 DAY TO END DATE
-			// BEACOUSE THIS IS 2 DAYS OF DIFERENCE
-			// JODA FUNCTION RETURN DAYS BEETWEN EXLUDE GIVEN DAYS
-
 			Days days = Days.daysBetween(today.minusDays(1), tutorialEndDateJodaVar.plusDays(1));
-
 			Integer daysLeft = Optional.of(days.getDays()).filter(d -> d > 0).orElse(0);
 
 			tutorial.setDaysLeft(new Long(daysLeft));
@@ -191,7 +181,7 @@ public class TutorialsService {
 
 		String idFromReq = reqParamsMap.get("id");
 
-		UserTutorial tutorialToEdit = tutorialsDao.getOneById(Long.parseLong(idFromReq));
+		Tutorial tutorialToEdit = tutorialsDao.getOneById(Long.parseLong(idFromReq));
 
 		// BASIC DATA
 		tutorialToEdit.setAuthor(reqParamsMap.get("author"));
@@ -214,8 +204,7 @@ public class TutorialsService {
 		tutorialToEdit.setStartDateToDo(start);
 		tutorialToEdit.setEndDateToDo(endDate);
 
-		UserTutorialsCategory cat = tutorialsCategoriesService.getOneByName(reqParamsMap.get("category"));
-
+		Category cat = categoriesService.getOneById(Long.parseLong(reqParamsMap.get("categoryId")));
 		tutorialToEdit.setTutorialCategory(cat);
 
 		// SAVE OR UPDATE
@@ -223,9 +212,9 @@ public class TutorialsService {
 
 	}
 
-	public void saveNewTutorialByPostReq(Map<String, String> reqParamsMap) {
+	public void saveNewTutorialByPostReq(Map<String, String> reqParamsMap, Principal principal) {
 
-		UserTutorial newTutorial = new UserTutorial();
+		Tutorial newTutorial = new Tutorial();
 
 		// BASIC DATA
 		newTutorial.setAuthor(reqParamsMap.get("author"));
@@ -234,6 +223,8 @@ public class TutorialsService {
 
 		newTutorial.setRating(ratingStarVal);
 		newTutorial.setProgress(progressStartVal);
+
+		newTutorial.setUserId(usersDao.findOneUserByUsername(principal.getName()).getUserid());
 
 		Optional.ofNullable(reqParamsMap.get("url")).filter(url -> StringUtils.isNoneBlank(url)).ifPresent(url -> {
 
@@ -249,7 +240,7 @@ public class TutorialsService {
 		newTutorial.setStartDateToDo(start);
 		newTutorial.setEndDateToDo(endDate);
 
-		UserTutorialsCategory cat = tutorialsCategoriesService.getOneByName(reqParamsMap.get("category"));
+		Category cat = categoriesService.getOneById(Long.parseLong(reqParamsMap.get("categoryId")));
 
 		Optional.ofNullable(cat).ifPresent(c -> {
 			c.getTutorials().add(newTutorial);

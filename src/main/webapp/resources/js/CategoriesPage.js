@@ -7,13 +7,10 @@ $(document).ready(
 			removeBtns.click(function() {
 
 				var clickedItemId = $(this).data('item-id');
-
 				var clickedItemTitle = $(this).data('item-title');
 
 				$('#tutorialIdHidden').val(clickedItemId);
-
 				$('#tutorialTitle').text(clickedItemTitle);
-
 				$('#removeTutorialModal').modal('show');
 
 			});
@@ -62,11 +59,9 @@ $(document).ready(
 			removeCategoryBtn.click(function() {
 
 				var categoryPk = $(this).data('category-pk');
-
+				var categoryName = $(this).data('category-name');
 				$('#categoryPKHidden').val(categoryPk);
-
-				$('#categoryNameToRemove').text(categoryPk);
-
+				$('#categoryNameToRemove').text(categoryName);
 				$('#removeCategoryModal').modal('show');
 
 			})

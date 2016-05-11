@@ -4,7 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +32,7 @@ public class UserPlanForCurrentWeekController {
 
 		ModelAndView mav = new ModelAndView("UserPlanForCurrentWeek");
 
-		List<UserTutorial> tutorialsToDoForCurrentWeek = //
+		List<Tutorial> tutorialsToDoForCurrentWeek = //
 				tutorialsService.getUserTutorialsToDoForCurrentWeekWithDaysLeftFiled(principal.getName());
 
 		mav.addObject("tutorialsToDo", tutorialsToDoForCurrentWeek);

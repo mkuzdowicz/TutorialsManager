@@ -1,9 +1,10 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
+import java.security.Principal;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
+import org.kuzdowicz.repoapps.tutorials.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,35 +13,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/user")
-public class CategoryCRUDController {
+public class CategoriesCRUDController {
 
-	private final static Logger logger = Logger.getLogger(CategoryCRUDController.class);
-
-	private TutorialsCategoriesService tutorialsCategoriesService;
+	private final static Logger logger = Logger.getLogger(CategoriesCRUDController.class);
+	private CategoriesService categoriesService;
 
 	@Autowired
-	public CategoryCRUDController(TutorialsCategoriesService tutorialsCategoriesService) {
-		this.tutorialsCategoriesService = tutorialsCategoriesService;
+	public CategoriesCRUDController(CategoriesService tutorialsCategoriesService) {
+		this.categoriesService = tutorialsCategoriesService;
 	}
 
 	@RequestMapping(value = "/add-category", method = RequestMethod.POST)
-	public String addNewCategory(@RequestParam Map<String, String> reqMap) {
+	public String addNewCategory(@RequestParam Map<String, String> reqMap, Principal principal) {
 
 		logger.debug("addNewCategory()");
-
 		String categoryName = reqMap.get("categoryName").trim();
-		tutorialsCategoriesService.insertOrUpdateWithGivenName(categoryName);
-
+		categoriesService.saveNewCategoryIfNotExistFotGivenNameAndUser(categoryName, principal);
 		return "redirect:add-tutorial";
 	}
 
 	@RequestMapping(value = "/remove-category", method = RequestMethod.POST)
-	public String removeCategory(@RequestParam("categoryPK") String categoryPK) {
+	public String removeCategory(@RequestParam("categoryPK") Long categoryPK, Principal principal) {
 
 		logger.debug("removeCategory()");
-
-		tutorialsCategoriesService.removeOneByPk(categoryPK);
-
+		categoriesService.removeOneByPk(categoryPK);
 		return "redirect:all-categories";
 	}
 

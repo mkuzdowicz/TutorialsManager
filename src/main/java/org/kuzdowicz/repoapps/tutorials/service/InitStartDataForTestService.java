@@ -3,12 +3,12 @@ package org.kuzdowicz.repoapps.tutorials.service;
 import java.util.ArrayList;
 
 import org.joda.time.DateTime;
-import org.kuzdowicz.repoapps.tutorials.dao.TutorialsCategoriesDao;
+import org.kuzdowicz.repoapps.tutorials.dao.CategoriesDao;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
 import org.kuzdowicz.repoapps.tutorials.models.AppUser;
-import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
-import org.kuzdowicz.repoapps.tutorials.models.UserTutorialsCategory;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
+import org.kuzdowicz.repoapps.tutorials.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,14 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class InitStartDataForTestService {
 
-	private TutorialsCategoriesDao tutorialsCategoriesDao;
+	private CategoriesDao tutorialsCategoriesDao;
 
 	private TutorialsDao tutorialsDao;
 
 	private UsersDao usersDao;
 
 	@Autowired
-	public InitStartDataForTestService(TutorialsCategoriesDao tutorialsCategoriesDao, TutorialsDao tutorialsDao,
+	public InitStartDataForTestService(CategoriesDao tutorialsCategoriesDao, TutorialsDao tutorialsDao,
 			UsersDao usersDao) {
 		this.tutorialsCategoriesDao = tutorialsCategoriesDao;
 		this.tutorialsDao = tutorialsDao;
@@ -53,10 +53,10 @@ public class InitStartDataForTestService {
 
 		// CATEGORIES
 
-		UserTutorialsCategory javaCategory = new UserTutorialsCategory();
+		Category javaCategory = new Category();
 		javaCategory.setCategoryName("Java");
 		javaCategory.setUserId(admin.getUserid());
-		UserTutorialsCategory aspCategory = new UserTutorialsCategory();
+		Category aspCategory = new Category();
 		aspCategory.setCategoryName("asp");
 		aspCategory.setUserId(user.getUserid());
 		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(javaCategory);
@@ -64,7 +64,7 @@ public class InitStartDataForTestService {
 
 		// ------------------------------------------------------
 
-		UserTutorial tut1 = new UserTutorial();
+		Tutorial tut1 = new Tutorial();
 		tut1.setAuthor("JavaBrains");
 		tut1.setTitle("hibernate tutorial");
 		tut1.setUrl("https://www.youtube.com/watch?v=Yv2xctJxE-w&list=PL4AFF701184976B25");
@@ -78,7 +78,7 @@ public class InitStartDataForTestService {
 
 		tutorialsDao.saveOrUpdateTutorial(tut1);
 
-		UserTutorial tut2 = new UserTutorial();
+		Tutorial tut2 = new Tutorial();
 		tut2.setAuthor("Artur Owczarek");
 		tut2.setTitle("Jpa Kurs");
 		tut2.setUrl("https://www.youtube.com/watch?v=bUpOL_b7g6k&index=23&list=PLU2dl_1LV_SQWZI2R_RSEeYm1tfueszOc");
@@ -92,7 +92,7 @@ public class InitStartDataForTestService {
 
 		tutorialsDao.saveOrUpdateTutorial(tut2);
 
-		UserTutorial tut3 = new UserTutorial();
+		Tutorial tut3 = new Tutorial();
 		tut3.setAuthor("Mykong");
 		tut3.setTitle("Spring MVC tutorial");
 		tut3.setUrl("http://www.mkyong.com/spring3/spring-3-mvc-hello-world-example-annotation/");
@@ -116,7 +116,7 @@ public class InitStartDataForTestService {
 
 		aspCategory.setTutorials(new ArrayList<>());
 
-		UserTutorial tut4 = new UserTutorial();
+		Tutorial tut4 = new Tutorial();
 		tut4.setAuthor("MSDN");
 		tut4.setTitle("c# tutorial");
 		tut4.setUrl("https://msdn.microsoft.com/en-us/library/aa288436(v=vs.71).aspx");

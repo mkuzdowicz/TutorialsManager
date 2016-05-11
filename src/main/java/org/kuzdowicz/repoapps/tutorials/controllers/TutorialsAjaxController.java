@@ -2,7 +2,7 @@ package org.kuzdowicz.repoapps.tutorials.controllers;
 
 import org.apache.log4j.Logger;
 import org.kuzdowicz.repoapps.tutorials.dto.TutorialDTO;
-import org.kuzdowicz.repoapps.tutorials.models.UserTutorial;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -31,7 +31,7 @@ public class TutorialsAjaxController {
 
 		logger.debug("showEditTutorialForm()");
 
-		UserTutorial tutorialDataToEdit = tutorialsService.getOneById(id);
+		Tutorial tutorialDataToEdit = tutorialsService.getOneById(id);
 
 		TutorialDTO tutorialEditDto = new TutorialDTO();
 		tutorialEditDto.setId(tutorialDataToEdit.getId());
@@ -54,7 +54,7 @@ public class TutorialsAjaxController {
 
 		logger.debug("incrementTutorialRating()");
 
-		UserTutorial tutorialWithIncrementedRating = tutorialsService.incremetRatingAndReturnChangedObject(id);
+		Tutorial tutorialWithIncrementedRating = tutorialsService.incremetRatingAndReturnChangedObject(id);
 		TutorialDTO tutorialDTO = new TutorialDTO();
 		tutorialDTO.setRating(tutorialWithIncrementedRating.getRating());
 
@@ -68,7 +68,7 @@ public class TutorialsAjaxController {
 
 		logger.debug("decrementTutorialRating()");
 
-		UserTutorial tutorialWithDecrementedRating = tutorialsService.decrementRatingAndReturnChangedObject(id);
+		Tutorial tutorialWithDecrementedRating = tutorialsService.decrementRatingAndReturnChangedObject(id);
 		TutorialDTO tutorialDTO = new TutorialDTO();
 		tutorialDTO.setRating(tutorialWithDecrementedRating.getRating());
 
@@ -82,7 +82,7 @@ public class TutorialsAjaxController {
 
 		logger.debug("decrementTutorialRating()");
 
-		UserTutorial tutorialWithDecrementedProgress = tutorialsService.incremetTutorialProgressAndReturnChangedObject(id);
+		Tutorial tutorialWithDecrementedProgress = tutorialsService.incremetTutorialProgressAndReturnChangedObject(id);
 		TutorialDTO tutorialDTO = new TutorialDTO();
 		tutorialDTO.setProgress(tutorialWithDecrementedProgress.getProgress());
 
@@ -96,7 +96,7 @@ public class TutorialsAjaxController {
 
 		logger.debug("decrementTutorialRating()");
 
-		UserTutorial tutorialWithDecrementedProgress = tutorialsService.decremetTutorialProgressAndReturnChangedObject(id);
+		Tutorial tutorialWithDecrementedProgress = tutorialsService.decremetTutorialProgressAndReturnChangedObject(id);
 		TutorialDTO tutorialDTO = new TutorialDTO();
 		tutorialDTO.setProgress(tutorialWithDecrementedProgress.getProgress());
 

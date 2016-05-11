@@ -1,11 +1,10 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
+import org.kuzdowicz.repoapps.tutorials.service.CategoriesService;
 import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,17 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/user")
-public class TutorialCRUDController {
+public class TutorialsCRUDController {
 
-	private final static Logger logger = Logger.getLogger(TutorialCRUDController.class);
+	private final static Logger logger = Logger.getLogger(TutorialsCRUDController.class);
 
 	private TutorialsService tutorialsService;
-
-	private TutorialsCategoriesService tutorialsCategoriesService;
+	private CategoriesService tutorialsCategoriesService;
 
 	@Autowired
-	public TutorialCRUDController(TutorialsService tutorialsService,
-			TutorialsCategoriesService tutorialsCategoriesService) {
+	public TutorialsCRUDController(TutorialsService tutorialsService, CategoriesService tutorialsCategoriesService) {
 		this.tutorialsService = tutorialsService;
 		this.tutorialsCategoriesService = tutorialsCategoriesService;
 	}
@@ -35,32 +32,25 @@ public class TutorialCRUDController {
 	public ModelAndView showAddTutoriaForm(Principal principal) {
 
 		logger.debug("showAddTutoriaForm()");
-
 		ModelAndView mav = new ModelAndView("AddTutorialsAndCategorisPage");
-
-		List<String> categoriesNamesList = tutorialsCategoriesService.getUserCategoriesNames(principal.getName());
-		mav.addObject("categories", categoriesNamesList);
+		mav.addObject("categories", tutorialsCategoriesService.getUserCategories(principal.getName()));
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/add-tutorial", method = RequestMethod.POST)
-	public String addTutorial(@RequestParam Map<String, String> reqMap) {
+	public String addTutorial(@RequestParam Map<String, String> reqMap, Principal principal) {
 
 		logger.debug("addTutorial()");
-
-		tutorialsService.saveNewTutorialByPostReq(reqMap);
-
+		tutorialsService.saveNewTutorialByPostReq(reqMap, principal);
 		return "redirect:all-categories?name=" + reqMap.get("category");
 	}
 
 	@RequestMapping(value = "/edit-tutorial", method = RequestMethod.POST)
-	public String editTutorial(@RequestParam Map<String, String> reqMap) {
+	public String editTutorial(@RequestParam Map<String, String> reqMap, Principal principal) {
 
 		logger.debug("editTutorial()");
-
 		tutorialsService.editTutorialByPostReq(reqMap);
-
 		return "redirect:all-categories?name=" + reqMap.get("category");
 	}
 
@@ -68,13 +58,8 @@ public class TutorialCRUDController {
 	public String removeTutorial(@RequestParam("tutorialId") Long id) {
 
 		logger.debug("editTutorial()");
-
-		System.out.println(id);
-
 		String categoryNameOfRemovedTutorial = tutorialsService.getOneById(id).getTutorialCategory().getCategoryName();
-
 		tutorialsService.removeOneById(id);
-
 		return "redirect:all-categories?name=" + categoryNameOfRemovedTutorial;
 	}
 

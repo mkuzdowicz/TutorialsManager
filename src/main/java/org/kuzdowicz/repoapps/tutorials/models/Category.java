@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TUTORIALS_CATEGORIES")
-public class UserTutorialsCategory implements Serializable {
+public class Category implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class UserTutorialsCategory implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_ID")
-	private List<UserTutorial> tutorials;
+	private List<Tutorial> tutorials;
 
 	@Column(name = "USER_ID")
 	private Long userId;
@@ -42,11 +42,11 @@ public class UserTutorialsCategory implements Serializable {
 		this.userId = userId;
 	}
 
-	public List<UserTutorial> getTutorials() {
+	public List<Tutorial> getTutorials() {
 		return tutorials;
 	}
 
-	public void setTutorials(List<UserTutorial> tutorials) {
+	public void setTutorials(List<Tutorial> tutorials) {
 		this.tutorials = tutorials;
 	}
 

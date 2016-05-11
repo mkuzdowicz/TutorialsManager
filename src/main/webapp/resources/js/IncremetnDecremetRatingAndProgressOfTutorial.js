@@ -3,47 +3,36 @@ $(document)
 				function() {
 
 					var incrementRatingBtn = $('.incrementRatingBtn');
-
 					var decrementRatingBtn = $('.decrementRatingBtn');
-
 					var incrementTutorialProgressBtn = $('.incrementTutorialProgressBtn');
-
 					var decrementTutorialProgressBtn = $('.decrementTutorialProgressBtn');
 
 					incrementRatingBtn
 							.click(function() {
 
 								var clickedItemPk = $(this).data('item-pk');
-
 								var fullJQueryDomSelector = '#ratingOfTutorial'
 										+ clickedItemPk;
-
 								executeAjaxPostForTutorialRating(
 										'/TutorialsManager/user/tutorial-rating-increment',
 										fullJQueryDomSelector);
-
 							})
 
 					decrementRatingBtn
 							.click(function() {
 								var clickedItemPk = $(this).data('item-pk');
-
 								var fullJQueryDomSelector = '#ratingOfTutorial'
 										+ clickedItemPk;
-
 								executeAjaxPostForTutorialRating(
 										'/TutorialsManager/user/tutorial-rating-decrement',
 										fullJQueryDomSelector);
-
 							})
 
 					incrementTutorialProgressBtn
 							.click(function() {
 								var clickedItemPk = $(this).data('item-pk');
-
 								var fullJQueryDomSelector = '#progressOfTutorial'
 										+ clickedItemPk;
-
 								executeAjaxPostForTutorialProgress(
 										'/TutorialsManager/user/tutorial-progress-increment',
 										fullJQueryDomSelector);
@@ -54,10 +43,8 @@ $(document)
 							.click(function() {
 
 								var clickedItemPk = $(this).data('item-pk');
-
 								var fullJQueryDomSelector = '#progressOfTutorial'
 										+ clickedItemPk;
-
 								executeAjaxPostForTutorialProgress(
 										'/TutorialsManager/user/tutorial-progress-decrement',
 										fullJQueryDomSelector);
@@ -76,9 +63,7 @@ function executeAjaxPostForTutorialRating(urlString, domSelector) {
 			id : pkFromSelector
 		},
 		success : function(tutorialDTO) {
-
 			console.log(tutorialDTO);
-
 			$(domSelector).text(tutorialDTO.rating);
 
 		},
@@ -100,9 +85,7 @@ function executeAjaxPostForTutorialProgress(urlString, domSelector) {
 			id : pkFromSelector
 		},
 		success : function(tutorialDTO) {
-
 			console.log(tutorialDTO);
-
 			$(domSelector).text(tutorialDTO.progress);
 
 		},

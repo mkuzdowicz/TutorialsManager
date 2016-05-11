@@ -2,7 +2,7 @@ package org.kuzdowicz.repoapps.tutorials.controllers;
 
 import java.security.Principal;
 
-import org.kuzdowicz.repoapps.tutorials.service.TutorialsCategoriesService;
+import org.kuzdowicz.repoapps.tutorials.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,22 +14,22 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/user")
 public class TutorialsPageController {
 
-	private TutorialsCategoriesService tutorialsCategoriesService;
+	private CategoriesService categoriesService;
 
 	@Autowired
-	public TutorialsPageController(TutorialsCategoriesService tutorialsCategoriesService) {
-		this.tutorialsCategoriesService = tutorialsCategoriesService;
+	public TutorialsPageController(CategoriesService categoriesService) {
+		this.categoriesService = categoriesService;
 	}
 
 	@RequestMapping(value = "/all-categories", method = RequestMethod.GET)
-	public ModelAndView printCategoriesWithParam(@RequestParam(required = false) String categoryName, Principal principal) {
+	public ModelAndView printCategoriesWithParam(@RequestParam(required = false) Long categoryId, Principal principal) {
 
 		ModelAndView mav = new ModelAndView("Categories");
 
-		mav.addObject("catList", tutorialsCategoriesService.getUserCategoriesNames(principal.getName()));
+		mav.addObject("catList", categoriesService.getUserCategories(principal.getName()));
 
-		if (categoryName != null) {
-			mav.addObject("selectedCategory", tutorialsCategoriesService.getOneByName(categoryName));
+		if (categoryId != null) {
+			mav.addObject("selectedCategory", categoriesService.getOneById(categoryId));
 		}
 
 		return mav;
