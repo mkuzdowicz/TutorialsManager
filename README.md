@@ -3,7 +3,8 @@
 * Including functionalities like time management and  rating of tutorials.
 
 # Main technologies: 
- * Java 8, Spring MVC, Spring Security, Spring RestTemplate, Hibernate, MySql, Jetty, Maven 
+ * Java 8, Spring MVC, Spring Security, Spring RestTemplate, 
+ * Hibernate, MySql, Jetty, Maven, Sitemesh
  * Integration with NOEMBED Rest API
  
 ### Functionalities
