@@ -26,11 +26,18 @@ public class CategoriesService {
 	}
 
 	public Category getOneById(Long categoryId) {
+		
+		categoriesDao.getOneById(categoryId);
+		
 		return categoriesDao.getOneById(categoryId);
 	}
 
 	public Category getOneByNameAndUserLogin(String name, String username) {
 		return categoriesDao.getOneById(usersDao.findOneUserByUsername(username).getUserid());
+	}
+	
+	public Category getOneByIdWithTutorials(Long categoryId) {
+		return categoriesDao.getOneByIdWithTutorials(categoryId);
 	}
 
 	public void insertOrUpdate(Category category) {

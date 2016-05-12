@@ -1,7 +1,9 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
+import org.kuzdowicz.repoapps.tutorials.models.Category;
 import org.kuzdowicz.repoapps.tutorials.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,11 +27,11 @@ public class TutorialsPageController {
 	public ModelAndView printCategoriesWithParam(@RequestParam(required = false) Long categoryId, Principal principal) {
 
 		ModelAndView mav = new ModelAndView("Categories");
-
-		mav.addObject("catList", categoriesService.getUserCategories(principal.getName()));
+		List<Category> userCategories = categoriesService.getUserCategories(principal.getName());
+		mav.addObject("catList", userCategories);
 
 		if (categoryId != null) {
-			mav.addObject("selectedCategory", categoriesService.getOneById(categoryId));
+			mav.addObject("selectedCategory", categoriesService.getOneByIdWithTutorials(categoryId));
 		}
 
 		return mav;

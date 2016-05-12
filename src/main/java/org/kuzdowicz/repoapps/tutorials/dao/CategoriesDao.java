@@ -10,12 +10,14 @@ public interface CategoriesDao {
 
 	Category getOneById(Long pk);
 
+	Category getOneByIdWithTutorials(Long pk);
+
 	void saveOrUpdateTutorialCategory(Category tutorial);
 
 	void deleteTutorialCategory(Category tutorial);
 
 	List<String> getAllUserCategoriesNames(Long userId);
-	
+
 	List<Category> getAllUserCategories(Long userId);
 
 }

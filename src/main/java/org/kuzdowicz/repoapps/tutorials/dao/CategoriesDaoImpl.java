@@ -3,6 +3,7 @@ package org.kuzdowicz.repoapps.tutorials.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.kuzdowicz.repoapps.tutorials.models.Category;
@@ -22,6 +23,13 @@ public class CategoriesDaoImpl extends AbstractDao<Long, Category>
 	@Override
 	public Category getOneById(Long pk) {
 		return findOne(pk);
+	}
+	
+	@Override
+	public Category getOneByIdWithTutorials(Long pk) {
+		Category category = findOne(pk);
+		Hibernate.initialize(category.getTutorials());
+		return category;
 	}
 
 	@Override
