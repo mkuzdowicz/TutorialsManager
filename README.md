@@ -2,7 +2,7 @@
 Repository which can store tutorials in a db and perform time management on given tutorial.
 
 # Main technologies: 
- Java 8, Spring MVC, Hibernate, MySql 
+ Java 8, Spring MVC, Spring Security, Hibernate, MySql 
  
 ### Functionalities
 * User can store his favorit tutorials
