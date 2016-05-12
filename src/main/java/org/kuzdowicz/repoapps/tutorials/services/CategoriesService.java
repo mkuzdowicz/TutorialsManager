@@ -1,4 +1,4 @@
-package org.kuzdowicz.repoapps.tutorials.service;
+package org.kuzdowicz.repoapps.tutorials.services;
 
 import java.security.Principal;
 import java.util.List;

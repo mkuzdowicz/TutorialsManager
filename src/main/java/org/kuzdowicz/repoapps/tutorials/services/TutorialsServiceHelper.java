@@ -1,4 +1,4 @@
-package org.kuzdowicz.repoapps.tutorials.service;
+package org.kuzdowicz.repoapps.tutorials.services;
 
 import java.util.Date;
 import java.util.Optional;

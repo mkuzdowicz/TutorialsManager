@@ -8,7 +8,7 @@ import java.util.Date;
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.kuzdowicz.repoapps.tutorials.constants.AppFromatters;
-import org.kuzdowicz.repoapps.tutorials.service.TutorialsServiceHelper;
+import org.kuzdowicz.repoapps.tutorials.services.TutorialsServiceHelper;
 
 public class TutorialsServiceHelperTest {
 

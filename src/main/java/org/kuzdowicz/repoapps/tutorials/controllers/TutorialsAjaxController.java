@@ -3,7 +3,7 @@ package org.kuzdowicz.repoapps.tutorials.controllers;
 import org.apache.log4j.Logger;
 import org.kuzdowicz.repoapps.tutorials.dto.TutorialDTO;
 import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
-import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
+import org.kuzdowicz.repoapps.tutorials.services.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

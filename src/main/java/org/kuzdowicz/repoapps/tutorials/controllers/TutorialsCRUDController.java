@@ -4,8 +4,8 @@ import java.security.Principal;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.service.CategoriesService;
-import org.kuzdowicz.repoapps.tutorials.service.TutorialsService;
+import org.kuzdowicz.repoapps.tutorials.services.CategoriesService;
+import org.kuzdowicz.repoapps.tutorials.services.TutorialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
