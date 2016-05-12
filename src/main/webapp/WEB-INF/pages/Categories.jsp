@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<jsp:include page="layout/Header.jsp"></jsp:include>
 
 <input id="csrfTokenInput" type="hidden" name="${_csrf.parameterName}"
 	value="${_csrf.token}" />
@@ -99,4 +98,3 @@
 <script src="<c:url value="/resources/js/CategoriesPage.js" />"></script>
 <script
 	src="<c:url value="/resources/js/IncremetnDecremetRatingAndProgressOfTutorial.js" />"></script>
-<jsp:include page="layout/Footer.jsp"></jsp:include>

@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<jsp:include page="layout/Header.jsp"></jsp:include>
 <div class="row">
 	<div id="addTutorialForm" class="col-md-4 col-md-offset-1">
 		<h3>Add new tutorial</h3>
@@ -73,4 +72,3 @@
 </div>
 
 <script src="<c:url value="/resources/js/DatePickerInitAndConfig.js" />"></script>
-<jsp:include page="layout/Footer.jsp"></jsp:include>

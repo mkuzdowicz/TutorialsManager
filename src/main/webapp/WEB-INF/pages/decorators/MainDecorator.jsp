@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
-<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Personal Tutorials Repository & Learning time management</title>
+<title>Personal Video Tutorials Repository & Learning time
+	management</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -39,9 +39,8 @@
 	href="<c:url value="/resources/css/main.css" />">
 </head>
 <body>
-
-
 	<div class="container-fluid">
+
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div id="navHeader" class="navbar-header">
@@ -70,9 +69,32 @@
 		<header class="text-center">
 			<sec:authorize access="isAuthenticated()">
 				<h3 class="pull-right">
-					welcome <sec:authentication property="principal.username" />
+					welcome
+					<sec:authentication property="principal.username" />
 				</h3>
 			</sec:authorize>
 			<h1>Personal Tutorials Repository & Learning time management</h1>
 		</header>
 		<hr>
+
+		<!-- CONTENT BEGIN -->
+		
+		<sitemesh:write property='body' />
+		
+		<!-- CONTENT END -->
+
+		<script src="<c:url value="/resources/js/main.js" />"></script>
+		<footer>
+			<hr>
+			<div class="text-center">
+				author:&nbsp;
+				<spring:message code="author" />
+				&nbsp;&nbsp;&nbsp;&nbsp; version:&nbsp;
+				<spring:message code="version" />
+
+			</div>
+		</footer>
+
+	</div>
+</body>
+</html>
