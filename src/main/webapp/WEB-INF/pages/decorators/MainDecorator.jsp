@@ -51,7 +51,7 @@
 					<li><a href="/TutorialsManager/user/add-tutorial">add new</a></li>
 					<li><a href="/TutorialsManager/user/tutorials-to-do">your
 							plan for this week</a></li>
-
+					<li><a href="/TutorialsManager/create-account">create-account</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="pull-right">
@@ -64,6 +64,7 @@
 					<li class="pull-right"><a class="btn"
 						href="/TutorialsManager/login">login</a></li>
 				</ul>
+
 			</div>
 		</nav>
 		<header class="text-center">
@@ -78,9 +79,9 @@
 		<hr>
 
 		<!-- CONTENT BEGIN -->
-		
+
 		<sitemesh:write property='body' />
-		
+
 		<!-- CONTENT END -->
 
 		<script src="<c:url value="/resources/js/main.js" />"></script>
