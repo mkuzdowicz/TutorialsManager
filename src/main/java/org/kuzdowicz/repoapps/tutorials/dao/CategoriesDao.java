@@ -4,17 +4,9 @@ import java.util.List;
 
 import org.kuzdowicz.repoapps.tutorials.models.Category;
 
-public interface CategoriesDao {
-
-	List<Category> getAllCategories();
-
-	Category getOneById(Long pk);
+public interface CategoriesDao extends BasicCrudDao<Long, Category> {
 
 	Category getOneByIdWithTutorials(Long pk);
-
-	void saveOrUpdateTutorialCategory(Category tutorial);
-
-	void deleteTutorialCategory(Category tutorial);
 
 	List<String> getAllUserCategoriesNames(Long userId);
 

@@ -12,34 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class CategoriesDaoImpl extends AbstractDao<Long, Category>
-		implements CategoriesDao {
+public class CategoriesDaoImpl extends AbstractDao<Long, Category> implements CategoriesDao {
 
-	@Override
-	public List<Category> getAllCategories() {
-		return findAll();
-	}
-
-	@Override
-	public Category getOneById(Long pk) {
-		return findOne(pk);
-	}
-	
 	@Override
 	public Category getOneByIdWithTutorials(Long pk) {
 		Category category = findOne(pk);
 		Hibernate.initialize(category.getTutorials());
 		return category;
-	}
-
-	@Override
-	public void saveOrUpdateTutorialCategory(Category tutorialCategory) {
-		saveOrUpdate(tutorialCategory);
-	}
-
-	@Override
-	public void deleteTutorialCategory(Category tutorialCategory) {
-		delete(tutorialCategory);
 	}
 
 	@SuppressWarnings("unchecked")

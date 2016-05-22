@@ -12,9 +12,9 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
-import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
 import org.kuzdowicz.repoapps.tutorials.models.Category;
 import org.kuzdowicz.repoapps.tutorials.models.NoEmbedApiResponse;
+import org.kuzdowicz.repoapps.tutorials.models.Tutorial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,15 +44,15 @@ public class TutorialsService {
 	private final static Integer progressStartVal = 0;
 
 	public List<Tutorial> selectAll() {
-		return tutorialsDao.getAllTutorials();
+		return tutorialsDao.findAll();
 	}
 
 	public Tutorial getOneById(Long id) {
-		return tutorialsDao.getOneById(id);
+		return tutorialsDao.findOne(id);
 	}
 
 	public void removeOneById(Long id) {
-		tutorialsDao.deleteTutorial(getOneById(id));
+		tutorialsDao.delete(getOneById(id));
 	}
 
 	public Tutorial incremetRatingAndReturnChangedObject(Long pk) {
@@ -62,7 +62,7 @@ public class TutorialsService {
 		Optional.of(actualRating).filter(val -> val < Long.MAX_VALUE).ifPresent(presentVal -> {
 			presentVal++;
 			tutorial.setRating(presentVal);
-			tutorialsDao.saveOrUpdateTutorial(tutorial);
+			tutorialsDao.saveOrUpdate(tutorial);
 		});
 		return tutorial;
 	}
@@ -74,7 +74,7 @@ public class TutorialsService {
 		Optional.of(actualRating).filter(val -> val > 0).ifPresent(presentVal -> {
 			presentVal--;
 			tutorial.setRating(presentVal);
-			tutorialsDao.saveOrUpdateTutorial(tutorial);
+			tutorialsDao.saveOrUpdate(tutorial);
 		});
 		return tutorial;
 	}
@@ -87,7 +87,7 @@ public class TutorialsService {
 				.ifPresent(presentValue -> {
 					presentValue += 5;
 					tutorial.setProgress(presentValue);
-					tutorialsDao.saveOrUpdateTutorial(tutorial);
+					tutorialsDao.saveOrUpdate(tutorial);
 				});
 		return tutorial;
 	}
@@ -100,7 +100,7 @@ public class TutorialsService {
 				.ifPresent(presentValue -> {
 					presentValue -= 5;
 					tutorial.setProgress(presentValue);
-					tutorialsDao.saveOrUpdateTutorial(tutorial);
+					tutorialsDao.saveOrUpdate(tutorial);
 				});
 		return tutorial;
 	}
@@ -147,7 +147,7 @@ public class TutorialsService {
 
 		String idFromReq = reqParamsMap.get("id");
 
-		Tutorial tutorialToEdit = tutorialsDao.getOneById(Long.parseLong(idFromReq));
+		Tutorial tutorialToEdit = tutorialsDao.findOne(Long.parseLong(idFromReq));
 
 		// BASIC DATA
 		tutorialToEdit.setAuthor(reqParamsMap.get("author"));
@@ -172,7 +172,7 @@ public class TutorialsService {
 		tutorialToEdit.setTutorialCategory(cat);
 
 		// SAVE OR UPDATE
-		tutorialsDao.saveOrUpdateTutorial(tutorialToEdit);
+		tutorialsDao.saveOrUpdate(tutorialToEdit);
 
 	}
 
@@ -207,7 +207,7 @@ public class TutorialsService {
 		newTutorial.setTutorialCategory(cat);
 
 		// SAVE OR UPDATE
-		tutorialsDao.saveOrUpdateTutorial(newTutorial);
+		tutorialsDao.saveOrUpdate(newTutorial);
 	}
 
 }

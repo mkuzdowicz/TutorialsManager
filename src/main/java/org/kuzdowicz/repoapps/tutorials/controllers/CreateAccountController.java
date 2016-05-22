@@ -58,7 +58,7 @@ public class CreateAccountController {
 		newUser.setUsername(username);
 		newUser.setPassword(passwordEncoder.encode(password));
 		newUser.setType("ROLE_USER");
-		usersDao.saveOrUpdateUser(newUser);
+		usersDao.saveOrUpdate(newUser);
 
 		mav.addObject("successMsg", "user " + username + " created successfully");
 		return mav;

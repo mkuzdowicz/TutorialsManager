@@ -17,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class InitStartDataForTestService {
 
 	private CategoriesDao tutorialsCategoriesDao;
-
 	private TutorialsDao tutorialsDao;
-
 	private UsersDao usersDao;
 
 	@Autowired
@@ -46,8 +44,8 @@ public class InitStartDataForTestService {
 		admin.setType("ROLE_USER");
 		admin.setEmail("admin@admin");
 
-		usersDao.saveOrUpdateUser(user);
-		usersDao.saveOrUpdateUser(admin);
+		usersDao.saveOrUpdate(user);
+		usersDao.saveOrUpdate(admin);
 
 		// ------------------------------------------------------
 
@@ -59,8 +57,8 @@ public class InitStartDataForTestService {
 		Category aspCategory = new Category();
 		aspCategory.setCategoryName("asp");
 		aspCategory.setUserId(user.getUserid());
-		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(javaCategory);
-		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(aspCategory);
+		tutorialsCategoriesDao.saveOrUpdate(javaCategory);
+		tutorialsCategoriesDao.saveOrUpdate(aspCategory);
 
 		// ------------------------------------------------------
 
@@ -76,7 +74,7 @@ public class InitStartDataForTestService {
 		tut1.setUserId(admin.getUserid());
 		tut1.setTutorialCategory(javaCategory);
 
-		tutorialsDao.saveOrUpdateTutorial(tut1);
+		tutorialsDao.saveOrUpdate(tut1);
 
 		Tutorial tut2 = new Tutorial();
 		tut2.setAuthor("Artur Owczarek");
@@ -90,7 +88,7 @@ public class InitStartDataForTestService {
 		tut2.setUserId(admin.getUserid());
 		tut2.setTutorialCategory(javaCategory);
 
-		tutorialsDao.saveOrUpdateTutorial(tut2);
+		tutorialsDao.saveOrUpdate(tut2);
 
 		Tutorial tut3 = new Tutorial();
 		tut3.setAuthor("Mykong");
@@ -104,7 +102,7 @@ public class InitStartDataForTestService {
 		tut3.setUserId(admin.getUserid());
 		tut3.setTutorialCategory(javaCategory);
 
-		tutorialsDao.saveOrUpdateTutorial(tut3);
+		tutorialsDao.saveOrUpdate(tut3);
 
 		javaCategory.setTutorials(new ArrayList<>());
 		javaCategory.getTutorials().add(tut1);
@@ -112,7 +110,7 @@ public class InitStartDataForTestService {
 		javaCategory.getTutorials().add(tut3);
 		javaCategory.setUserId(tut1.getUserId());
 
-		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(javaCategory);
+		tutorialsCategoriesDao.saveOrUpdate(javaCategory);
 
 		aspCategory.setTutorials(new ArrayList<>());
 
@@ -128,12 +126,12 @@ public class InitStartDataForTestService {
 		tut4.setUserId(user.getUserid());
 		tut4.setTutorialCategory(aspCategory);
 
-		tutorialsDao.saveOrUpdateTutorial(tut4);
+		tutorialsDao.saveOrUpdate(tut4);
 
 		aspCategory.getTutorials().add(tut4);
 		aspCategory.setUserId(tut4.getUserId());
 
-		tutorialsCategoriesDao.saveOrUpdateTutorialCategory(aspCategory);
+		tutorialsCategoriesDao.saveOrUpdate(aspCategory);
 
 	}
 

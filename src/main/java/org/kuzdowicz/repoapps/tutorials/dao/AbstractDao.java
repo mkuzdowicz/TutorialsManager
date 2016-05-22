@@ -8,8 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
-public abstract class AbstractDao<PK extends Serializable, T> {
+@Transactional
+public abstract class AbstractDao<PK extends Serializable, T> implements BasicCrudDao<PK, T> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -30,32 +32,32 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected List<T> findAll() {
+	public List<T> findAll() {
 
 		return getSession().createCriteria(persistenceClass).list();
 
 	}
 
 	@SuppressWarnings("unchecked")
-	protected T findOneByCriteria(Criterion criterion) {
+	public T findOneByCriteria(Criterion criterion) {
 
 		return (T) getSession().createCriteria(persistenceClass).add(criterion).uniqueResult();
 
 	}
 
-	protected T findOne(PK pk) {
+	public T findOne(PK pk) {
 
 		return getSession().get(persistenceClass, pk);
 
 	}
 
-	protected void delete(T object) {
+	public void delete(T object) {
 
 		getSession().delete(object);
 
 	}
 
-	protected void saveOrUpdate(T object) {
+	public void saveOrUpdate(T object) {
 
 		getSession().saveOrUpdate(object);
 

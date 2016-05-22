@@ -22,27 +22,25 @@ public class CategoriesService {
 	}
 
 	public List<Category> selectAll() {
-		return categoriesDao.getAllCategories();
+		return categoriesDao.findAll();
 	}
 
 	public Category getOneById(Long categoryId) {
-		
-		categoriesDao.getOneById(categoryId);
-		
-		return categoriesDao.getOneById(categoryId);
+
+		return categoriesDao.findOne(categoryId);
 	}
 
 	public Category getOneByNameAndUserLogin(String name, String username) {
-		return categoriesDao.getOneById(usersDao.findOneUserByUsername(username).getUserid());
+		return categoriesDao.findOne(usersDao.findOneUserByUsername(username).getUserid());
 	}
-	
+
 	public Category getOneByIdWithTutorials(Long categoryId) {
 		return categoriesDao.getOneByIdWithTutorials(categoryId);
 	}
 
 	public void insertOrUpdate(Category category) {
 
-		categoriesDao.saveOrUpdateTutorialCategory(category);
+		categoriesDao.saveOrUpdate(category);
 	}
 
 	public void saveNewCategoryIfNotExistFotGivenNameAndUser(String name, Principal principal) {
@@ -58,9 +56,9 @@ public class CategoriesService {
 	}
 
 	public void removeOneByPk(Long categoryPK) {
-		Category tutorialToRemove = categoriesDao.getOneById(categoryPK);
+		Category tutorialToRemove = categoriesDao.findOne(categoryPK);
 		if (categoriesDao != null) {
-			categoriesDao.deleteTutorialCategory(tutorialToRemove);
+			categoriesDao.delete(tutorialToRemove);
 		}
 	}
 
@@ -68,11 +66,11 @@ public class CategoriesService {
 		Long userid = usersDao.findOneUserByUsername(username).getUserid();
 		return categoriesDao.getAllUserCategoriesNames(userid);
 	}
-	
-	public List<Category> getUserCategories(String username){
+
+	public List<Category> getUserCategories(String username) {
 		Long userid = usersDao.findOneUserByUsername(username).getUserid();
 		return categoriesDao.getAllUserCategories(userid);
-		
+
 	}
 
 }

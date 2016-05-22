@@ -14,31 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class TutorialsDaoImpl extends AbstractDao<Long, Tutorial> implements TutorialsDao {
 
-	@Override
-	public List<Tutorial> getAllTutorials() {
-
-		return findAll();
-	}
-
-	@Override
-	public Tutorial getOneById(Long pk) {
-
-		return findOne(pk);
-	}
-
-	@Override
-	public void saveOrUpdateTutorial(Tutorial tutorial) {
-
-		saveOrUpdate(tutorial);
-	}
-
-	@Override
-	public void deleteTutorial(Tutorial tutorial) {
-
-		delete(tutorial);
-
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tutorial> getAllTutorialsBeetwenGivenDates(Date startDate, Date endDate) {
