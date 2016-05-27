@@ -20,9 +20,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
 	}
 
 	@Bean
@@ -40,7 +38,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()//
 				.and()//
 				.formLogin()//
-				.defaultSuccessUrl("/user/tutorials-to-do");
+				.defaultSuccessUrl("/user/tutorials-to-do")//
+				.and();
 
 	}
 

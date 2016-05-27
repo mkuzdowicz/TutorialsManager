@@ -7,3 +7,5 @@
 <div class="row text-center">
 	<img src="resources/images/knowledge.png" />
 </div>
+
+

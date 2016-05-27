@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USERS")
@@ -27,6 +28,8 @@ public class AppUser implements Serializable {
 	private String type;
 	@Column(name = "EMAIL")
 	private String email;
+	@Transient
+	private String facebookId;
 
 	public Long getUserid() {
 		return userid;
@@ -66,6 +69,14 @@ public class AppUser implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getFacebookId() {
+		return facebookId;
+	}
+
+	public void setFacebookId(String facebookId) {
+		this.facebookId = facebookId;
 	}
 
 }

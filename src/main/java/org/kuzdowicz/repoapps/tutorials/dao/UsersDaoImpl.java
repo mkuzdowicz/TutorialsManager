@@ -21,4 +21,14 @@ public class UsersDaoImpl extends AbstractDao<Long, AppUser> implements UsersDao
 		return (AppUser) AppUserCriteria.uniqueResult();
 	}
 
+	@Override
+	public AppUser findByFacebookId(String facebookId) {
+		
+		Session session = getSession();
+		Criteria AppUserCriteria = session.createCriteria(AppUser.class);
+		AppUserCriteria.add(Restrictions.eq("facebookId", facebookId));
+
+		return (AppUser) AppUserCriteria.uniqueResult();
+	}
+
 }
