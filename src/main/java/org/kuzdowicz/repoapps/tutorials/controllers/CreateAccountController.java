@@ -13,8 +13,10 @@ import org.kuzdowicz.repoapps.tutorials.security.AuthenticateUserAfterRegistrati
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
+import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -36,11 +38,12 @@ public class CreateAccountController {
 
 	@Autowired
 	public CreateAccountController(UsersDao usersDao, PasswordEncoder passwordEncoder,
-			ProviderSignInUtils providerSignInUtils,
-			AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService) {
+			AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService,
+			ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
+
 		this.usersDao = usersDao;
 		this.passwordEncoder = passwordEncoder;
-		this.providerSignInUtils = providerSignInUtils;
+		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
 		this.authenticateUserAfterRegistrationService = authenticateUserAfterRegistrationService;
 	}
 

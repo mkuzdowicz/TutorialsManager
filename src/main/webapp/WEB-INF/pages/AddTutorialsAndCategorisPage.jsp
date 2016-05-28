@@ -17,7 +17,6 @@
 						<option value="${cat.categoryId}">${cat.categoryName}</option>
 					</c:forEach>
 				</select>
-
 			</div>
 
 

@@ -51,7 +51,6 @@
 					<li><a href="/TutorialsManager/user/add-tutorial">add new</a></li>
 					<li><a href="/TutorialsManager/user/tutorials-to-do">your
 							plan for this week</a></li>
-					<li><a href="/TutorialsManager/create-account">create-account</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="pull-right">
@@ -63,11 +62,6 @@
 					</li>
 					<li class="pull-right"><a class="btn"
 						href="/TutorialsManager/login">login</a></li>
-					<li><a href="${pageContext.request.contextPath}/auth/facebook"><button
-								class="btn btn-primary">sign in with facebook</button></a></li>
-
-					<li><a href="${pageContext.request.contextPath}/auth/twitter"><button
-								class="btn btn-info">sign in with twitter</button></a></li>
 				</ul>
 
 			</div>
