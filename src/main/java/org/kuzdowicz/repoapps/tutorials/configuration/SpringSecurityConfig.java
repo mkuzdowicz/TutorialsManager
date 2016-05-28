@@ -46,6 +46,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()//
 				.and()//
 				.formLogin()//
+				.loginPage("/login")//
 				.defaultSuccessUrl("/user/tutorials-to-do")//
 				.and().//
 				apply(springSocialConfigurer());
