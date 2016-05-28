@@ -1,5 +1,6 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -8,13 +9,12 @@ import org.kuzdowicz.repoapps.tutorials.constants.UserTypes;
 import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
 import org.kuzdowicz.repoapps.tutorials.forms.CreateAccountForm;
 import org.kuzdowicz.repoapps.tutorials.models.AppUser;
+import org.kuzdowicz.repoapps.tutorials.security.AuthenticateUserAfterRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
-import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -32,13 +32,16 @@ public class CreateAccountController {
 	private final UsersDao usersDao;
 	private final PasswordEncoder passwordEncoder;
 	private final ProviderSignInUtils providerSignInUtils;
+	private final AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService;
 
 	@Autowired
 	public CreateAccountController(UsersDao usersDao, PasswordEncoder passwordEncoder,
-			ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
+			ProviderSignInUtils providerSignInUtils,
+			AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService) {
 		this.usersDao = usersDao;
 		this.passwordEncoder = passwordEncoder;
-		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
+		this.providerSignInUtils = providerSignInUtils;
+		this.authenticateUserAfterRegistrationService = authenticateUserAfterRegistrationService;
 	}
 
 	@RequestMapping(value = "/create-account", method = RequestMethod.GET)
@@ -70,7 +73,7 @@ public class CreateAccountController {
 
 	@RequestMapping(value = "/create-account", method = RequestMethod.POST)
 	public ModelAndView createAccount(@Valid @ModelAttribute("createAccountForm") CreateAccountForm createAccountForm,
-			BindingResult result) {
+			BindingResult result, HttpServletRequest request, HttpServletRequest response) {
 
 		String username = createAccountForm.getLogin();
 		String password = createAccountForm.getPassword();
@@ -92,8 +95,10 @@ public class CreateAccountController {
 		newUser.setType(UserTypes.USER);
 		usersDao.saveOrUpdate(newUser);
 
-		mav.addObject("successMsg", "user " + username + " created successfully");
-		return mav;
+		authenticateUserAfterRegistrationService.authenticateUser(newUser);
+
+		ModelAndView redirectAfterSuccessRegitsrationMAV = new ModelAndView("AddTutorialsAndCategorisPage");
+		return redirectAfterSuccessRegitsrationMAV;
 	}
 
 }
