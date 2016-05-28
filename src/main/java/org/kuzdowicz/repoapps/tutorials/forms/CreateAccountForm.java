@@ -3,10 +3,15 @@ package org.kuzdowicz.repoapps.tutorials.forms;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.kuzdowicz.repoapps.tutorials.constants.SocialProviders;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionKey;
+import org.springframework.social.connect.UserProfile;
+
 public class CreateAccountForm {
 
 	@NotNull(message = "please enter a login")
-	@Size(min = 4, max = 12, message = "your login should be between 4 - 12 characters")
+	@Size(min = 4, max = 30, message = "your login should be between 4 - 30 characters")
 	private String login;
 	@NotNull(message = "please enter a login")
 	@Size(min = 8, message = "password should be min 8 characters")
@@ -37,6 +42,22 @@ public class CreateAccountForm {
 
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+
+	public void fillFormFromSocialProvider(Connection<?> connection) {
+		if (connection != null) {
+			ConnectionKey connKey = connection.getKey();
+
+			UserProfile userProfile = connection.fetchUserProfile();
+			String socialProviderId = connKey.getProviderId();
+
+			if (socialProviderId.equals(SocialProviders.facebook.name())) {
+				this.setLogin(userProfile.getEmail());
+			}
+			if (socialProviderId.equals(SocialProviders.twitter.name())) {
+				this.setLogin(connection.getDisplayName());
+			}
+		}
 	}
 
 }

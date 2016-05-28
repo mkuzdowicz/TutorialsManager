@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">login</label>
+		<label class="col-sm-2 control-label">password</label>
 		<div class="col-sm-10">
 			<form:input path="password" class="form-control"
 				placeholder="password" type="password" />

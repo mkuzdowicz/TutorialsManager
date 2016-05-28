@@ -1,21 +1,16 @@
 package org.kuzdowicz.repoapps.tutorials.controllers;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
-import org.kuzdowicz.repoapps.tutorials.constants.SocialProviders;
 import org.kuzdowicz.repoapps.tutorials.constants.UserTypes;
-import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
 import org.kuzdowicz.repoapps.tutorials.forms.CreateAccountForm;
 import org.kuzdowicz.repoapps.tutorials.models.AppUser;
 import org.kuzdowicz.repoapps.tutorials.security.AuthenticateUserAfterRegistrationService;
+import org.kuzdowicz.repoapps.tutorials.services.ApplicationUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
-import org.springframework.social.connect.ConnectionKey;
-import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
@@ -29,19 +24,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CreateAccountController {
 
-	private final static Logger logger = Logger.getLogger(CreateAccountController.class);
-
-	private final UsersDao usersDao;
+	private final ApplicationUsersService applicationUsersService;
 	private final PasswordEncoder passwordEncoder;
 	private final ProviderSignInUtils providerSignInUtils;
 	private final AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService;
 
 	@Autowired
-	public CreateAccountController(UsersDao usersDao, PasswordEncoder passwordEncoder,
+	public CreateAccountController(ApplicationUsersService applicationUsersService, PasswordEncoder passwordEncoder,
 			AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService,
 			ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
 
-		this.usersDao = usersDao;
+		this.applicationUsersService = applicationUsersService;
 		this.passwordEncoder = passwordEncoder;
 		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
 		this.authenticateUserAfterRegistrationService = authenticateUserAfterRegistrationService;
@@ -52,21 +45,7 @@ public class CreateAccountController {
 
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 
-		if (connection != null) {
-			ConnectionKey connKey = connection.getKey();
-
-			UserProfile userProfile = connection.fetchUserProfile();
-			String socialProviderId = connKey.getProviderId();
-
-			if (socialProviderId.equals(SocialProviders.facebook.name())) {
-				createAccountForm.setLogin(userProfile.getEmail());
-			}
-			if (socialProviderId.equals(SocialProviders.twitter.name())) {
-				createAccountForm.setLogin(connection.getDisplayName());
-			}
-			logger.debug(connection.getDisplayName());
-			logger.debug(connKey.getProviderUserId());
-		}
+		createAccountForm.fillFormFromSocialProvider(connection);
 
 		ModelAndView mav = new ModelAndView("CreateAccountPage");
 		mav.addObject("createAccountForm", createAccountForm);
@@ -76,7 +55,7 @@ public class CreateAccountController {
 
 	@RequestMapping(value = "/create-account", method = RequestMethod.POST)
 	public ModelAndView createAccount(@Valid @ModelAttribute("createAccountForm") CreateAccountForm createAccountForm,
-			BindingResult result, HttpServletRequest request, HttpServletRequest response) {
+			BindingResult result, WebRequest request) {
 
 		String username = createAccountForm.getLogin();
 		String password = createAccountForm.getPassword();
@@ -89,17 +68,21 @@ public class CreateAccountController {
 		}
 
 		if (!password.equals(confirmPassword)) {
-			return createAccountForm(new CreateAccountForm(), "password and confirm password have to be equal", null);
+			createAccountForm.setPassword(null);
+			createAccountForm.setConfirmPassword(null);
+			return createAccountForm(createAccountForm, "password and confirm password have to be equal", request);
 		}
 
 		AppUser newUser = new AppUser();
 		newUser.setUsername(username);
 		newUser.setPassword(passwordEncoder.encode(password));
 		newUser.setType(UserTypes.USER);
-		usersDao.saveOrUpdate(newUser);
+		AppUser newAccount = applicationUsersService.createNewAccount(newUser);
+		if (newAccount == null) {
+			return createAccountForm(new CreateAccountForm(), "login already in use!", request);
+		}
 
 		authenticateUserAfterRegistrationService.authenticateUser(newUser);
-
 		ModelAndView redirectAfterSuccessRegitsrationMAV = new ModelAndView("AddTutorialsAndCategorisPage");
 		return redirectAfterSuccessRegitsrationMAV;
 	}
