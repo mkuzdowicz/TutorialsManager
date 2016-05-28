@@ -63,14 +63,11 @@
 					</li>
 					<li class="pull-right"><a class="btn"
 						href="/TutorialsManager/login">login</a></li>
-					<li><form id="facebook-login"
-							action="/TutorialsManager/signin/facebook" method="POST">
-							<input type="hidden" name="scope" value="public_profile,email"></input>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-							<button class="btn btn-primary" type="submit">sign in
-								with facebook</button>
-						</form></li>
+					<li><a href="${pageContext.request.contextPath}/auth/facebook"><button
+								class="btn btn-primary">sign in with facebook</button></a></li>
+
+					<li><a href="${pageContext.request.contextPath}/auth/twitter"><button
+								class="btn btn-info">sign in with twitter</button></a></li>
 				</ul>
 
 			</div>

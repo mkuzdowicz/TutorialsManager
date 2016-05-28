@@ -9,12 +9,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
 	private UsersDao usersDao;
 
 	@Autowired
-	public CustomUserDetailsService(UsersDao usersDao) {
+	public UserDetailsServiceImpl(UsersDao usersDao) {
 		this.usersDao = usersDao;
 	}
 
@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException(username + " login not found");
 		}
 
-		return new SpringSecurityUserDetailsDecorator(user);
+		return new UserDetailsImpl(user);
 	}
 
 }
