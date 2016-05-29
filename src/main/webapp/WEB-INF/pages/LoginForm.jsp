@@ -4,17 +4,17 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div class="row text-center">
-	<div class="col-xs-8 col-xs-offset-2">
+	<div class="col-xs-6 col-xs-offset-3">
 		<div class="text-center">
 			<form name="loginForm" action="/TutorialsManager/login" method="POST">
 
 				<div class="form-group">
-					<label>User</label> <input class="form-control" type="text"
+					<label>login</label> <input class="form-control" type="text"
 						name="username" required />
 				</div>
 
 				<div class="form-group">
-					<label>Password</label> <input class="form-control" type="password"
+					<label>password</label> <input class="form-control" type="password"
 						name="password" required />
 				</div>
 

@@ -3,7 +3,7 @@ package org.kuzdowicz.repoapps.tutorials.forms;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.kuzdowicz.repoapps.tutorials.constants.SocialProviders;
+import org.kuzdowicz.repoapps.tutorials.constants.SocialProvider;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
@@ -19,6 +19,8 @@ public class CreateAccountForm {
 	@NotNull(message = "please enter a login")
 	@Size(min = 8, message = "password should be min 8 characters")
 	private String confirmPassword;
+
+	private SocialProvider socialProvider;
 
 	public String getLogin() {
 		return login;
@@ -44,6 +46,10 @@ public class CreateAccountForm {
 		this.confirmPassword = confirmPassword;
 	}
 
+	public SocialProvider getSocialProvider() {
+		return socialProvider;
+	}
+
 	public void fillFormFromSocialProvider(Connection<?> connection) {
 		if (connection != null) {
 			ConnectionKey connKey = connection.getKey();
@@ -51,13 +57,19 @@ public class CreateAccountForm {
 			UserProfile userProfile = connection.fetchUserProfile();
 			String socialProviderId = connKey.getProviderId();
 
-			if (socialProviderId.equals(SocialProviders.facebook.name())) {
+			if (socialProviderId.equals(SocialProvider.facebook.name())) {
+				this.socialProvider = SocialProvider.facebook;
 				this.setLogin(userProfile.getEmail());
 			}
-			if (socialProviderId.equals(SocialProviders.twitter.name())) {
+			if (socialProviderId.equals(SocialProvider.twitter.name())) {
+				this.socialProvider = SocialProvider.twitter;
 				this.setLogin(connection.getDisplayName());
 			}
 		}
+	}
+
+	public boolean isSocialSignin() {
+		return this.socialProvider != null;
 	}
 
 }

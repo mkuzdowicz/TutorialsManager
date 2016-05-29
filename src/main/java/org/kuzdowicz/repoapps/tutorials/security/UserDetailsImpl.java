@@ -20,7 +20,7 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
-		return AuthorityUtils.createAuthorityList(appUser.getType());
+		return AuthorityUtils.createAuthorityList(appUser.getType().name());
 	}
 
 	@Override

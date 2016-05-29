@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import org.kuzdowicz.repoapps.tutorials.constants.SocialProvider;
+import org.kuzdowicz.repoapps.tutorials.constants.UserRole;
 
 @Entity
 @Table(name = "USERS")
@@ -24,12 +28,14 @@ public class AppUser implements Serializable {
 	private String username;
 	@Column(name = "PASSWORD")
 	private String password;
+	@Enumerated(EnumType.STRING)
 	@Column(name = "USER_TYPE")
-	private String type;
+	private UserRole type;
 	@Column(name = "EMAIL")
 	private String email;
-	@Transient
-	private String facebookId;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "SIGN_IN_PROVIDER")
+	private SocialProvider signInProvider;
 
 	public Long getUserid() {
 		return userid;
@@ -55,11 +61,11 @@ public class AppUser implements Serializable {
 		this.password = password;
 	}
 
-	public String getType() {
+	public UserRole getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(UserRole type) {
 		this.type = type;
 	}
 
@@ -71,12 +77,12 @@ public class AppUser implements Serializable {
 		this.email = email;
 	}
 
-	public String getFacebookId() {
-		return facebookId;
+	public SocialProvider getSignInProvider() {
+		return signInProvider;
 	}
 
-	public void setFacebookId(String facebookId) {
-		this.facebookId = facebookId;
+	public void setSignInProvider(SocialProvider signInProvider) {
+		this.signInProvider = signInProvider;
 	}
 
 }

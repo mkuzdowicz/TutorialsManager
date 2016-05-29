@@ -17,6 +17,7 @@
 			<td>login</td>
 			<td>email</td>
 			<td>type</td>
+			<td>social sign in provider</td>
 			<td>actions</td>
 		</tr>
 	</thead>
@@ -28,6 +29,7 @@
 				<td>${u.username}</td>
 				<td>${u.email}</td>
 				<td>${u.type}</td>
+				<td>${u.signInProvider}</td>
 				<td></td>
 			</tr>
 		</c:forEach>

@@ -14,6 +14,7 @@ create table USERS (
      PASSWORD varchar(255),
      USER_TYPE varchar(255),
      USERNAME varchar(255),
+     SIGN_IN_PROVIDER varchar(255),
      primary key (USER_ID),
      UNIQUE (USERNAME)
 );

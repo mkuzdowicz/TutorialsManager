@@ -2,13 +2,11 @@ package org.kuzdowicz.repoapps.tutorials.controllers;
 
 import javax.validation.Valid;
 
-import org.kuzdowicz.repoapps.tutorials.constants.UserTypes;
 import org.kuzdowicz.repoapps.tutorials.forms.CreateAccountForm;
 import org.kuzdowicz.repoapps.tutorials.models.AppUser;
 import org.kuzdowicz.repoapps.tutorials.security.AuthenticateUserAfterRegistrationService;
 import org.kuzdowicz.repoapps.tutorials.services.ApplicationUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
@@ -25,17 +23,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class CreateAccountController {
 
 	private final ApplicationUsersService applicationUsersService;
-	private final PasswordEncoder passwordEncoder;
 	private final ProviderSignInUtils providerSignInUtils;
 	private final AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService;
 
 	@Autowired
-	public CreateAccountController(ApplicationUsersService applicationUsersService, PasswordEncoder passwordEncoder,
+	public CreateAccountController(ApplicationUsersService applicationUsersService,
 			AuthenticateUserAfterRegistrationService authenticateUserAfterRegistrationService,
 			ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
 
 		this.applicationUsersService = applicationUsersService;
-		this.passwordEncoder = passwordEncoder;
 		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
 		this.authenticateUserAfterRegistrationService = authenticateUserAfterRegistrationService;
 	}
@@ -57,7 +53,6 @@ public class CreateAccountController {
 	public ModelAndView createAccount(@Valid @ModelAttribute("createAccountForm") CreateAccountForm createAccountForm,
 			BindingResult result, WebRequest request) {
 
-		String username = createAccountForm.getLogin();
 		String password = createAccountForm.getPassword();
 		String confirmPassword = createAccountForm.getConfirmPassword();
 
@@ -73,16 +68,15 @@ public class CreateAccountController {
 			return createAccountForm(createAccountForm, "password and confirm password have to be equal", request);
 		}
 
-		AppUser newUser = new AppUser();
-		newUser.setUsername(username);
-		newUser.setPassword(passwordEncoder.encode(password));
-		newUser.setType(UserTypes.USER);
-		AppUser newAccount = applicationUsersService.createNewAccount(newUser);
+		AppUser newAccount = applicationUsersService.createNewAccount(createAccountForm);
 		if (newAccount == null) {
 			return createAccountForm(new CreateAccountForm(), "login already in use!", request);
 		}
-		
-		authenticateUserAfterRegistrationService.authenticateUser(newUser);
+
+		authenticateUserAfterRegistrationService.authenticateUser(newAccount);
+		if (createAccountForm.isSocialSignin()) {
+			providerSignInUtils.doPostSignUp(newAccount.getUsername(), request);
+		}
 		ModelAndView redirectAfterSuccessRegitsrationMAV = new ModelAndView("AddTutorialsAndCategorisPage");
 		return redirectAfterSuccessRegitsrationMAV;
 	}

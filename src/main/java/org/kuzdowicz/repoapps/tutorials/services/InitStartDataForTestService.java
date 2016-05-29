@@ -3,6 +3,7 @@ package org.kuzdowicz.repoapps.tutorials.services;
 import java.util.ArrayList;
 
 import org.joda.time.DateTime;
+import org.kuzdowicz.repoapps.tutorials.constants.UserRole;
 import org.kuzdowicz.repoapps.tutorials.dao.CategoriesDao;
 import org.kuzdowicz.repoapps.tutorials.dao.TutorialsDao;
 import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
@@ -35,13 +36,13 @@ public class InitStartDataForTestService {
 		AppUser user = new AppUser();
 		user.setUsername("user");
 		user.setPassword("$2a$10$Q.1ZPyA01dhdglv8PjjReOP.4DKAAd5JTUobIlsjnh7dRzfrwq.Uu");
-		user.setType("ROLE_USER");
+		user.setType(UserRole.ROLE_USER);
 		user.setEmail("user@user");
 
 		AppUser admin = new AppUser();
 		admin.setUsername("admin");
 		admin.setPassword("$2a$10$2MLaGiTNvYLBHoKaRGbIy.AFoPBB03uyKmby.xupUoifICoFhjIFq");
-		admin.setType("ROLE_USER");
+		admin.setType(UserRole.ROLE_ADMIN);
 		admin.setEmail("admin@admin");
 
 		usersDao.saveOrUpdate(user);

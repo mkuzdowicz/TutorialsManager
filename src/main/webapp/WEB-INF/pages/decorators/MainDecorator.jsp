@@ -60,7 +60,9 @@
 					</sec:authorize>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="/TutorialsManager/login">login</a></li>
+					<sec:authorize access="isAnonymous()">
+						<li><a href="/TutorialsManager/login">login</a></li>
+					</sec:authorize>
 					<li>
 						<form class="form-inline" action="/TutorialsManager/logout"
 							method="post">
