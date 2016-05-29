@@ -38,7 +38,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/bootstrap-social.css" />">
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/css/font-awesome.min.css" />">	
+	href="<c:url value="/resources/css/font-awesome.min.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/main.css" />">
 </head>
@@ -56,16 +56,16 @@
 					<li><a href="/TutorialsManager/user/tutorials-to-do">your
 							plan for this week</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="pull-right">
-						<form action="/TutorialsManager/logout" method="post">
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="/TutorialsManager/login">login</a></li>
+					<li>
+						<form class="form-inline" action="/TutorialsManager/logout"
+							method="post">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input class="btn" type="submit"
-								value="logout" />
+								value="${_csrf.token}" />
+							<button class="btn btn-default navbar-btn" type="submit">logout</button>
 						</form>
 					</li>
-					<li class="pull-right"><a class="btn"
-						href="/TutorialsManager/login">login</a></li>
 				</ul>
 
 			</div>

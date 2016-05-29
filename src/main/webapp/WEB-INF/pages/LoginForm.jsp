@@ -40,5 +40,16 @@
 				<span class="fa fa-twitter"></span> |sign in with twitter
 			</button></a>
 
+		<c:if test="${param.error ne null}">
+			<br />
+			<div class="alert alert-danger">login or password are not
+				correct</div>
+		</c:if>
+		
+		<c:if test="${param.logout ne null}">
+			<br />
+			<div class="alert alert-success">logout was successful</div>
+		</c:if>
+
 	</div>
 </div>
