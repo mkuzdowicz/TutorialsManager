@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,11 @@ public class SocialUserDetailsServiceImpl implements SocialUserDetailsService {
 	public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
 
 		UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
-		return (SocialUserDetails) userDetails;
+
+		SocialUser socialUser = new SocialUser(userDetails.getUsername(), userDetails.getPassword(),
+				userDetails.getAuthorities());
+
+		return socialUser;
 	}
 
 }

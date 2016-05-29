@@ -43,6 +43,10 @@ public class CreateAccountController {
 
 		createAccountForm.fillFormFromSocialProvider(connection);
 
+		System.out.println("------------------------------------");
+		System.out.println(createAccountForm);
+		System.out.println("------------------------------------");
+
 		ModelAndView mav = new ModelAndView("CreateAccountPage");
 		mav.addObject("createAccountForm", createAccountForm);
 		mav.addObject("errorMsg", errorMsg);
@@ -56,12 +60,9 @@ public class CreateAccountController {
 		String password = createAccountForm.getPassword();
 		String confirmPassword = createAccountForm.getConfirmPassword();
 
-		ModelAndView mav = new ModelAndView("CreateAccountPage");
 		if (result.hasErrors()) {
-			mav.addObject("createAccountForm", createAccountForm);
-			return mav;
+			return createAccountForm(createAccountForm, null, request);
 		}
-
 		if (!password.equals(confirmPassword)) {
 			createAccountForm.setPassword(null);
 			createAccountForm.setConfirmPassword(null);
@@ -74,9 +75,8 @@ public class CreateAccountController {
 		}
 
 		authenticateUserAfterRegistrationService.authenticateUser(newAccount);
-		if (createAccountForm.isSocialSignin()) {
-			providerSignInUtils.doPostSignUp(newAccount.getUsername(), request);
-		}
+		providerSignInUtils.doPostSignUp(newAccount.getUsername(), request);
+
 		ModelAndView redirectAfterSuccessRegitsrationMAV = new ModelAndView("AddTutorialsAndCategorisPage");
 		return redirectAfterSuccessRegitsrationMAV;
 	}

@@ -50,6 +50,10 @@ public class CreateAccountForm {
 		return socialProvider;
 	}
 
+	public void setSocialProvider(SocialProvider socialProvider) {
+		this.socialProvider = socialProvider;
+	}
+
 	public void fillFormFromSocialProvider(Connection<?> connection) {
 		if (connection != null) {
 			ConnectionKey connKey = connection.getKey();
@@ -58,11 +62,11 @@ public class CreateAccountForm {
 			String socialProviderId = connKey.getProviderId();
 
 			if (socialProviderId.equals(SocialProvider.facebook.name())) {
-				this.socialProvider = SocialProvider.facebook;
+				this.setSocialProvider(SocialProvider.facebook);
 				this.setLogin(userProfile.getEmail());
 			}
 			if (socialProviderId.equals(SocialProvider.twitter.name())) {
-				this.socialProvider = SocialProvider.twitter;
+				this.setSocialProvider(SocialProvider.twitter);
 				this.setLogin(connection.getDisplayName());
 			}
 		}
@@ -70,6 +74,12 @@ public class CreateAccountForm {
 
 	public boolean isSocialSignin() {
 		return this.socialProvider != null;
+	}
+
+	@Override
+	public String toString() {
+		return "CreateAccountForm [login=" + login + ", password=" + password + ", confirmPassword=" + confirmPassword
+				+ ", socialProvider=" + socialProvider + "]";
 	}
 
 }

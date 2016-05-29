@@ -40,6 +40,8 @@
 		</div>
 	</div>
 
+	<form:input path="socialProvider" type="hidden" />
+
 	<c:if test="${errorMsg ne null}">
 		<h2 class="alert alert-danger text-center">${errorMsg}</h2>
 	</c:if>
