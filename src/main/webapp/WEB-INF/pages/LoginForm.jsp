@@ -34,10 +34,10 @@
 				<i class="glyphicon glyphicon-plus"></i> | create-account
 			</button></a> <a href="${pageContext.request.contextPath}/auth/facebook"><button
 				class="btn btn-social btn-facebook">
-				<span class="fa fa-facebook"></span> | sign in with facebook
+				<span class="fa fa-facebook"></span>sign in with facebook
 			</button></a> <a href="${pageContext.request.contextPath}/auth/twitter"><button
 				class="btn btn-social btn-twitter">
-				<span class="fa fa-twitter"></span> |sign in with twitter
+				<span class="fa fa-twitter"></span>sign in with twitter
 			</button></a>
 
 		<c:if test="${param.error ne null}">
@@ -45,7 +45,7 @@
 			<div class="alert alert-danger">login or password are not
 				correct</div>
 		</c:if>
-		
+
 		<c:if test="${param.logout ne null}">
 			<br />
 			<div class="alert alert-success">logout was successful</div>

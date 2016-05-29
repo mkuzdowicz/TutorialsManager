@@ -43,5 +43,9 @@ public class ApplicationUsersService {
 	public List<AppUser> allUsers() {
 		return usersDao.findAll();
 	}
+	
+	public void removeUser(Long pk){
+		usersDao.delete(usersDao.findOne(pk));
+	}
 
 }

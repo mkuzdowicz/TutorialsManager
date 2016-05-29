@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,8 +23,13 @@ public class AdminPanel {
 
 		ModelAndView mav = new ModelAndView("admin/UsersTable");
 		mav.addObject("users", applicationUsersService.allUsers());
-
 		return mav;
+	}
+
+	@RequestMapping(value = "/admin/users/remove", method = RequestMethod.POST)
+	public ModelAndView removeUser(@RequestParam Long userId) {
+		applicationUsersService.removeUser(userId);
+		return showUsersTablePage();
 	}
 
 }
