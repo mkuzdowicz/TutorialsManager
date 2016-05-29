@@ -10,12 +10,12 @@
 
 				<div class="form-group">
 					<label>User</label> <input class="form-control" type="text"
-						name="username" />
+						name="username" required />
 				</div>
 
 				<div class="form-group">
 					<label>Password</label> <input class="form-control" type="password"
-						name="password" />
+						name="password" required />
 				</div>
 
 				<input type="hidden" name="${_csrf.parameterName}"
@@ -30,11 +30,15 @@
 		</div>
 
 		<br /> <a href="/TutorialsManager/create-account"><button
-				class="btn">create-account</button></a> <a
-			href="${pageContext.request.contextPath}/auth/facebook"><button
-				class="btn btn-primary">sign in with facebook</button></a> <a
-			href="${pageContext.request.contextPath}/auth/twitter"><button
-				class="btn btn-info">sign in with twitter</button></a>
+				class="btn">
+				<i class="glyphicon glyphicon-plus"></i> | create-account
+			</button></a> <a href="${pageContext.request.contextPath}/auth/facebook"><button
+				class="btn btn-social btn-facebook">
+				<span class="fa fa-facebook"></span> | sign in with facebook
+			</button></a> <a href="${pageContext.request.contextPath}/auth/twitter"><button
+				class="btn btn-social btn-twitter">
+				<span class="fa fa-twitter"></span> |sign in with twitter
+			</button></a>
 
 	</div>
 </div>

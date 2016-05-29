@@ -81,7 +81,7 @@ public class CreateAccountController {
 		if (newAccount == null) {
 			return createAccountForm(new CreateAccountForm(), "login already in use!", request);
 		}
-
+		
 		authenticateUserAfterRegistrationService.authenticateUser(newUser);
 		ModelAndView redirectAfterSuccessRegitsrationMAV = new ModelAndView("AddTutorialsAndCategorisPage");
 		return redirectAfterSuccessRegitsrationMAV;
