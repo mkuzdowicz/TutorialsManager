@@ -1,5 +1,7 @@
 package org.kuzdowicz.repoapps.tutorials.services;
 
+import java.util.List;
+
 import org.kuzdowicz.repoapps.tutorials.dao.UsersDao;
 import org.kuzdowicz.repoapps.tutorials.models.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,10 @@ public class ApplicationUsersService {
 		}
 		usersDao.saveOrUpdate(newUser);
 		return newUser;
+	}
+
+	public List<AppUser> allUsers() {
+		return usersDao.findAll();
 	}
 
 }

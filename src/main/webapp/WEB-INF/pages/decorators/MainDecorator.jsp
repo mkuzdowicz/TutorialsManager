@@ -55,6 +55,9 @@
 					<li><a href="/TutorialsManager/user/add-tutorial">add new</a></li>
 					<li><a href="/TutorialsManager/user/tutorials-to-do">your
 							plan for this week</a></li>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<li><a href="/TutorialsManager/admin/users">users</a></li>
+					</sec:authorize>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
 					<li><a href="/TutorialsManager/login">login</a></li>

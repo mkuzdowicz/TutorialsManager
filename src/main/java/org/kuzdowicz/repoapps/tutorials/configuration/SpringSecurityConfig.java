@@ -39,15 +39,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests()//
-				.antMatchers("/user/**")//
-				.hasAnyRole("USER", "ADMIN")//
-				.anyRequest()//
-				.permitAll()//
-				.and()//
+		http//
 				.formLogin()//
 				.loginPage("/login")//
 				.defaultSuccessUrl("/user/tutorials-to-do")//
+				.and()//
+				.authorizeRequests()//
+				.antMatchers("/user/**")//
+				.hasAnyRole("USER", "ADMIN")//
+				.antMatchers("/admin/**").hasRole("ADMIN")//
+				.anyRequest().permitAll()//
 				.and().//
 				apply(springSocialConfigurer());
 	}
